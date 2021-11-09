@@ -2,8 +2,10 @@ library(readr)
 library(tidyverse)
 library(dplyr)
 #rating data
-rating <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/stars.csv")
-write_csv(rating, "rating.csv")
+# rating <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/stars.csv")
+# write_csv(rating, "rating.csv")
+# rating_data <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/rating_data.csv")
+# write_csv(rating_data, "rating_data.csv")
 master <- read_csv("data/rating.csv")
 rating <- as.data.frame(master[, c(1:5, 28:39)])
 
@@ -17,7 +19,6 @@ rating <- rating[-c(1,2),]
 #rename the broken column
 colnames(rating)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
-
 #convert to long dataset to remove missing values(e.g. plan too small to be measured)
 rating_long <- rating %>% 
   pivot_longer(cols = "C23: Getting Needed Care":"C34: Call Center_Foreign Language Interpreter and TTY Availability",
@@ -28,6 +29,67 @@ rating_long <- rating %>%
 rating_wide <- rating_long %>% 
   pivot_wider(names_from = "measure", values_from = "ratings") %>% 
   drop_na()
+
+#data with percentages of members
+rating_data <- read_csv("data/rating_data.csv")
+rating_data2 <- as.data.frame(rating_data[, c(1:5, 28:39)])
+
+names(rating_data2) <- rating_data2[1,]
+rating_data2 <- rating_data2[-1,]
+#make the next row(rating variables) to be column names
+colnames(rating_data2)[-c(1:5)] <- rating_data2[1, -c(1:5)]
+#remove the time frame row
+rating_data2 <- rating_data2[-c(1,2),]
+#rename the broken column
+colnames(rating_data2)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+rating_long <- rating_data2 %>% 
+  select(-"C31: Health Plan Quality Improvement") %>% 
+  mutate_at(c("C30: Members Choosing to Leave the Plan","C32: Plan Makes Timely Decisions about Appeals",
+              "C33: Reviewing Appeals Decisions", "C34: Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")) %>% 
+  pivot_longer(cols = "C23: Getting Needed Care":"C34: Call Center_Foreign Language Interpreter and TTY Availability",
+               names_to = "measure",
+               names_prefix = "C\\d+: ",
+               values_to = "ratings") %>% 
+  filter(!is.na(as.numeric(ratings)))
+rating_wide <- rating_long %>% 
+  pivot_wider(names_from = "measure", values_from = "ratings") %>% 
+  drop_na() %>% 
+  mutate(across("Getting Needed Care":"Call Center_Foreign Language Interpreter and TTY Availability", ~{as.numeric(.)/100}))
+
+
+#tried clustering
+set.seed(23)
+rating_km3_out <- rating_wide %>% 
+  select("Rating of Health Care Quality", "Rating of Health Plan") %>% 
+  kmeans(centers = 3, nstart = 20)
+rating2 <- rating_wide %>%
+  mutate(clusters3_scaled = factor(rating_km3_out$cluster))
+ggplot(data = rating2, aes(x = "Rating of Health Care Quality", y = "Rating of Health Plan")) + 
+  geom_point(aes(color = clusters3_scaled),
+             position=position_jitter(h=0.1, w=0.1)) +
+  # ggrepel::geom_text_repel(aes(label = "Contract Name", color = clusters3_scaled), size = 3) +
+  coord_fixed() +
+  geom_point(data = data.frame(rating_km3_out$centers),
+             aes(x = SAT_math25, y = SAT_verbal25),
+             pch = "x", size = 8) +
+  labs(x = "Math SAT (25th percentile)",
+       y = "Verbal SAT (25th percentile)",
+       color = "Cluster assignment")
+
+
+GGally::ggpairs(data = rating2, aes(color = clusters3_scaled),
+                columns = c("Getting Needed Care", "Getting Appointments and Care Quickly",
+                            "Customer Service", "Rating of Health Care Quality",
+                            "Rating of Health Plan", "Care Coordination", "Complaints about the Health Plan",
+                            "Members Choosing to Leave the Plan", "Health Plan Quality Improvement",
+                            "Plan Makes Timely Decisions about Appeals", "Reviewing Appeals Decisions",
+                            "Call Center_Foreign Language Interpreter and TTY Availability"),
+                upper = list(continuous = "blank"))
+
+# Clustering using unstandardized variables (for comparison)
+ma2_km3_out_unscaled <- ma_sample2 %>% 
+  select(admit_rate:cost_avg) %>% 
+  kmeans(centers = 3, nstart = 20)
 
 ############################
 #survey data
