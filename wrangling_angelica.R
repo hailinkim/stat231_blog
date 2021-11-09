@@ -5,9 +5,14 @@ write_csv(rating, "rating.csv")
 master <- read_csv("rating.csv")
 rating <- as.data.frame(master[, c(1:5, 28:39)])
 
-
+#make the first row to be column names
 names(rating) <- rating[1,]
-colnames(rating) <- rating[1, c(6:11)]
+rating <- rating[-1,]
+#make the next row(rating variables) to be column names
+colnames(rating)[-c(1:5)] <- rating[1, -c(1:5)]
+#remove the time frame row
+rating <- rating[-c(1,2),]
+
 tmp <- as.data.frame(rating[1, c(6:11)])
 names(tmp) <- tmp[1,]
 rating <- rating[-1,]
