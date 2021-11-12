@@ -12,42 +12,30 @@ library(gganimate)
 # write_csv(rating, "rating.csv")
 # rating_data <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/rating_data.csv")
 # write_csv(rating_data, "rating_data.csv")
-master <- read_csv("data/rating.csv")
-rating <- as.data.frame(master[, c(1:5, 28:39)])
+rating_16 <- read_csv("data/rating/2016.csv")
+rating_17 <- read_csv("data/rating/2017.csv")
+rating_18 <- read_csv("data/rating/2018.csv")
+rating_19 <- read_csv("data/rating/2019.csv")
+rating_20 <- read_csv("data/rating/2020.csv")
+rating_21 <- read_csv("data/rating/2021.csv")
 
-#make the first row to be column names
-names(rating) <- rating[1,]
-rating <- rating[-1,]
+rating_16 <- as.data.frame(rating_16[, c(1:5, 25:37)])
+names(rating_16) <- rating_16[1,]
+rating_16 <- rating_16[-1,]
+colnames(rating_16)[-c(1:5)] <- rating_16[1, -c(1:5)]
+rating_16 <- rating_16[-c(1,2),]
+colnames(rating_16)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+
+
+rating_19 <- as.data.frame(rating_19[, c(1:5, 28:39)])
+
+
+
 #make the next row(rating variables) to be column names
-colnames(rating)[-c(1:5)] <- rating[1, -c(1:5)]
+
 #remove the time frame row
-rating <- rating[-c(1,2),]
+
 #rename the broken column
-colnames(rating)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
-
-#convert to long dataset to remove missing values(e.g. plan too small to be measured)
-rating_long <- rating %>% 
-  pivot_longer(cols = "C23: Getting Needed Care":"C34: Call Center_Foreign Language Interpreter and TTY Availability",
-               names_to = "measure",
-               names_prefix = "C\\d+: ",
-               values_to = "ratings") %>% 
-  filter(ratings %in% c(1:5))
-rating_wide <- rating_long %>% 
-  pivot_wider(names_from = "measure", values_from = "ratings") %>% 
-  drop_na()
-
-#data with percentages of members
-rating_data <- read_csv("data/rating_data.csv")
-rating_data2 <- as.data.frame(rating_data[, c(1:5, 28:39)])
-
-names(rating_data2) <- rating_data2[1,]
-rating_data2 <- rating_data2[-1,]
-#make the next row(rating variables) to be column names
-colnames(rating_data2)[-c(1:5)] <- rating_data2[1, -c(1:5)]
-#remove the time frame row
-rating_data2 <- rating_data2[-c(1,2),]
-#rename the broken column
-colnames(rating_data2)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
 
 #!is.na(as.numeric(ratings))
