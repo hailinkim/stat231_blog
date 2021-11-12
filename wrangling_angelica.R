@@ -19,6 +19,7 @@ rating19 <- read_csv("data/rating/2019.csv")
 rating20 <- read_csv("data/rating/2020.csv")
 rating21 <- read_csv("data/rating/2021.csv")
 
+#2016
 rating16 <- as.data.frame(rating16[, c(1:5, 25:37)])
 #make the next row(rating variables) to be column names
 names(rating16) <- rating16[1,]
@@ -56,6 +57,44 @@ rating16_4 <- rating16_3 %>%
   mutate(year = "2016")
 
 
+#2017
+rating17 <- as.data.frame(rating17[, c(1:5, 25:37)])
+#make the next row(rating variables) to be column names
+names(rating17) <- rating17[1,]
+rating17 <- rating17[-1,]
+colnames(rating17)[-c(1:5)] <- rating17[1, -c(1:5)]
+#remove the time frame row
+rating17 <- rating17[-c(1,2),]
+#rename the broken column
+colnames(rating17)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+
+rating17_2 <- rating17 %>% 
+  select(-"C29: Health Plan Quality Improvement") %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:17), asNum)) %>% 
+  drop_na()
+
+rating17_3 <- rating17_2 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Problems with Plan's Performance" = "Beneficiary Access and Performance Problems",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
+         across(c(6:9, 11:15), ~{./100}))
+
+rating17_4 <- rating17_3 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2017")
+
+
 rating19 <- as.data.frame(rating19[, c(1:5, 28:39)])
 #make the next row(rating variables) to be column names
 names(rating19) <- rating19[1,]
@@ -66,7 +105,8 @@ rating19 <- rating19[-c(1,2),]
 #rename the broken column
 colnames(rating19)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
-#!is.na(as.numeric(ratings))
+
+#2019
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
 rating19_2 <- rating19 %>% 
   select(-"C31: Health Plan Quality Improvement") %>% 
@@ -94,10 +134,9 @@ rating19_4<- rating19_3 %>%
                values_to = "ratings") %>% 
   mutate(year = "2019")
 
-rating2 <- inner_join(rating16_4, rating19_4, by = c())
 
-rating <- bind_rows(rating16_4, rating19_4) %>% 
-  janitor::clean_names()
+
+rating <- bind_rows(rating16_4, rating17_4, rating19_4)
 rating_words <- rating %>% 
   unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
   group_by(sentences, year) %>% 
