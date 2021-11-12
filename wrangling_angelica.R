@@ -1,6 +1,12 @@
 library(readr)
 library(tidyverse)
 library(dplyr)
+library(tidytext)
+library(wordcloud)
+library(textdata)
+library(ggplot2)
+library(ggwordcloud) 
+library(gganimate)  
 #rating data
 # rating <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/stars.csv")
 # write_csv(rating, "rating.csv")
@@ -42,19 +48,48 @@ colnames(rating_data2)[-c(1:5)] <- rating_data2[1, -c(1:5)]
 rating_data2 <- rating_data2[-c(1,2),]
 #rename the broken column
 colnames(rating_data2)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
-rating_long <- rating_data2 %>% 
+
+
+#!is.na(as.numeric(ratings))
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+rating_data3 <- rating_data2 %>% 
   select(-"C31: Health Plan Quality Improvement") %>% 
-  mutate_at(c("C30: Members Choosing to Leave the Plan","C32: Plan Makes Timely Decisions about Appeals",
-              "C33: Reviewing Appeals Decisions", "C34: Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")) %>% 
-  pivot_longer(cols = "C23: Getting Needed Care":"C34: Call Center_Foreign Language Interpreter and TTY Availability",
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Members Choosing to Leave the Plan","Plan Makes Timely Decisions about Appeals",
+              "Reviewing Appeals Decisions", "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:16), asNum)) %>% 
+  filter(across(c(6:16), ~!is.na(.)))
+
+rating_data4 <- rating_data3 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14), ~{100-.}),
+         across(c(6:9, 11:14), ~{./100}))
+
+rating_data5 <- rating_data4 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
                names_to = "measure",
-               names_prefix = "C\\d+: ",
-               values_to = "ratings") %>% 
-  filter(!is.na(as.numeric(ratings)))
-rating_wide <- rating_long %>% 
-  pivot_wider(names_from = "measure", values_from = "ratings") %>% 
-  drop_na() %>% 
-  mutate(across("Getting Needed Care":"Call Center_Foreign Language Interpreter and TTY Availability", ~{as.numeric(.)/100}))
+               values_to = "ratings")
+
+rating_words <- rating_data5 %>% 
+  unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
+  group_by(sentences) %>% 
+  summarise(mean = mean(ratings))
+
+set.seed(53)
+rating_words %>%
+  with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 11))
+
+gg <- rating_words %>%
+  ggplot(aes(label = sentences, size=mean)) +
+  geom_text_wordcloud() +
+  theme_classic() 
 
 
 #tried clustering
