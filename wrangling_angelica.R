@@ -12,35 +12,63 @@ library(gganimate)
 # write_csv(rating, "rating.csv")
 # rating_data <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/rating_data.csv")
 # write_csv(rating_data, "rating_data.csv")
-rating_16 <- read_csv("data/rating/2016.csv")
-rating_17 <- read_csv("data/rating/2017.csv")
-rating_18 <- read_csv("data/rating/2018.csv")
-rating_19 <- read_csv("data/rating/2019.csv")
-rating_20 <- read_csv("data/rating/2020.csv")
-rating_21 <- read_csv("data/rating/2021.csv")
+rating16 <- read_csv("data/rating/2016.csv")
+rating17 <- read_csv("data/rating/2017.csv")
+rating18 <- read_csv("data/rating/2018.csv")
+rating19 <- read_csv("data/rating/2019.csv")
+rating20 <- read_csv("data/rating/2020.csv")
+rating21 <- read_csv("data/rating/2021.csv")
 
-rating_16 <- as.data.frame(rating_16[, c(1:5, 25:37)])
-names(rating_16) <- rating_16[1,]
-rating_16 <- rating_16[-1,]
-colnames(rating_16)[-c(1:5)] <- rating_16[1, -c(1:5)]
-rating_16 <- rating_16[-c(1,2),]
-colnames(rating_16)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
-
-
-rating_19 <- as.data.frame(rating_19[, c(1:5, 28:39)])
-
-
-
+rating16 <- as.data.frame(rating16[, c(1:5, 25:37)])
 #make the next row(rating variables) to be column names
-
+names(rating16) <- rating16[1,]
+rating16 <- rating16[-1,]
+colnames(rating16)[-c(1:5)] <- rating16[1, -c(1:5)]
 #remove the time frame row
-
+rating16 <- rating16[-c(1,2),]
 #rename the broken column
+colnames(rating16)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
+rating16_2 <- rating16 %>% 
+  select(-"C29: Health Plan Quality Improvement") %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:17), asNum)) %>% 
+  drop_na()
+
+rating16_3 <- rating16_2 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Problems with Plan's Performance" = "Beneficiary Access and Performance Problems",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
+         across(c(6:9, 11:15), ~{./100}))
+
+rating16_4 <- rating16_3 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2016")
+
+
+rating19 <- as.data.frame(rating19[, c(1:5, 28:39)])
+#make the next row(rating variables) to be column names
+names(rating19) <- rating19[1,]
+rating19 <- rating19[-1,]
+colnames(rating19)[-c(1:5)] <- rating19[1, -c(1:5)]
+#remove the time frame row
+rating19 <- rating19[-c(1,2),]
+#rename the broken column
+colnames(rating19)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
 #!is.na(as.numeric(ratings))
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
-rating_data3 <- rating_data2 %>% 
+rating19_2 <- rating19 %>% 
   select(-"C31: Health Plan Quality Improvement") %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c("Members Choosing to Leave the Plan","Plan Makes Timely Decisions about Appeals",
@@ -48,7 +76,7 @@ rating_data3 <- rating_data2 %>%
          across(c(6:16), asNum)) %>% 
   filter(across(c(6:16), ~!is.na(.)))
 
-rating_data4 <- rating_data3 %>% 
+rating19_3 <- rating19_2 %>% 
   select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
   dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
                 "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
@@ -60,15 +88,22 @@ rating_data4 <- rating_data3 %>%
   mutate(across(c(6, 7, 8, 9, 12, 13, 14), ~{100-.}),
          across(c(6:9, 11:14), ~{./100}))
 
-rating_data5 <- rating_data4 %>% 
+rating19_4<- rating19_3 %>% 
   pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
                names_to = "measure",
-               values_to = "ratings")
+               values_to = "ratings") %>% 
+  mutate(year = "2019")
 
-rating_words <- rating_data5 %>% 
+rating2 <- inner_join(rating16_4, rating19_4, by = c())
+
+rating <- bind_rows(rating16_4, rating19_4) %>% 
+  janitor::clean_names()
+rating_words <- rating %>% 
   unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
-  group_by(sentences) %>% 
-  summarise(mean = mean(ratings))
+  group_by(sentences, year) %>% 
+  summarise(mean = mean(ratings)) %>% 
+  mutate(year=as.integer(year))
+
 
 set.seed(53)
 rating_words %>%
@@ -78,6 +113,13 @@ gg <- rating_words %>%
   ggplot(aes(label = sentences, size=mean)) +
   geom_text_wordcloud() +
   theme_classic() 
+
+gg2 <- gg + transition_time(year) +
+  labs(title = 'Year: {frame_time}')
+
+animate(gg2, renderer = gifski_renderer("testing.gif"))
+
+anim_save(filename="testing.gif", animation=gg2)
 
 
 #tried clustering
