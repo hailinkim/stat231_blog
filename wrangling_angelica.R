@@ -95,6 +95,45 @@ rating17_4 <- rating17_3 %>%
   mutate(year = "2017")
 
 
+#2018
+rating18 <- as.data.frame(rating18[, c(1:5, 27:39)])
+#make the next row(rating variables) to be column names
+names(rating18) <- rating18[1,]
+rating18 <- rating18[-1,]
+colnames(rating18)[-c(1:5)] <- rating18[1, -c(1:5)]
+#remove the time frame row
+rating18 <- rating18[-c(1,2),]
+#rename the broken column
+colnames(rating18)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+
+rating18_2 <- rating18 %>% 
+  select(-"C31: Health Plan Quality Improvement") %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:17), asNum)) %>% 
+  drop_na()
+
+rating18_3 <- rating18_2 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Problems with Plan's Performance" = "Beneficiary Access and Performance Problems",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
+         across(c(6:9, 11:15), ~{./100}))
+
+rating18_4 <- rating18_3 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2018")
+
+
+#2019
 rating19 <- as.data.frame(rating19[, c(1:5, 28:39)])
 #make the next row(rating variables) to be column names
 names(rating19) <- rating19[1,]
@@ -105,8 +144,6 @@ rating19 <- rating19[-c(1,2),]
 #rename the broken column
 colnames(rating19)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
-
-#2019
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
 rating19_2 <- rating19 %>% 
   select(-"C31: Health Plan Quality Improvement") %>% 
@@ -135,8 +172,87 @@ rating19_4<- rating19_3 %>%
   mutate(year = "2019")
 
 
+#2020
+rating20 <- as.data.frame(rating20[, c(1:5, 27:38)])
+#make the next row(rating variables) to be column names
+names(rating20) <- rating20[1,]
+rating20 <- rating20[-1,]
+colnames(rating20)[-c(1:5)] <- rating20[1, -c(1:5)]
+#remove the time frame row
+rating20 <- rating20[-c(1,2),]
+#rename the broken column
+colnames(rating20)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
-rating <- bind_rows(rating16_4, rating17_4, rating19_4)
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+rating20_2 <- rating20 %>% 
+  select(-"C30: Health Plan Quality Improvement") %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Members Choosing to Leave the Plan","Plan Makes Timely Decisions about Appeals",
+                  "Reviewing Appeals Decisions", "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:16), asNum)) %>% 
+  filter(across(c(6:16), ~!is.na(.)))
+
+rating20_3 <- rating20_2 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14), ~{100-.}),
+         across(c(6:9, 11:14), ~{./100}))
+
+rating20_4<- rating20_3 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2020")
+
+
+#2021
+rating21 <- as.data.frame(rating21[, c(1:5, 26:37)])
+#make the next row(rating variables) to be column names
+names(rating21) <- rating21[1,]
+rating21 <- rating21[-1,]
+colnames(rating21)[-c(1:5)] <- rating21[1, -c(1:5)]
+#remove the time frame row
+rating21 <- rating21[-c(1,2),]
+#rename the broken column
+colnames(rating21)[17] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+rating21_2 <- rating21 %>% 
+  select(-"C29: Health Plan Quality Improvement") %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c("Members Choosing to Leave the Plan","Plan Makes Timely Decisions about Appeals",
+                  "Reviewing Appeals Decisions", "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
+         across(c(6:16), asNum)) %>% 
+  filter(across(c(6:16), ~!is.na(.)))
+
+rating21_3 <- rating21_2 %>% 
+  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
+  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
+                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
+                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6, 7, 8, 9, 12, 13, 14), ~{100-.}),
+         across(c(6:9, 11:14), ~{./100}))
+
+rating21_4<- rating21_3 %>% 
+  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2021")
+
+
+
+#combine all years
+rating <- bind_rows(rating16_4, rating17_4, rating18_4, rating19_4, rating20_4, rating21_4)
 rating_words <- rating %>% 
   unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
   group_by(sentences, year) %>% 
@@ -148,17 +264,19 @@ set.seed(53)
 rating_words %>%
   with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 11))
 
+library(colorspace)
 gg <- rating_words %>%
-  ggplot(aes(label = sentences, size=mean)) +
+  ggplot(aes(label = sentences, size=mean, color = mean)) +
   geom_text_wordcloud() +
-  theme_classic() 
+  theme_minimal() +
+  scale_color_continuous_diverging(palette = "Blue-Red")
+  
 
 gg2 <- gg + transition_time(year) +
   labs(title = 'Year: {frame_time}')
 
-animate(gg2, renderer = gifski_renderer("testing.gif"))
-
-anim_save(filename="testing.gif", animation=gg2)
+animate(gg2, nframes = 40, fps = 5, end_pause = 5, renderer=gifski_renderer())
+anim_save(filename="testing.gif")
 
 
 #tried clustering
