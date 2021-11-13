@@ -149,6 +149,51 @@ access_all <- demographic2 %>%
   group_by(race, sex, edu, citizen, income_group) %>% 
   summarize(access = n())
 
+tmp1 <- demographic2 %>% 
+  group_by(race, sex) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = race, target = sex)
+tmp2 <- demographic2 %>% 
+  group_by(race, edu) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = race, target = edu)
+tmp3 <- demographic2 %>% 
+  group_by(race, citizen) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = race, target = citizen)
+tmp4 <- demographic2 %>% 
+  group_by(race, income_group) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = race, target = income_group)
+tmp5 <- demographic2 %>% 
+  group_by(sex, edu) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = sex, target = edu)
+tmp6 <- demographic2 %>% 
+  group_by(sex, citizen) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = sex, target = citizen)
+tmp7 <- demographic2 %>% 
+  group_by(sex, income_group) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = sex, target = income_group)
+tmp8 <- demographic2 %>% 
+  group_by(edu, citizen) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = edu, target = citizen)
+tmp9 <- demographic2 %>% 
+  group_by(edu, income_group) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = edu, target = income_group)
+tmp10 <- demographic2 %>% 
+  group_by(citizen, income_group) %>% 
+  summarise(access = n()) %>% 
+  dplyr::rename(source = citizen, target = income_group)
+
+tmp <- bind_rows(tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
+
+
+
 #9428 observations
 access_no <- demographic2 %>% 
   filter(if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. =="Yes")) %>% 
@@ -158,3 +203,14 @@ access <- left_join(access_all, access_no, by=c("race" = "race", "sex" = "sex", 
                                                 "citizen" = "citizen", "income_group" = "income_group"),
                     suffix = c(".all", ".no")) %>% 
   mutate(access.no = ifelse(is.na(access.no), 0, access.no)) 
+
+nhis_igraph <- graph_from_data_frame(tmp, directed = FALSE)
+summary(nhis_igraph)
+nhis_network <- ggnetwork(nhis_igraph)
+
+g <- ggplot(data = nhis_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")),
+             color = "lightgray") +
+  geom_nodes() +
+  geom_nodelabel(aes(label = name)) +
+  theme_blank()
