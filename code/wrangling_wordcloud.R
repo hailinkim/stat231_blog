@@ -13,6 +13,7 @@ library(gganimate)
 # rating_data <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/rating_data.csv")
 # write_csv(rating_data, "rating_data.csv")
 rating16 <- read_csv("data/rating/2016.csv")
+rating16_display <- read_csv("data/rating/2016_display.csv")
 rating17 <- read_csv("data/rating/2017.csv")
 rating18 <- read_csv("data/rating/2018.csv")
 rating19 <- read_csv("data/rating/2019.csv")
@@ -30,6 +31,7 @@ rating16 <- rating16[-c(1,2),]
 #rename the broken column
 colnames(rating16)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
 
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
 rating16_2 <- rating16 %>% 
   select(-"C29: Health Plan Quality Improvement") %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
@@ -55,6 +57,54 @@ rating16_4 <- rating16_3 %>%
                names_to = "measure",
                values_to = "ratings") %>% 
   mutate(year = "2016")
+
+rating16_display <- as.data.frame(rating16_display[, c(1:4, 6, 12, 15, 16, 21, 22)])
+#make the next row(rating variables) to be column names
+names(rating16_display) <- rating16_display[1,]
+rating16_display <- rating16_display[-1,]
+colnames(rating16_display)[-c(1:4)] <- rating16_display[1, -c(1:4)]
+#remove the time frame row
+rating16_display <- rating16_display[-1,]
+
+rating16_display2 <- rating16_display %>% 
+  rename_with(~str_remove(., " - DMC\\d+"), contains("-")) %>% 
+  mutate(across(c(5:10), ~str_remove(., "%")),
+         across(c(5:10), asNum)) %>% 
+  drop_na()
+
+rating16_display3 <- rating16_display2 %>% 
+  dplyr::rename("Call Answer Untimeliness" = "Call Answer Timeliness",
+                "Doctors who Communicate Poorly" = "Doctors who Communicate Well",
+                "Lack of Access to Primary Care Doctor Visits" = "Access to Primary Care Doctor Visits") %>% 
+  mutate(across(c(5, 6, 7, 9, 10), ~{100-.}),
+         across(c(5:10), ~{./100}))
+
+rating16_display4 <- rating16_display3 %>% 
+  pivot_longer(cols = "Call Answer Untimeliness":"Reminders for Immunizations",
+               names_to = "measure",
+               values_to = "ratings") %>% 
+  mutate(year = "2016")
+
+rating16_5 <- rating16_4 %>% 
+  select(-c("Organization Marketing Name", "Organization Type")) 
+rating16_display5 <- rating16_display4 %>% 
+  select(-c("Organizatoin Name")) %>% 
+  dplyr::rename("CONTRACT_ID" = "Contract Number")
+rating16_all <- bind_rows(rating16_5, rating16_display5) %>% 
+  group_by(CONTRACT_ID, "Contract Name", "Parent Organization") %>%
+  
+rating16_words <- rating16_all %>% 
+  unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
+  group_by(sentences, year) %>% 
+  summarise(mean = mean(ratings)) %>% 
+  mutate(year=as.integer(year))
+write_csv(rating_words, "data/rating_words.csv")
+
+set.seed(53)
+rating16_words %>%
+  with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 16))
+  
+
 
 
 #2017
@@ -258,24 +308,26 @@ rating_words <- rating %>%
   group_by(sentences, year) %>% 
   summarise(mean = mean(ratings)) %>% 
   mutate(year=as.integer(year))
-
+write_csv(rating_words, "data/rating_words.csv")
 
 set.seed(53)
 rating_words %>%
   with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 11))
 
-library(colorspace)
+# library(colorspace)
 gg <- rating_words %>%
-  ggplot(aes(label = sentences, size=mean, color = mean)) +
-  geom_text_wordcloud() +
-  theme_minimal() +
-  scale_color_continuous_diverging(palette = "Blue-Red")
+  ggplot(aes(label = sentences, size=mean)) +
+  geom_text_wordcloud(area_corr = TRUE) +
+  scale_size_area(max_size = 10) +
+  theme_minimal() 
+# +
+#   scale_color_continuous_sequential(palette = "Dark Mint")
   
 
-gg2 <- gg + transition_time(year) +
+gg2 <- gg + transition_time(as.integer(year)) +
   labs(title = 'Year: {frame_time}')
 
-animate(gg2, nframes = 40, fps = 5, end_pause = 5, renderer=gifski_renderer())
+animate(gg2, nframes = length(unique(rating_words$year)), fps = 3, renderer=gifski_renderer())
 anim_save(filename="testing.gif")
 
 
