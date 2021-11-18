@@ -14,7 +14,7 @@ ui <- fluidPage(
       
       # Input: Animation with custom interval (in ms) ----
       # to control speed, plus looping
-      sliderInput("animation", "Looping Animation:",
+      sliderInput("animation", "Year:",
                   min = 2016, max = 2021,
                   value = 2016, step = 1,
                   animate =
@@ -24,7 +24,21 @@ ui <- fluidPage(
     
     # Main panel for displaying outputs ----
     mainPanel(
-      
+      plotOutput("wordcloud")
     )
   )
 )
+
+server <- function(input, output) {
+  
+  output$wordcloud <- renderPlot({
+    
+    dat <- rating_words %>%
+      filter(year %in% input$animation) 
+    
+    dat %>%
+      with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3)))
+  })
+}
+# Run the application 
+shinyApp(ui = ui, server = server)
