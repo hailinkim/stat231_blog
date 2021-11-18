@@ -20,6 +20,19 @@ rating19 <- read_csv("data/rating/2019.csv")
 rating20 <- read_csv("data/rating/2020.csv")
 rating21 <- read_csv("data/rating/2021.csv")
 
+#2016 - adding more variables into wordcloud
+#make the next row(rating variables) to be column names
+names(rating16) <- rating16[1,]
+rating16 <- rating16[-1,]
+rating16 <- as.data.frame(rating16[, c(1:37)])
+colnames(rating16)[-c(1:5)] <- rating16[1, -c(1:5)]
+
+#remove the time frame row
+rating16 <- rating16[-c(1,2),]
+rating16_2 <- rating16 %>% 
+  janitor::clean_names()
+
+
 #2016
 rating16 <- as.data.frame(rating16[, c(1:5, 25:37)])
 #make the next row(rating variables) to be column names
@@ -99,6 +112,8 @@ rating16_words <- rating16_all %>%
   summarise(mean = mean(ratings)) %>% 
   mutate(year=as.integer(year))
 write_csv(rating_words, "data/rating_words.csv")
+
+rating_words <- read_csv("data/rating_words.csv")
 
 set.seed(53)
 rating16_words %>%
@@ -299,8 +314,6 @@ rating21_4<- rating21_3 %>%
                values_to = "ratings") %>% 
   mutate(year = "2021")
 
-
-
 #combine all years
 rating <- bind_rows(rating16_4, rating17_4, rating18_4, rating19_4, rating20_4, rating21_4)
 rating_words <- rating %>% 
@@ -310,57 +323,21 @@ rating_words <- rating %>%
   mutate(year=as.integer(year))
 write_csv(rating_words, "data/rating_words.csv")
 
+#wordcloud
 set.seed(53)
 rating_words %>%
   with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 11))
 
-# library(colorspace)
 gg <- rating_words %>%
   ggplot(aes(label = sentences, size=mean)) +
   geom_text_wordcloud(area_corr = TRUE) +
   scale_size_area(max_size = 10) +
   theme_minimal() 
-# +
-#   scale_color_continuous_sequential(palette = "Dark Mint")
-  
 
 gg2 <- gg + transition_time(as.integer(year)) +
   labs(title = 'Year: {frame_time}')
 
-animate(gg2, nframes = length(unique(rating_words$year)), fps = 3, renderer=gifski_renderer())
+animate(gg2, nframes = length(unique(rating_words$year)), fps = 3, renderer=gifski_renderer(),
+        width = 1000, height = 1000, res = 150)
 anim_save(filename="testing.gif")
 
-
-# #tried clustering
-# set.seed(23)
-# rating_km3_out <- rating_wide %>% 
-#   select("Rating of Health Care Quality", "Rating of Health Plan") %>% 
-#   kmeans(centers = 3, nstart = 20)
-# rating2 <- rating_wide %>%
-#   mutate(clusters3_scaled = factor(rating_km3_out$cluster))
-# ggplot(data = rating2, aes(x = "Rating of Health Care Quality", y = "Rating of Health Plan")) + 
-#   geom_point(aes(color = clusters3_scaled),
-#              position=position_jitter(h=0.1, w=0.1)) +
-#   # ggrepel::geom_text_repel(aes(label = "Contract Name", color = clusters3_scaled), size = 3) +
-#   coord_fixed() +
-#   geom_point(data = data.frame(rating_km3_out$centers),
-#              aes(x = SAT_math25, y = SAT_verbal25),
-#              pch = "x", size = 8) +
-#   labs(x = "Math SAT (25th percentile)",
-#        y = "Verbal SAT (25th percentile)",
-#        color = "Cluster assignment")
-# 
-# 
-# GGally::ggpairs(data = rating2, aes(color = clusters3_scaled),
-#                 columns = c("Getting Needed Care", "Getting Appointments and Care Quickly",
-#                             "Customer Service", "Rating of Health Care Quality",
-#                             "Rating of Health Plan", "Care Coordination", "Complaints about the Health Plan",
-#                             "Members Choosing to Leave the Plan", "Health Plan Quality Improvement",
-#                             "Plan Makes Timely Decisions about Appeals", "Reviewing Appeals Decisions",
-#                             "Call Center_Foreign Language Interpreter and TTY Availability"),
-#                 upper = list(continuous = "blank"))
-# 
-# # Clustering using unstandardized variables (for comparison)
-# ma2_km3_out_unscaled <- ma_sample2 %>% 
-#   select(admit_rate:cost_avg) %>% 
-#   kmeans(centers = 3, nstart = 20)
