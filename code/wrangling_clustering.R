@@ -148,18 +148,55 @@ demographic2 <- demographic %>%
   mutate(barrier = ifelse(
     if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. == "Yes"), "Yes", "No"),
     income_sqrt = sqrt(income)) %>% 
-  select(-c(SEX_A:RXSK12M_A, coverage:years_in_us, delayed_mental:unafford_med, income, income_group))
+  select(-c(SEX_A:RXSK12M_A, coverage:years_in_us, delayed_mental:unafford_med, citizen_years, food_security, barrier, income, income_group))
 
 demographic3 <- demographic2 %>% 
   mutate(across(where(is.character), as.factor))
 
-
 #checking the distribution of income
-ggplot(demographic2, aes(x = sqrt(income))) +
+ggplot(demographic, aes(x = sqrt(income))) +
   geom_histogram()
 
-gower_df <- daisy(demographic3, metric = "gower")
 
+gower_df <- daisy(demographic3, metric = "gower")
+save(gower_df, file = "gower_df.rda")
+
+silhouette3 <- c()
+silhouette3 = c(silhouette3, NA)
+for(i in 3:8){
+  pam_clusters3 = pam(as.matrix(gower_df2),
+                     diss = TRUE,
+                     k = i)
+  silhouette3 = c(silhouette3 ,pam_clusters2$silinfo$avg.width)
+}
+silhouette2 <- append(silhouette, NA, after = 0)
+silhouette2 <- append(silhouette2, c(NA, NA), after = 8)
+save(silhouette2, file = "silhouette2.rda")
+
+plot(1:10, silhouette2,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette2)
+
+
+
+pam_nhis = pam(gower_df, diss = TRUE, k = 5)
+tmp[pam_nhis$medoids, ]
+pam_summary <- tmp %>%
+  mutate(cluster = pam_nhis$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary$cluster_summary[[5]]
+
+library(Rtsne)
+library(ggplot2)
+tsne_object <- Rtsne(gower_df, is_distance = TRUE)
+tsne_df <- tsne_object$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis$clustering))
+ggplot(aes(x = X, y = Y), data = tsne_df) +
+  geom_point(aes(color = cluster))
 
 # tmp <- demographic2 %>% 
 #   group_by(coverage, barrier) %>% 
@@ -227,25 +264,25 @@ access <- left_join(access_all, access_no, by=c("race" = "race", "sex" = "sex", 
                     suffix = c(".all", ".no")) %>% 
   mutate(access.no = ifelse(is.na(access.no), 0, access.no)) 
 
-tmp_asian <- bind_rows(race_asian, other)
-asian_igraph <- graph_from_data_frame(tmp, directed = TRUE)
-summary(asian_igraph)
-asian_network <- ggnetwork(asian_igraph)
-g <- ggplot(data = asian_network, aes(x = x, y = y, xend = xend, yend = yend)) +
-  geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")), color = "lightgray",
-             aes(size = access)) +
-  geom_nodes() +
-  geom_nodelabel(aes(label = name)) +
-  theme_blank()
-
-
-nhis_igraph <- graph_from_data_frame(tmp, directed = FALSE)
-summary(nhis_igraph)
-nhis_network <- ggnetwork(nhis_igraph)
-
-g <- ggplot(data = nhis_network, aes(x = x, y = y, xend = xend, yend = yend)) +
-  geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")),
-             color = "lightgray") +
-  geom_nodes() +
-  geom_nodelabel(aes(label = name)) +
-  theme_blank()
+# tmp_asian <- bind_rows(race_asian, other)
+# asian_igraph <- graph_from_data_frame(tmp, directed = TRUE)
+# summary(asian_igraph)
+# asian_network <- ggnetwork(asian_igraph)
+# g <- ggplot(data = asian_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+#   geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")), color = "lightgray",
+#              aes(size = access)) +
+#   geom_nodes() +
+#   geom_nodelabel(aes(label = name)) +
+#   theme_blank()
+# 
+# 
+# nhis_igraph <- graph_from_data_frame(tmp, directed = FALSE)
+# summary(nhis_igraph)
+# nhis_network <- ggnetwork(nhis_igraph)
+# 
+# g <- ggplot(data = nhis_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+#   geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")),
+#              color = "lightgray") +
+#   geom_nodes() +
+#   geom_nodelabel(aes(label = name)) +
+#   theme_blank()
