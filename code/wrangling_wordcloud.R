@@ -20,20 +20,8 @@ rating19 <- read_csv("data/rating/2019.csv")
 rating20 <- read_csv("data/rating/2020.csv")
 rating21 <- read_csv("data/rating/2021.csv")
 
-#2016 - adding more variables into wordcloud
-#make the next row(rating variables) to be column names
-names(rating16) <- rating16[1,]
-rating16 <- rating16[-1,]
-rating16 <- as.data.frame(rating16[, c(1:37)])
-colnames(rating16)[-c(1:5)] <- rating16[1, -c(1:5)]
-
-#remove the time frame row
-rating16 <- rating16[-c(1,2),]
-rating16_2 <- rating16 %>% 
-  janitor::clean_names()
-
-
 #2016
+#ratings data set
 rating16 <- as.data.frame(rating16[, c(1:5, 25:37)])
 #make the next row(rating variables) to be column names
 names(rating16) <- rating16[1,]
@@ -71,12 +59,12 @@ rating16_4 <- rating16_3 %>%
                values_to = "ratings") %>% 
   mutate(year = "2016")
 
+#display measures data set
 rating16_display <- as.data.frame(rating16_display[, c(1:4, 6, 12, 15, 16, 21, 22)])
 #make the next row(rating variables) to be column names
 names(rating16_display) <- rating16_display[1,]
 rating16_display <- rating16_display[-1,]
 colnames(rating16_display)[-c(1:4)] <- rating16_display[1, -c(1:4)]
-#remove the time frame row
 rating16_display <- rating16_display[-1,]
 
 rating16_display2 <- rating16_display %>% 
@@ -88,12 +76,14 @@ rating16_display2 <- rating16_display %>%
 rating16_display3 <- rating16_display2 %>% 
   dplyr::rename("Call Answer Untimeliness" = "Call Answer Timeliness",
                 "Doctors who Communicate Poorly" = "Doctors who Communicate Well",
-                "Lack of Access to Primary Care Doctor Visits" = "Access to Primary Care Doctor Visits") %>% 
+                "Lack of Access to Primary Care Doctor Visits" = "Access to Primary Care Doctor Visits",
+                "No Reminders for Appointments" = "Reminders for Appointments",
+                "No Reminders for Immunizations" = "Reminders for Immunizations") %>% 
   mutate(across(c(5, 6, 7, 9, 10), ~{100-.}),
          across(c(5:10), ~{./100}))
 
 rating16_display4 <- rating16_display3 %>% 
-  pivot_longer(cols = "Call Answer Untimeliness":"Reminders for Immunizations",
+  pivot_longer(cols = "Call Answer Untimeliness":"No Reminders for Immunizations",
                names_to = "measure",
                values_to = "ratings") %>% 
   mutate(year = "2016")
@@ -103,9 +93,8 @@ rating16_5 <- rating16_4 %>%
 rating16_display5 <- rating16_display4 %>% 
   select(-c("Organizatoin Name")) %>% 
   dplyr::rename("CONTRACT_ID" = "Contract Number")
-rating16_all <- bind_rows(rating16_5, rating16_display5) %>% 
-  group_by(CONTRACT_ID, "Contract Name", "Parent Organization") %>%
-  
+rating16_all <- bind_rows(rating16_5, rating16_display5) 
+
 rating16_words <- rating16_all %>% 
   unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
   group_by(sentences, year) %>% 
@@ -117,25 +106,24 @@ rating_words <- read_csv("data/rating_words.csv")
 
 set.seed(53)
 rating16_words %>%
-  with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 16))
-  
-
+  with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), rot.per = 0.5))
 
 
 #2017
-rating17 <- as.data.frame(rating17[, c(1:5, 25:37)])
+# rating17 <- as.data.frame(rating17[, c(1:5, 25:37)])
 #make the next row(rating variables) to be column names
 names(rating17) <- rating17[1,]
 rating17 <- rating17[-1,]
 colnames(rating17)[-c(1:5)] <- rating17[1, -c(1:5)]
 #remove the time frame row
 rating17 <- rating17[-c(1,2),]
-#rename the broken column
-colnames(rating17)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+rating17_2 <- rating17[, -c(38:52)]
+rating17_3 <- rating17_2 %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":"))
+rating17_4 <- rating17_3[, -c(9:12, 24, 28, 29, 34)] %>% 
+  janitor::clean_names() 
 
 rating17_2 <- rating17 %>% 
-  select(-"C29: Health Plan Quality Improvement") %>% 
-  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
          across(c(6:17), asNum)) %>% 
   drop_na()
