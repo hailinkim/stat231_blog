@@ -218,6 +218,7 @@ plot(1:10, silhouette,
      ylab = "Silhouette Width")
 lines(1:10, silhouette)
 pam_nhis2 = pam(gower_df2, diss = TRUE, k = 10)
+pam_nhis3 = pam(gower_df2, diss = TRUE, k = 5)
 
 demographic4[pam_nhis2$medoids, ]
 pam_summary2 <- demographic4 %>%
@@ -234,6 +235,70 @@ tsne_df2 <- tsne_object2$Y %>%
 ggplot(aes(x = X, y = Y), data = tsne_df2) +
   geom_point(aes(color = cluster))
 
+demographic4[pam_nhis3$medoids, ]
+pam_summary3 <- demographic4 %>%
+  mutate(cluster = pam_nhis3$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary3$cluster_summary[[1]]
+
+tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
+tsne_df2 <- tsne_object2$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis2$clustering))
+ggplot(aes(x = X, y = Y), data = tsne_df2) +
+  geom_point(aes(color = cluster))
+
+################
+set.seed(1119)
+demographic5 <- demographic3 %>% 
+  group_by(sex_orientation, race) %>% 
+  sample_n(3)
+gower_df3 <- daisy(demographic5, metric = "gower")
+silhouette <- c()
+silhouette = c(silhouette, NA)
+for(i in 2:10){
+  pam_clusters = pam(as.matrix(gower_df3),
+                     diss = TRUE,
+                     k = i)
+  silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
+}
+plot(1:10, silhouette,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette)
+pam_nhis4 = pam(gower_df3, diss = TRUE, k = 5)
+
+demographic5[pam_nhis4$medoids, ]
+pam_summary4 <- demographic5 %>%
+  mutate(cluster = pam_nhis4$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary2$cluster_summary[[9]]
+
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 15)
+tsne_df3 <- tsne_object3$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis4$clustering))
+ggplot(aes(x = X, y = Y), data = tsne_df3) +
+  geom_point(aes(color = cluster))
+
+demographic4[pam_nhis3$medoids, ]
+pam_summary3 <- demographic4 %>%
+  mutate(cluster = pam_nhis3$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary3$cluster_summary[[1]]
+
+tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
+tsne_df2 <- tsne_object2$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis2$clustering))
+ggplot(aes(x = X, y = Y), data = tsne_df2) +
+  geom_point(aes(color = cluster))
 
 
 
