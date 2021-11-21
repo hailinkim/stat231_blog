@@ -1,9 +1,9 @@
-library(ggnetwork)
-library(igraph)
 library(readr)
 library(tidyverse)
 library(dplyr)
 library(cluster)
+library(Rtsne)
+library(ggplot2)
 ############################
 #survey data
 nhis19 <- read_csv("data/adult19.csv")
@@ -178,25 +178,65 @@ plot(1:10, silhouette2,
      ylab = "Silhouette Width")
 lines(1:10, silhouette2)
 
-
-
-pam_nhis = pam(gower_df, diss = TRUE, k = 5)
-tmp[pam_nhis$medoids, ]
-pam_summary <- tmp %>%
+pam_nhis = pam(gower_df, diss = TRUE, k = 8)
+# pam_nhis = pam(gower_df, diss = TRUE, k=5)
+save(pam_nhis, file = "pam_nhis.rda")
+demographic3[pam_nhis$medoids, ]
+pam_summary <- demographic3 %>%
   mutate(cluster = pam_nhis$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
-pam_summary$cluster_summary[[5]]
+pam_summary$cluster_summary[[3]]
 
-library(Rtsne)
-library(ggplot2)
 tsne_object <- Rtsne(gower_df, is_distance = TRUE)
+save(tsne_object, file = "tsne_object.rda")
 tsne_df <- tsne_object$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis$clustering))
 ggplot(aes(x = X, y = Y), data = tsne_df) +
   geom_point(aes(color = cluster))
+
+
+
+#################
+#random samples 10,000 rows
+demographic4 <- demographic3 %>% 
+  sample_n(10000)
+
+gower_df2 <- daisy(demographic4, metric = "gower")
+silhouette <- c()
+silhouette = c(silhouette, NA)
+for(i in 2:10){
+  pam_clusters = pam(as.matrix(gower_df2),
+                     diss = TRUE,
+                     k = i)
+  silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
+}
+plot(1:10, silhouette,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette)
+pam_nhis2 = pam(gower_df2, diss = TRUE, k = 10)
+
+demographic4[pam_nhis2$medoids, ]
+pam_summary2 <- demographic4 %>%
+  mutate(cluster = pam_nhis2$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary2$cluster_summary[[9]]
+
+tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
+tsne_df2 <- tsne_object2$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis2$clustering))
+ggplot(aes(x = X, y = Y), data = tsne_df2) +
+  geom_point(aes(color = cluster))
+
+
+
+
 
 # tmp <- demographic2 %>% 
 #   group_by(coverage, barrier) %>% 
