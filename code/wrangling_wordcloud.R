@@ -120,13 +120,90 @@ rating17 <- rating17[-c(1,2),]
 rating17_2 <- rating17[, -c(38:52)]
 rating17_3 <- rating17_2 %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":"))
-rating17_4 <- rating17_3[, -c(9:12, 24, 28, 29, 34)] %>% 
-  janitor::clean_names() 
+rating17_4 <- rating17_3[, -c(9:16, 24, 28, 29, 33, 34)]
 
-rating17_2 <- rating17 %>% 
-  mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
-         across(c(6:17), asNum)) %>% 
-  drop_na()
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+rating17_5 <- rating17_4 %>% 
+  dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
+                "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
+                "No Access to Flu Vaccine" = "Annual Flu Vaccine",
+                "No Osteoporosis Treatment" = "Osteoporosis Management in Women who had a Fracture",
+                "No Treatment for Hypertension" = "Controlling Blood Pressure",
+                "No Rheumatoid Arthritis Management" = "Rheumatoid Arthritis Management",
+                "No Fall Risk Interventions" = "Reducing the Risk of Falling",
+                "Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care/Appointments" = "Getting Appointments and Care Quickly",
+                "Poor Customer Service" = "Customer Service",
+                "Poor Care Coordination" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
+  mutate(across(c(6:24), ~str_remove(., "%")),
+         across(c(6:24), asNum)) %>% 
+  drop_na() %>% 
+  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
+         "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  select(-c(10:12, 25)) %>% 
+  mutate(across(c(6:16, 19:21), ~{100-.}),
+         across(c(6:16, 18:21), ~{./100}))
+
+rating17_6 <- rating17_5 %>% 
+  pivot_longer(cols = 6:22,
+               names_to = "measure",
+               values_to = "ratings") 
+
+rating17_words <- rating17_6 %>%
+  group_by(measure) %>% 
+  summarise(mean = mean(ratings)) %>% 
+  mutate(sentences = str_replace_all(measure, " ", "\n"))
+
+%>% 
+  mutate(rating_type = case_when(
+    sentences %in% c("breast_cancer_screening", "colorectal_cancer_screening", "annual_flu_vaccine") ~ "prevention",
+    sentences %in% c("special_needs_plan_snp_care_management", "care_for_older_adults_medication_review",
+                   "care_for_older_adults_functional_status_assessment", "care_for_older_adults_pain_assessment",
+                   "osteoporosis_management_in_women_who_had_a_fracture", "diabetes_care_eye_exam", 
+                   "diabetes_care_kidney_disease_monitoring", "diabetes_care_blood_sugar_controlled",
+                   "controlling_blood_pressure", "rheumatoid_arthritis_management", "reducing_the_risk_of_falling") ~ "treatment",
+    TRUE ~ "Customer Satisfaction"
+    ),
+    sentences2 = str_replace_all(sentences, "_", "\n")
+  )
+set.seed(22)
+ggplot(
+  rating17_words,
+  aes(
+    label = sentences, size = mean
+  )
+) +
+  geom_text_wordcloud_area(shape = "star") +
+  scale_size_area(max_size = 10) +
+  theme_minimal()
+
+
+rating17_words_wide<- rating17_words %>% 
+  pivot_wider(names_from = rating_type, values_from = mean) %>% 
+  mutate(across(everything(), .fns = ~replace_na(.,0)))
+comparison_words <- rating17_words_wide %>%
+  ungroup() %>% 
+  select(-sentences) %>%
+  as.matrix()
+rownames(comparison_words) <- rating17_words_wide$sentences
+comparison.cloud(comparison_words, 
+                 random.order = FALSE,
+                 scale = c(1, 0.35),
+                 colors = colors1,
+                 title.size = 2,
+                 title.colors = colors1)
+
+library(rvest)
+library(qdap)
+trans_cloud(rating17_words$sentences, rating17_words$rating_type, stem = T)
+
+
+set.seed(21)
+
+           
 
 rating17_3 <- rating17_2 %>% 
   select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
@@ -139,7 +216,8 @@ rating17_3 <- rating17_2 %>%
                 "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
                 "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
   mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
-         across(c(6:9, 11:15), ~{./100}))
+         across(c(6:9, 11:15), ~{./100})) 
+  
 
 rating17_4 <- rating17_3 %>% 
   pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
