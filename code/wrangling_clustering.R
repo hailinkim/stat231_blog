@@ -246,8 +246,9 @@ tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
 tsne_df2 <- tsne_object2$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis2$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_df2) +
+  mutate(cluster = factor(pam_nhis3$clustering))
+
+ggplot(aes(x = X, y = Y), data = tsne_df2) + 
   geom_point(aes(color = cluster))
 
 ################
@@ -268,7 +269,7 @@ plot(1:10, silhouette,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette)
-pam_nhis4 = pam(gower_df3, diss = TRUE, k = 5)
+pam_nhis4 = pam(gower_df3, diss = TRUE, k = 7)
 
 demographic5[pam_nhis4$medoids, ]
 pam_summary4 <- demographic5 %>%
@@ -282,23 +283,13 @@ tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis4$clustering))
+my_pal <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
 ggplot(aes(x = X, y = Y), data = tsne_df3) +
-  geom_point(aes(color = cluster))
+  geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+  theme_bw() +
+  scale_color_manual(values=c(my_pal)) +
+  scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
 
-demographic4[pam_nhis3$medoids, ]
-pam_summary3 <- demographic4 %>%
-  mutate(cluster = pam_nhis3$clustering) %>%
-  group_by(cluster) %>%
-  do(cluster_summary = summary(.))
-pam_summary3$cluster_summary[[1]]
-
-tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
-tsne_df2 <- tsne_object2$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis2$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_df2) +
-  geom_point(aes(color = cluster))
 
 
 
