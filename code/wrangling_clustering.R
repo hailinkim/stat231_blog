@@ -4,7 +4,7 @@ library(dplyr)
 library(cluster)
 library(Rtsne)
 library(ggplot2)
-library(factoextra)
+library(ggforce)
 ############################
 #survey data
 nhis19 <- read_csv("data/adult19.csv")
@@ -251,10 +251,13 @@ ggplot(aes(x = X, y = Y), data = tsne_df2) +
   geom_point(aes(color = cluster))
 
 ################
+#stratified random samples
 set.seed(1119)
 demographic5 <- demographic3 %>% 
   group_by(sex_orientation, race) %>% 
   sample_n(3)
+write_csv(demographic5, "data/demographic17.csv")
+
 gower_df3 <- daisy(demographic5, metric = "gower")
 silhouette <- c()
 silhouette = c(silhouette, NA)
@@ -301,67 +304,67 @@ ggplot(aes(x = X, y = Y), data = tsne_df3) +
 #   group_by(coverage, barrier) %>% 
 #   summarise(count = n())
 
-access_all <- demographic2 %>% 
-  group_by(race, sex, edu, citizen, income_group) %>% 
-  summarize(access = n())
-
-tmp1 <- demographic2 %>% 
-  group_by(race, sex) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = race, target = sex)
-tmp2 <- demographic2 %>% 
-  group_by(race, edu) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = race, target = edu)
-tmp3 <- demographic2 %>% 
-  group_by(race, citizen) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = race, target = citizen)
-tmp4 <- demographic2 %>% 
-  group_by(race, income_group) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = race, target = income_group)
-race <- bind_rows(tmp1, tmp2, tmp3, tmp4)
-race_asian <- race %>% 
-  filter(source == "Asian")
-tmp5 <- demographic2 %>% 
-  group_by(sex, edu) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = sex, target = edu)
-tmp6 <- demographic2 %>% 
-  group_by(sex, citizen) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = sex, target = citizen)
-tmp7 <- demographic2 %>% 
-  group_by(sex, income_group) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = sex, target = income_group)
-tmp8 <- demographic2 %>% 
-  group_by(edu, citizen) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = edu, target = citizen)
-tmp9 <- demographic2 %>% 
-  group_by(edu, income_group) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = edu, target = income_group)
-tmp10 <- demographic2 %>% 
-  group_by(citizen, income_group) %>% 
-  summarise(access = n()) %>% 
-  dplyr::rename(source = citizen, target = income_group)
-other <- bind_rows(tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
-
-tmp <- bind_rows(tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
-
-
-#9428 observations
-access_no <- demographic2 %>% 
-  filter(if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. =="Yes")) %>% 
-  group_by(race, sex, edu, citizen, income_group) %>% 
-  summarize(access = n())
-access <- left_join(access_all, access_no, by=c("race" = "race", "sex" = "sex", "edu" = "edu",
-                                                "citizen" = "citizen", "income_group" = "income_group"),
-                    suffix = c(".all", ".no")) %>% 
-  mutate(access.no = ifelse(is.na(access.no), 0, access.no)) 
+# access_all <- demographic2 %>% 
+#   group_by(race, sex, edu, citizen, income_group) %>% 
+#   summarize(access = n())
+# 
+# tmp1 <- demographic2 %>% 
+#   group_by(race, sex) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = race, target = sex)
+# tmp2 <- demographic2 %>% 
+#   group_by(race, edu) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = race, target = edu)
+# tmp3 <- demographic2 %>% 
+#   group_by(race, citizen) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = race, target = citizen)
+# tmp4 <- demographic2 %>% 
+#   group_by(race, income_group) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = race, target = income_group)
+# race <- bind_rows(tmp1, tmp2, tmp3, tmp4)
+# race_asian <- race %>% 
+#   filter(source == "Asian")
+# tmp5 <- demographic2 %>% 
+#   group_by(sex, edu) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = sex, target = edu)
+# tmp6 <- demographic2 %>% 
+#   group_by(sex, citizen) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = sex, target = citizen)
+# tmp7 <- demographic2 %>% 
+#   group_by(sex, income_group) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = sex, target = income_group)
+# tmp8 <- demographic2 %>% 
+#   group_by(edu, citizen) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = edu, target = citizen)
+# tmp9 <- demographic2 %>% 
+#   group_by(edu, income_group) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = edu, target = income_group)
+# tmp10 <- demographic2 %>% 
+#   group_by(citizen, income_group) %>% 
+#   summarise(access = n()) %>% 
+#   dplyr::rename(source = citizen, target = income_group)
+# other <- bind_rows(tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
+# 
+# tmp <- bind_rows(tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
+# 
+# 
+# #9428 observations
+# access_no <- demographic2 %>% 
+#   filter(if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. =="Yes")) %>% 
+#   group_by(race, sex, edu, citizen, income_group) %>% 
+#   summarize(access = n())
+# access <- left_join(access_all, access_no, by=c("race" = "race", "sex" = "sex", "edu" = "edu",
+#                                                 "citizen" = "citizen", "income_group" = "income_group"),
+#                     suffix = c(".all", ".no")) %>% 
+#   mutate(access.no = ifelse(is.na(access.no), 0, access.no)) 
 
 # tmp_asian <- bind_rows(race_asian, other)
 # asian_igraph <- graph_from_data_frame(tmp, directed = TRUE)
