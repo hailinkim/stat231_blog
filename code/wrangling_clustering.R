@@ -4,6 +4,7 @@ library(dplyr)
 library(cluster)
 library(Rtsne)
 library(ggplot2)
+library(factoextra)
 ############################
 #survey data
 nhis19 <- read_csv("data/adult19.csv")
@@ -145,9 +146,7 @@ demographic <- nhis19 %>%
 #30032 observations
 demographic2 <- demographic %>% 
   filter(across(sex:unafford_med, ~. != "Other")) %>% 
-  mutate(barrier = ifelse(
-    if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. == "Yes"), "Yes", "No"),
-    income_sqrt = sqrt(income)) %>% 
+  mutate(income_sqrt = sqrt(income)) %>% 
   select(-c(SEX_A:RXSK12M_A, coverage:years_in_us, delayed_mental:unafford_med, citizen_years, food_security, barrier, income, income_group))
 
 demographic3 <- demographic2 %>% 
@@ -286,6 +285,10 @@ tsne_df3 <- tsne_object3$Y %>%
 my_pal <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
 ggplot(aes(x = X, y = Y), data = tsne_df3) +
   geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+  # geom_mark_ellipse(aes(color = cluster,
+  #                       label=cluster),
+  #                   expand = unit(0.5,"mm"),
+  #                   label.buffer = unit(-5, 'mm'))+
   theme_bw() +
   scale_color_manual(values=c(my_pal)) +
   scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
