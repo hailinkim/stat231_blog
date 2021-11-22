@@ -9,8 +9,18 @@ output:
 ---
 
 ```{r setup, include = FALSE}
+# library(kableExtra) # for example code; delete if not needed
+library(readr)
 library(tidyverse)
-library(kableExtra) # for example code; delete if not needed
+library(dplyr)
+library(tidytext)
+library(wordcloud)
+library(textdata)
+library(ggplot2)
+library(cluster)
+library(Rtsne)
+library(ggplot2)
+library(ggforce)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
@@ -48,7 +58,7 @@ summary(cars)
 
 Let's clean up the format of that output instead of using the standard R output:
 
-```{r pretty-table, echo = TRUE}
+```{r pretty-table, echo = TRUE, eval = FALSE}
 summary(cars) %>%
   kable(col.names = c("Speed", "Distance"),
         row.names = FALSE) %>%
@@ -61,6 +71,77 @@ summary(cars) %>%
 In a study from the 1920s, fifty cars were used to see how the speed of the car and the distance taken to stop were related.  Speeds ranged between `r min(cars$speed)` and `r max(cars$speed)` mph.  Distances taken to stop ranged between `r min(cars$dist)` and `r max(cars$dist)` feet, with the middle 50% falling between `r as.numeric(quantile(cars$dist)[2])` and `r as.numeric(quantile(cars$dist)[4])` feet.  
 
 You can also embed plots as normal, for example:
+
+```{r}
+rating17_words <- read_csv("data/rating17_words.csv")
+set.seed(1122)
+rating17_words %>%
+  with(wordcloud(words = sentences, freq = mean, scale = c(2,0.7), 
+                 max.words = 17))
+```
+
+```{r}
+rating17_words2 <- rating17_words %>% 
+    mutate(rating_type = case_when(
+    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
+    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", "No\nTreatment\nfor\nHypertension")~ "Treatment",
+    TRUE ~ "Customer Satisfaction"
+    )
+  )
+my_pal <- RColorBrewer::brewer.pal(n = 3, name = "Dark2")
+
+set.seed(1123)
+rating17_words2 %>%
+  with(wordcloud(words = sentences, freq = mean, scale = c(2,0.7), max.words = 17,
+                 colors=my_pal[as.factor(rating_type)], ordered.colors = TRUE))
+
+legend("topright", legend = levels(factor(rating17_words2$rating_type)), 	text.col=brewer.pal(3, "Dark2")[unique(factor(rating17_words2$rating_type))])
+```
+
+```{r}
+set.seed(1119)
+demographic17 <- read_csv("data/demographic17.csv") %>% 
+  mutate(across(where(is.character), as.factor))
+gower_df3 <- daisy(demographic17, metric = "gower")
+silhouette <- c()
+silhouette = c(silhouette, NA)
+for(i in 2:10){
+  pam_clusters = pam(as.matrix(gower_df3),
+                     diss = TRUE,
+                     k = i)
+  silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
+}
+# plot(1:10, silhouette,
+#      xlab = "Clusters",
+#      ylab = "Silhouette Width")
+# lines(1:10, silhouette)
+pam_nhis4 = pam(gower_df3, diss = TRUE, k = 7)
+
+# demographic5[pam_nhis4$medoids, ]
+# pam_summary4 <- demographic17 %>%
+#   mutate(cluster = pam_nhis4$clustering) %>%
+#   group_by(cluster) %>%
+#   do(cluster_summary = summary(.))
+# pam_summary2$cluster_summary[[9]]
+
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 15)
+tsne_df3 <- tsne_object3$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis4$clustering))
+my_pal2 <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
+set.seed(1102)
+ggplot(aes(x = X, y = Y), data = tsne_df3) +
+  geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+  # geom_mark_ellipse(aes(color = cluster,
+  #                       label=cluster),
+  #                   expand = unit(0.5,"mm"),
+  #                   label.buffer = unit(-5, 'mm'))+
+  theme_bw() +
+  scale_color_manual(values=c(my_pal2)) +
+  scale_fill_manual(values=c(paste(my_pal2, "66", sep = "")))
+```
+
 
 ```{r figure1}
 ggplot(data = cars, aes(x = speed, y = dist)) + 
@@ -87,7 +168,7 @@ You can include [links](https://www.datadreaming.org/post/r-markdown-theme-galle
 ### Option 2: Code chunk approach
 
 ```{r, fig.cap = "This is also figure caption"}
-knitr::include_graphics("https://media.giphy.com/media/H7ZrrA9V2pd3Tehdds/giphy.gif")
+knitr::include_graphics("testing.gif")
 ```
 
 ## Including equations
