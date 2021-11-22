@@ -157,12 +157,13 @@ rating17_words <- rating17_6 %>%
   summarise(mean = mean(ratings)) %>% 
   mutate(sentences = str_replace_all(measure, " ", "\n"))
 
-%>% 
+write_csv(rating17_words, "data/rating17_words.csv")
+
   mutate(rating_type = case_when(
     sentences %in% c("breast_cancer_screening", "colorectal_cancer_screening", "annual_flu_vaccine") ~ "prevention",
     sentences %in% c("special_needs_plan_snp_care_management", "care_for_older_adults_medication_review",
                    "care_for_older_adults_functional_status_assessment", "care_for_older_adults_pain_assessment",
-                   "osteoporosis_management_in_women_who_had_a_fracture", "diabetes_care_eye_exam", 
+                   "osteoporosis_management_in_women_who_had_a_fracture", "diabetes_care_eye_exam",
                    "diabetes_care_kidney_disease_monitoring", "diabetes_care_blood_sugar_controlled",
                    "controlling_blood_pressure", "rheumatoid_arthritis_management", "reducing_the_risk_of_falling") ~ "treatment",
     TRUE ~ "Customer Satisfaction"
@@ -179,6 +180,11 @@ ggplot(
   geom_text_wordcloud_area(shape = "star") +
   scale_size_area(max_size = 10) +
   theme_minimal()
+rating17_words %>%
+  with(wordcloud(words = sentences, freq = mean, scale = c(1.2,0.3), 
+                 max.words = 17))
+#, rot.per = 0.5
+
 
 
 rating17_words_wide<- rating17_words %>% 
@@ -200,30 +206,6 @@ library(rvest)
 library(qdap)
 trans_cloud(rating17_words$sentences, rating17_words$rating_type, stem = T)
 
-
-set.seed(21)
-
-           
-
-rating17_3 <- rating17_2 %>% 
-  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
-  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
-                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
-                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
-                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
-                "Problems with Plan's Performance" = "Beneficiary Access and Performance Problems",
-                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
-                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
-  mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
-         across(c(6:9, 11:15), ~{./100})) 
-  
-
-rating17_4 <- rating17_3 %>% 
-  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
-               names_to = "measure",
-               values_to = "ratings") %>% 
-  mutate(year = "2017")
 
 
 #2018
