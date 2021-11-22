@@ -34,9 +34,7 @@ options(knitr.kable.NA = '')
 
 # Introduction
 
-Everyone deserves access to quality health care. The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. 
-
-Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicaid patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes. Thus, we used Medicare quality rating data to examine how to strengthen public insurance. (to be edited)
+Everyone deserves access to quality health care. However, this is not a reality in the United States. There are systemic health inequities, and the marginalized populations suffer the consequences. To examine this issue, we focus our BLOG on regional health insurance coverage status, the role of intersectionality in health disparities, and people's experiences with public insurance.
 
 
 ## Questions of Interest
