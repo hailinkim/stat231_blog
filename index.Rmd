@@ -1,7 +1,7 @@
 ---
-title: "Your Project Title Here"
-author: "Your Names Here"
-date: "Add a date"
+title: "US Health Care Equity"
+author: "Abbey Skinner, Angelica Kim"
+date: "11/22/2021"
 output:
   rmdformats::readthedown:
     thumbnails: false
@@ -32,11 +32,46 @@ knitr::opts_chunk$set(echo = FALSE,
 options(knitr.kable.NA = '')
 ```
 
-# Header 1 (Section heading)
+# Introduction
 
-## Header 2 (Subsection heading)
+Everyone deserves access to quality health care. However, this is not a reality in the United States. There are systemic health inequities, and the marginalized populations suffer the consequences. To examine this issue, we focus our BLOG on regional health insurance coverage status, the role of intersectionality in health disparities, and people's experiences with public insurance.
 
-### Header 3 (Subsubsection heading)
+
+## Questions of Interest
+
+* blah
+* blah
+* blah
+
+# Data
+
+*Dataset 1*
+
+* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+
+* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to measure Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. In addition to the star ratings data set, we also incorporated a subset of variables from a display measure data set; display measures are not included in five-star rating criteria but are displayed for informational purposes only. Both data sets were in .csv format, and we compared data over time ranging from 2016 to 2021.
+
+# Visualizations
+
+## Map
+
+```{r shiny-map}
+knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600px")
+```
+
+
+## Wordcloud {.tabset .tabset-fade .tabset-pills}
+### What is Medicare?
+Medicare helps provide healthcare coverage to U.S. citizens who are 65 years of age or older, as well as people with certain disabilities. Medicare consists of four parts, and we focus on Part C: Medical Advantage. Medical Advantage is an all-in-one alternative to Original Medicare, which includes drug coverage and extra benefits not covered by Original Medicare. These plans are provided by contracting private insurance companies instead of the federal government.
+
+### Wordcloud
+
+## Timeseries
+
+## Clustering
+
+# Conclusion
+
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For example, you can include **Bold** and _Italic_ and `Code` text.  For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
