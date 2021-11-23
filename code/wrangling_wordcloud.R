@@ -72,8 +72,16 @@ rating16_words <- rating16_5 %>%
          year = "2016") %>% 
   select(-measure)
 
+rating16_words <- rating16_words %>% 
+  mutate(rating_type = case_when(
+    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
+    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", "No\nTreatment\nfor\nHypertension") ~ "Treatment",
+    TRUE ~ "Customer Satisfaction"
+  )
+)
 
-#display measures data set
+
+#2016 display measures data set
 rating16_display <- as.data.frame(rating16_display[, c(1:4, 6, 12, 15, 16, 21, 22)])
 #make the next row(rating variables) to be column names
 names(rating16_display) <- rating16_display[1,]
@@ -109,14 +117,6 @@ rating16_display5 <- rating16_display4 %>%
   dplyr::rename("CONTRACT_ID" = "Contract Number")
 rating16_all <- bind_rows(rating16_5, rating16_display5) 
 
-# rating16_words <- rating16_all %>% 
-#   unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
-#   group_by(sentences, year) %>% 
-#   summarise(mean = mean(ratings)) %>% 
-#   mutate(year=as.integer(year))
-write_csv(rating_words, "data/rating_words.csv")
-
-rating_words <- read_csv("data/rating_words.csv")
 
 set.seed(53)
 rating16_words %>%
@@ -131,13 +131,20 @@ rating17 <- rating17[-1,]
 colnames(rating17)[-c(1:5)] <- rating17[1, -c(1:5)]
 #remove the time frame row
 rating17 <- rating17[-c(1,2),]
-rating17_2 <- rating17[, -c(38:52)]
-rating17_3 <- rating17_2 %>% 
-  rename_with(~str_remove(., "C\\d+: "), contains(":"))
-rating17_4 <- rating17_3[, -c(9:16, 24, 28, 29, 33, 34)]
-
+rating17_2 <- rating17[, c(1:8, 17:23, 25:27, 30:32, 35:37)]
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
-rating17_5 <- rating17_4 %>% 
+rating17_3 <- rating17_2 %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c(6:24), ~str_remove(., "%")),
+         across(c(6:24), asNum)) %>% 
+  drop_na()  %>% 
+  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
+         "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  select(-c(10:12, 25)) %>% 
+  mutate(across(c(6:16, 19:21), ~{100-.}),
+         across(c(6:16, 18:21), ~{./100}))
+
+rating17_4 <- rating17_3 %>% 
   dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
                 "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
                 "No Access to Flu Vaccine" = "Annual Flu Vaccine",
@@ -151,39 +158,30 @@ rating17_5 <- rating17_4 %>%
                 "Poor Care Coordination" = "Care Coordination",
                 "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
                 "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
-                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
-  mutate(across(c(6:24), ~str_remove(., "%")),
-         across(c(6:24), asNum)) %>% 
-  drop_na() %>% 
-  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
-         "No Diabetes Care" = 1 - Diabetes/300) %>% 
-  select(-c(10:12, 25)) %>% 
-  mutate(across(c(6:16, 19:21), ~{100-.}),
-         across(c(6:16, 18:21), ~{./100}))
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
+                "Complaints" = "Complaints about the Health Plan")
 
-rating17_6 <- rating17_5 %>% 
+rating17_5 <- rating17_4 %>% 
   pivot_longer(cols = 6:22,
                names_to = "measure",
                values_to = "ratings") 
 
-rating17_words <- rating17_6 %>%
+rating17_words <- rating16_5 %>% 
   group_by(measure) %>% 
   summarise(mean = mean(ratings)) %>% 
-  mutate(sentences = str_replace_all(measure, " ", "\n"))
+  mutate(sentences = str_replace_all(measure, " ", "\n"),
+         year = "2017") %>% 
+  select(-measure)
 
-write_csv(rating17_words, "data/rating17_words.csv")
-
+rating17_words <- rating17_words %>% 
   mutate(rating_type = case_when(
-    sentences %in% c("breast_cancer_screening", "colorectal_cancer_screening", "annual_flu_vaccine") ~ "prevention",
-    sentences %in% c("special_needs_plan_snp_care_management", "care_for_older_adults_medication_review",
-                   "care_for_older_adults_functional_status_assessment", "care_for_older_adults_pain_assessment",
-                   "osteoporosis_management_in_women_who_had_a_fracture", "diabetes_care_eye_exam",
-                   "diabetes_care_kidney_disease_monitoring", "diabetes_care_blood_sugar_controlled",
-                   "controlling_blood_pressure", "rheumatoid_arthritis_management", "reducing_the_risk_of_falling") ~ "treatment",
+    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
+    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", "No\nTreatment\nfor\nHypertension") ~ "Treatment",
     TRUE ~ "Customer Satisfaction"
-    ),
-    sentences2 = str_replace_all(sentences, "_", "\n")
+    )
   )
+
+# Word cloud
 set.seed(22)
 ggplot(
   rating17_words,
@@ -201,24 +199,24 @@ rating17_words %>%
 
 
 
-rating17_words_wide<- rating17_words %>% 
-  pivot_wider(names_from = rating_type, values_from = mean) %>% 
-  mutate(across(everything(), .fns = ~replace_na(.,0)))
-comparison_words <- rating17_words_wide %>%
-  ungroup() %>% 
-  select(-sentences) %>%
-  as.matrix()
-rownames(comparison_words) <- rating17_words_wide$sentences
-comparison.cloud(comparison_words, 
-                 random.order = FALSE,
-                 scale = c(1, 0.35),
-                 colors = colors1,
-                 title.size = 2,
-                 title.colors = colors1)
+# rating17_words_wide<- rating17_words %>% 
+#   pivot_wider(names_from = rating_type, values_from = mean) %>% 
+#   mutate(across(everything(), .fns = ~replace_na(.,0)))
+# comparison_words <- rating17_words_wide %>%
+#   ungroup() %>% 
+#   select(-sentences) %>%
+#   as.matrix()
+# rownames(comparison_words) <- rating17_words_wide$sentences
+# comparison.cloud(comparison_words, 
+#                  random.order = FALSE,
+#                  scale = c(1, 0.35),
+#                  colors = colors1,
+#                  title.size = 2,
+#                  title.colors = colors1)
 
-library(rvest)
-library(qdap)
-trans_cloud(rating17_words$sentences, rating17_words$rating_type, stem = T)
+# library(rvest)
+# library(qdap)
+# trans_cloud(rating17_words$sentences, rating17_words$rating_type, stem = T)
 
 
 
