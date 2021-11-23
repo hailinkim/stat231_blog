@@ -42,9 +42,10 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 ## Questions of Interest
 
-* blah
-* blah
-* blah
+1. blah
+2. blah
+3. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
+
 
 # Data
 
@@ -52,7 +53,9 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 * [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
 
-* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to measure Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. In addition to the star ratings data set, we also incorporated a subset of variables from a display measure data set; display measures are not included in five-star rating criteria but are displayed for informational purposes only. Both data sets were in .csv format, and we compared data over time ranging from 2016 to 2021.
+* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. In addition to the star ratings data set, we also incorporated a subset of variables from a display measure data set; display measures are not included in five-star rating criteria but are displayed for informational purposes only. Both data sets were in .csv format, and we compared the data over time ranging from 2016 to 2022.
+
+* The dataset contains various metrics of health care quality for each Medicare plan, so it allows users to compare one plan to another based on those metrics. Each measure reflects beneficiaries' perspectives of the care they received, and we focus on measures related to preventive services, treatments, and consumer satisfaction.
 
 
 **Dataset 2**
@@ -78,10 +81,15 @@ knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600p
 ### What is Medicare?
 Medicare helps provide healthcare coverage to U.S. citizens who are 65 years of age or older, as well as people with certain disabilities. Medicare consists of four parts, and we focus on Part C: Medical Advantage. Medical Advantage is an all-in-one alternative to Original Medicare, which includes drug coverage and extra benefits not covered by Original Medicare. These plans are provided by contracting private insurance companies instead of the federal government.
 
-(to be edited)
-The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes. Thus, we used Medicare quality rating data to examine how to strengthen public insurance. (to be edited)
+### Background
+The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes. Thus, we used Medicare quality ratings data to contemplate about how to strengthen public insurance. We believe that examining reviews for Medicare would be crucial for ensuring that its beneficiaries are able to access the medical care they need. 
 
 ### Wordcloud
+
+
+
+
+
 
 ## Clustering
 
