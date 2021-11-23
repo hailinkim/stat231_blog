@@ -19,6 +19,7 @@ rating18 <- read_csv("data/rating/2018.csv")
 rating19 <- read_csv("data/rating/2019.csv")
 rating20 <- read_csv("data/rating/2020.csv")
 rating21 <- read_csv("data/rating/2021.csv")
+rating22 <- read_csv("data/rating/2022.csv")
 
 #ratings data set
 #2016
@@ -166,7 +167,7 @@ rating17_5 <- rating17_4 %>%
                names_to = "measure",
                values_to = "ratings") 
 
-rating17_words <- rating16_5 %>% 
+rating17_words <- rating17_5 %>% 
   group_by(measure) %>% 
   summarise(mean = mean(ratings)) %>% 
   mutate(sentences = str_replace_all(measure, " ", "\n"),
@@ -477,10 +478,75 @@ rating21_words <- rating21_words %>%
     )
   )
 
+
+#2022
+#make the next row(rating variables) to be column names
+names(rating22) <- rating22[1,]
+rating22 <- rating22[-1,]
+colnames(rating22)[-c(1:5)] <- rating22[1, -c(1:5)]
+#remove the time frame row
+rating22 <- rating22[-c(1,2),]
+
+rating22_2 <- rating22[, c(1:8, 14:19, 21:24, 27:29, 31:33)]
+
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+rating22_3 <- rating22_2 %>% 
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c(6:24), ~str_remove(., "%")),
+         across(c(6:24), asNum)) %>% 
+  drop_na()  %>% 
+  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
+         "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  select(-c(9:11, 25)) %>% 
+  mutate(across(c(6:16, 19:21), ~{100-.}),
+         across(c(6:16, 18:21), ~{./100}))
+
+rating22_4 <- rating22_3 %>% 
+  dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
+                "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
+                "No Access to Flu Vaccine" = "Annual Flu Vaccine",
+                "No Rheumatoid Arthritis Management" = "Rheumatoid Arthritis Management",
+                "No Fall Risk Interventions" = "Reducing the Risk of Falling",
+                "No Treatment for Urinary Incontinence" = "Improving Bladder Control",
+                "No Treatment for Cardiovascular Disease" = "Statin Therapy for Patients with Cardiovascular Disease",
+                "Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care/Appointments" = "Getting Appointments and Care Quickly",
+                "Poor Customer Service" = "Customer Service",
+                "Poor Care Coordination" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center – Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
+                "Complaints" = "Complaints about the Health Plan")
+
+rating22_5 <- rating22_4 %>% 
+  pivot_longer(cols = 6:22,
+               names_to = "measure",
+               values_to = "ratings") 
+
+rating22_words <- rating22_5 %>% 
+  group_by(measure) %>% 
+  summarise(mean = mean(ratings)) %>% 
+  mutate(sentences = str_replace_all(measure, " ", "\n"),
+         year = "2022") %>% 
+  select(-measure)
+
+rating22_words <- rating22_words %>% 
+  mutate(rating_type = case_when(
+    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", 
+                     "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
+    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", "No\nRheumatoid\nArthritis\nManagement", 
+                     "No\nTreatment\nfor\nUrinary\nIncontinence", "No\nTreatment\nfor\nCardiovascular\nDisease") ~ "Treatment",
+    TRUE ~ "Customer Satisfaction"
+    )
+  )
+
+
+
 #combine all years
-ratings <- bind_rows(rating16_words, rating17_words, rating18_words, rating19_words, rating20_words)
+ratings <- bind_rows(rating16_words, rating17_words, rating18_words, rating19_words, 
+                     rating20_words, rating21_words, rating22_words)
 # save the combined data set
-write_csv(ratings, "data/rating/ratings.csv")
+write_csv(ratings, "blog-wordcloud/ratings.csv")
 
 #wordcloud
 set.seed(53)
