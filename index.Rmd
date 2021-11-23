@@ -6,6 +6,7 @@ output:
   rmdformats::readthedown:
     thumbnails: false
     highlight: "kate"
+runtime: shiny
 ---
 
 ```{r setup, include = FALSE}
@@ -21,6 +22,7 @@ library(cluster)
 library(Rtsne)
 library(ggplot2)
 library(ggforce)
+library(shiny)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
@@ -90,9 +92,83 @@ The Affordable Care Act, which was passed under Obama administration, attempted 
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
+```{r shiny, echo=FALSE}
+ratings <- read_csv("ratings.csv")
+# for selectInput
+type_choices <- unique(ratings$rating_type)
+
+shinyApp(
+    ui <- fluidPage(
+    
+    # App title ----
+    titlePanel("Wordcloud"),
+    
+    # Sidebar layout with input and output definitions ----
+    sidebarLayout(
+      
+      # Sidebar to demonstrate various slider options ----
+      sidebarPanel(
+        
+        # Input: Animation with custom interval (in ms) ----
+        # to control speed, plus looping
+        sliderInput("animation", "Year:",
+                    min = 2016, max = 2022,
+                    value = 2016, step = 1,
+                    animate = animationOptions(interval = 500, loop = TRUE)),
+        
+        selectizeInput(inputId = "type",
+                    label = "Choose a measure type",
+                    choices = type_choices,
+                    selected = c("Prevention", "Treatment", "Customer Satisfaction"),
+                    multiple = TRUE),
+        
+      ),
+      
+      # Main panel for displaying outputs ----
+      mainPanel(
+        plotOutput("wordcloud", width = "100%", height = 650)
+      )
+    )
+  ),
+  
+  server <- function(input, output) {
+    
+    output$wordcloud <- renderPlot({
+      
+      dat <- ratings %>%
+        filter(year %in% input$animation, rating_type %in% input$type) 
+      
+      my_pal <- RColorBrewer::brewer.pal(n = 3, name = "Dark2")
+      
+      set.seed(1120)
+      dat %>%
+        with(wordcloud(words = sentences, freq = mean, scale = c(2,0.8), 
+                       colors=my_pal[as.factor(rating_type)], ordered.colors = TRUE))
+      
+      # legend("topright", legend = levels(factor(ratings$rating_type)),
+      #        text.col=brewer.pal(3, "Dark2")[unique(factor(ratings$rating_type))])
+    })
+  },
+  options = list(height = 600)
+)
+```
 
 
+The above word cloud shows what patients say about their health care experience; text size corresponds to percentage of plan members who reported to have certain experiences, and words are colored by different types of metrics. By default, it displays all three types (i.e. prevention, treatment, customer satisfaction). Words classified as Treatment seem to stand out in their sizes across the board, which implies that a lot of plan members did not avail the services related to treatment of chronic/acute conditions, such as diabetes care. Also, people's experiences with preventive services such as screenings or immunizations are the second largest words displayed in the visualization. However, this should not be translated into the plan's poor performance in preventive care because according to Centers for Medicare & Medicaid Services, the Affordable Care Act allowed the Medicare beneficiaries to have access to free preventive services; in other words, they simply did not take advantage of those services because they were not in need of them, not because of certain barriers. 
 
+In order to extend our knowledge about actual performance of Medicare plans, we pay close attention to members' general opinions about the plan's care and services, which had the least presence in the across-the-board visualization. We do so by selecting *Customer Satisfaction* as the sole input in the Shiny app. The most conspicuous words in the word cloud filtered by the customer satisfaction are "Less Timely Care/Appointments" and "Not Getting Needed Care". This suggests that a lot of people were not able to get care or appointments quickly, nor were could they get needed care. Another notable finding is that the words "Complaints" and "Members Choosing to Leave the Plan" increase in their sizes from 2019 to 2022. This means that there has been an increasing number of people who filed complaints against their Medicare plans and chose to leave the plan. This may be attributable to the COVID-19 outbreak as the pandemic may have resulted in decline in plan's performance; the job losses caused by the pandemic may have also disrupted job-based health coverage for millions of people.
+
+
+### Discussion
+
+The examination of word cloud revealed that a lot of people specifically did not (or could not) receive treatment for their health conditions, although they were covered by Medicare. This may be plausibly attributable to the fact that people tend to go without needed treatments because of financial barriers. Co-payments, deductibles, or co-insurance may have deterred even people with insurance from getting those services. This finding suggests that there is a pressing need to drive down costs for Medicare beneficiaries to make it more affordable for them to fully take advantage of critical health cervices and stay healthy.
+
+Another improvement to be made has to do with the quality of service delivery. Taking a closer look at the words classified as Customer Satisfaction, we 
+
+at one of the important times: as soon as possible.
+
+
+performance in terms of access to care, patients’ experiences with health care, and people’s health outcomes
 
 
 empower people to make health care decisions that are best for them.
