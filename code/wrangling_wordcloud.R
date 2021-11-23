@@ -221,41 +221,68 @@ rating17_words %>%
 
 
 #2018
-rating18 <- as.data.frame(rating18[, c(1:5, 27:39)])
+# rating18 <- as.data.frame(rating18[, c(1:5, 27:39)])
 #make the next row(rating variables) to be column names
 names(rating18) <- rating18[1,]
 rating18 <- rating18[-1,]
 colnames(rating18)[-c(1:5)] <- rating18[1, -c(1:5)]
 #remove the time frame row
 rating18 <- rating18[-c(1,2),]
-#rename the broken column
-colnames(rating18)[18] <- "C34: Call Center_Foreign Language Interpreter and TTY Availability"
+rating18_2 <- rating18[, c(1:8, 17:24, 27:29, 32:34, 37:39)]
 
-rating18_2 <- rating18 %>% 
-  select(-"C31: Health Plan Quality Improvement") %>% 
-  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
-  mutate(across(c("Getting Needed Care": "Call Center_Foreign Language Interpreter and TTY Availability"), ~str_remove(., "%")),
-         across(c(6:17), asNum)) %>% 
-  drop_na()
-
+asNum <- function(x, na.rm = FALSE)(as.numeric(x))
 rating18_3 <- rating18_2 %>% 
-  select(-c("Rating of Health Care Quality", "Rating of Health Plan")) %>% 
-  dplyr::rename("Not Getting Needed Care" = "Getting Needed Care",
-                "Less Timely Care and Appointments" = "Getting Appointments and Care Quickly",
-                "Difficult to Get Information and Help from the Plan When Needed" = "Customer Service",
-                "Plan Coordinates Members’ Care Poorly" = "Care Coordination",
-                "Problems with Plan's Performance" = "Beneficiary Access and Performance Problems",
-                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services and Foreign Language Interpretation Unavailable When Needed" = "Call Center_Foreign Language Interpreter and TTY Availability",
-                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions") %>% 
-  mutate(across(c(6, 7, 8, 9, 12, 13, 14, 15), ~{100-.}),
-         across(c(6:9, 11:15), ~{./100}))
+  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  mutate(across(c(6:25), ~str_remove(., "%")),
+         across(c(6:25), asNum)) %>% 
+  drop_na()  %>% 
+  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
+         "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  select(-c(10:12, 26)) %>% 
+  mutate(across(c(6:17, 20:22), ~{100-.}),
+         across(c(6:17, 19:22), ~{./100}))
 
 rating18_4 <- rating18_3 %>% 
-  pivot_longer(cols = "Not Getting Needed Care":"TTY Services and Foreign Language Interpretation Unavailable When Needed",
+  dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
+                "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
+                "No Access to Flu Vaccine" = "Annual Flu Vaccine",
+                "No Osteoporosis Treatment" = "Osteoporosis Management in Women who had a Fracture",
+                "No Treatment for Hypertension" = "Controlling Blood Pressure",
+                "No Rheumatoid Arthritis Management" = "Rheumatoid Arthritis Management",
+                "No Fall Risk Interventions" = "Reducing the Risk of Falling",
+                "No Treatment for Urinary Incontinence" = "Improving Bladder Control",
+                "Not Getting Needed Care" = "Getting Needed Care",
+                "Less Timely Care/Appointments" = "Getting Appointments and Care Quickly",
+                "Poor Customer Service" = "Customer Service",
+                "Poor Care Coordination" = "Care Coordination",
+                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
+                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
+                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
+                "Complaints" = "Complaints about the Health Plan")
+
+rating18_5 <- rating18_4 %>% 
+  pivot_longer(cols = 6:23,
                names_to = "measure",
-               values_to = "ratings") %>% 
-  mutate(year = "2018")
+               values_to = "ratings") 
+
+rating18_words <- rating18_5 %>% 
+  group_by(measure) %>% 
+  summarise(mean = mean(ratings)) %>% 
+  mutate(sentences = str_replace_all(measure, " ", "\n"),
+         year = "2018") %>% 
+  select(-measure)
+
+rating18_words <- rating18_words %>% 
+  mutate(rating_type = case_when(
+    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", 
+                     "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
+    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", 
+                     "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", 
+                     "No\nTreatment\nfor\nHypertension", "No\nTreatment\nfor\nUrinary\nIncontinence") ~ "Treatment",
+    TRUE ~ "Customer Satisfaction"
+    )
+  )
+
 
 
 #2019
