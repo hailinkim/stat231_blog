@@ -78,14 +78,26 @@ knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600p
 
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
 
-### What is Medicare?
+### Background
+
+#### What is Medicare?
 Medicare helps provide healthcare coverage to U.S. citizens who are 65 years of age or older, as well as people with certain disabilities. Medicare consists of four parts, and we focus on Part C: Medical Advantage. Medical Advantage is an all-in-one alternative to Original Medicare, which includes drug coverage and extra benefits not covered by Original Medicare. These plans are provided by contracting private insurance companies instead of the federal government.
 
-### Background
+#### Has Medicare been effective in delivering quality health care?
 The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes. Thus, we used Medicare quality ratings data to contemplate about how to strengthen public insurance. We believe that examining reviews for Medicare would be crucial for ensuring that its beneficiaries are able to access the medical care they need. 
 
 ### Wordcloud
 
+We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
+
+
+
+
+
+
+empower people to make health care decisions that are best for them.
+deliver meaningful information about the quality of each plan to help people with Medicare meake informed health care decisions
+decide on the options that best meet their health needs
 
 
 
@@ -130,7 +142,7 @@ In a study from the 1920s, fifty cars were used to see how the speed of the car 
 
 You can also embed plots as normal, for example:
 
-```{r}
+```{r eval = FALSE}
 rating17_words <- read_csv("data/rating17_words.csv")
 set.seed(1122)
 rating17_words %>%
@@ -138,7 +150,7 @@ rating17_words %>%
                  max.words = 17))
 ```
 
-```{r}
+```{r eval=FALSE}
 rating17_words2 <- rating17_words %>% 
     mutate(rating_type = case_when(
     sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
@@ -156,7 +168,7 @@ rating17_words2 %>%
 legend("topright", legend = levels(factor(rating17_words2$rating_type)), 	text.col=brewer.pal(3, "Dark2")[unique(factor(rating17_words2$rating_type))])
 ```
 
-```{r}
+```{r eval = FALSE}
 set.seed(1119)
 demographic17 <- read_csv("data/demographic17.csv") %>% 
   mutate(across(where(is.character), as.factor))
