@@ -163,20 +163,7 @@ In order to extend our knowledge about actual performance of Medicare plans, we 
 
 The examination of word cloud revealed that a lot of people specifically did not (or could not) receive treatment for their health conditions, although they were covered by Medicare. This may be plausibly attributable to the fact that people tend to go without needed treatments because of financial barriers. Co-payments, deductibles, or co-insurance may have deterred even people with insurance from getting those services. This finding suggests that there is a pressing need to drive down costs for Medicare beneficiaries to make it more affordable for them to fully take advantage of critical health cervices and stay healthy.
 
-Another improvement to be made has to do with the quality of service delivery. Taking a closer look at the words classified as Customer Satisfaction, we 
-
-at one of the important times: as soon as possible.
-
-
-performance in terms of access to care, patients’ experiences with health care, and people’s health outcomes
-
-
-empower people to make health care decisions that are best for them.
-deliver meaningful information about the quality of each plan to help people with Medicare meake informed health care decisions
-decide on the options that best meet their health needs
-
-
-
+Another improvement to be made has to do with the quality of service delivery--more precisely, access to care. Taking a closer look at the words classified as Customer Satisfaction, we found that people lacked timely access to care. Timeliness of access to care and other services is extremely important in health care settings; not only do the prolonged wait times increase frustration or disappointment of patients, but also they can directly translate into health outcomes, increasing mortality and morbidity. Additionally, we could also notice how the word cloud reflected the impact of the COVID-19 pandemic on health care system. 
 
 
 ## Clustering
