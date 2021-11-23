@@ -478,13 +478,9 @@ rating21_words <- rating21_words %>%
   )
 
 #combine all years
-rating <- bind_rows(rating16_4, rating17_4, rating18_4, rating19_4, rating20_4, rating21_4)
-rating_words <- rating %>% 
-  unnest_tokens(output = sentences, input = measure, token = "sentences") %>%
-  group_by(sentences, year) %>% 
-  summarise(mean = mean(ratings)) %>% 
-  mutate(year=as.integer(year))
-write_csv(rating_words, "data/rating_words.csv")
+ratings <- bind_rows(rating16_words, rating17_words, rating18_words, rating19_words, rating20_words)
+# save the combined data set
+write_csv(ratings, "data/rating/ratings.csv")
 
 #wordcloud
 set.seed(53)
