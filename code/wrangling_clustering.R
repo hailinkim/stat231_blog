@@ -10,9 +10,7 @@ library(ggforce)
 nhis19 <- read_csv("data/adult19.csv")
 
 demographic <- nhis19 %>% 
-  select(SEX_A, ORIENT_A, HISPALLP_A, EDUC_A, NOTCOV_A, CITZNSTP_A, YRSINUS_A, 
-         FDSCAT3_A, INCGRP_A, FAMINCTC_A, MHTHDLY_A, MHTHND_A, PAYBLL12M_A, 
-         DENDL12M_A, DENNG12M_A, RXDG12M_A, RXLS12M_A, RXSK12M_A, DENNG12M_A) %>% 
+  select(SEX_A, ORIENT_A, HISPALLP_A, EDUC_A, NOTCOV_A, CITZNSTP_A, YRSINUS_A, FAMINCTC_A) %>% 
   mutate(
     sex = case_when(
       SEX_A == 1 ~ "Male",
@@ -74,70 +72,6 @@ demographic <- nhis19 %>%
       str_detect(citizen_years, "^US Citizen") ~ "US Citizen",
       TRUE ~ citizen_years
     ),
-    food_security = case_when(
-      FDSCAT3_A == 1 ~ "Food secure",
-      FDSCAT3_A == 2 ~ "Low food security",
-      FDSCAT3_A == 3 ~ "Very low food security",
-      TRUE ~ "Other"
-    ),
-    income_group = case_when(
-      INCGRP_A == 1 ~ "$0 to $34,999",
-      INCGRP_A == 2 ~ "$35,000 to $49,999",
-      INCGRP_A == 3 ~ "$50,000 to $74,999",
-      INCGRP_A == 4 ~ "$75,000 to $99,999",
-      INCGRP_A == 5 ~ "$100,000 or greater",
-      TRUE ~ "Other"
-    ),
-    delayed_mental = case_when(
-      MHTHDLY_A == 1 ~ "Yes",
-      MHTHDLY_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    unafford_mental = case_when(
-      MHTHND_A == 1 ~ "Yes",
-      MHTHND_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    bill_problem = case_when(
-      PAYBLL12M_A == 1 ~ "Yes",
-      PAYBLL12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    delayed_dental = case_when(
-      DENDL12M_A == 1 ~ "Yes",
-      DENDL12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    unafford_dental = case_when(
-      DENNG12M_A == 1 ~ "Yes",
-      DENNG12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    delayed_medical = case_when(
-      DENNG12M_A == 1 ~ "Yes",
-      DENNG12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    unafford_medical = case_when(
-      DENNG12M_A == 1 ~ "Yes",
-      DENNG12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    skip_med = case_when(
-      RXSK12M_A == 1 ~ "Yes",
-      RXSK12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    less_med = case_when(
-      RXLS12M_A == 1 ~ "Yes",
-      RXLS12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
-    unafford_med = case_when(
-      RXDG12M_A == 1 ~ "Yes",
-      RXDG12M_A == 2 ~ "No",
-      TRUE ~ "Other"
-    ),
     income = FAMINCTC_A 
   )
 
@@ -145,65 +79,25 @@ demographic <- nhis19 %>%
 
 #30032 observations
 demographic2 <- demographic %>% 
-  filter(across(sex:unafford_med, ~. != "Other")) %>% 
+  select(-c(SEX_A:FAMINCTC_A, citizen, years_in_us)) %>% 
+  filter(across(sex:coverage, ~. != "Other"),
+         !str_detect(citizen_years, "Unknown|Other")) %>% 
   mutate(income_sqrt = sqrt(income)) %>% 
-  select(-c(SEX_A:RXSK12M_A, citizen:years_in_us, delayed_mental:unafford_med, citizen_years, food_security, income, income_group))
-
+  select(-income)
 demographic3 <- demographic2 %>% 
   mutate(across(where(is.character), as.factor))
 
 #checking the distribution of income
-ggplot(demographic, aes(x = sqrt(income))) +
+ggplot(demographic3, aes(x = income_sqrt)) +
   geom_histogram()
-
-
-gower_df <- daisy(demographic3, metric = "gower")
-save(gower_df, file = "gower_df.rda")
-
-silhouette3 <- c()
-silhouette3 = c(silhouette3, NA)
-for(i in 3:8){
-  pam_clusters3 = pam(as.matrix(gower_df2),
-                     diss = TRUE,
-                     k = i)
-  silhouette3 = c(silhouette3 ,pam_clusters2$silinfo$avg.width)
-}
-silhouette2 <- append(silhouette, NA, after = 0)
-silhouette2 <- append(silhouette2, c(NA, NA), after = 8)
-save(silhouette2, file = "silhouette2.rda")
-
-plot(1:10, silhouette2,
-     xlab = "Clusters",
-     ylab = "Silhouette Width")
-lines(1:10, silhouette2)
-
-pam_nhis = pam(gower_df, diss = TRUE, k = 8)
-# pam_nhis = pam(gower_df, diss = TRUE, k=5)
-save(pam_nhis, file = "pam_nhis.rda")
-demographic3[pam_nhis$medoids, ]
-pam_summary <- demographic3 %>%
-  mutate(cluster = pam_nhis$clustering) %>%
-  group_by(cluster) %>%
-  do(cluster_summary = summary(.))
-pam_summary$cluster_summary[[3]]
-
-tsne_object <- Rtsne(gower_df, is_distance = TRUE)
-save(tsne_object, file = "tsne_object.rda")
-tsne_df <- tsne_object$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_df) +
-  geom_point(aes(color = cluster))
-
 
 
 ################
 #stratified random samples by coverage status
-set.seed(1127)
+set.seed(112)
 tmp <- demographic3 %>% 
   group_by(coverage) %>% 
-  sample_n(1000)
+  sample_n(2500)
 gower_df <- daisy(tmp, metric = "gower")
 silhouette <- c()
 silhouette = c(silhouette, NA)
@@ -211,7 +105,7 @@ for(i in 2:10){
   pam_clusters = pam(as.matrix(gower_df),
                      diss = TRUE,
                      k = i)
-  silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
+  silhouette = c(silhouette, pam_clusters$silinfo$avg.width)
 }
 plot(1:10, silhouette,
      xlab = "Clusters",
