@@ -147,7 +147,7 @@ demographic <- nhis19 %>%
 demographic2 <- demographic %>% 
   filter(across(sex:unafford_med, ~. != "Other")) %>% 
   mutate(income_sqrt = sqrt(income)) %>% 
-  select(-c(SEX_A:RXSK12M_A, coverage:years_in_us, delayed_mental:unafford_med, citizen_years, food_security, barrier, income, income_group))
+  select(-c(SEX_A:RXSK12M_A, citizen:years_in_us, delayed_mental:unafford_med, citizen_years, food_security, income, income_group))
 
 demographic3 <- demographic2 %>% 
   mutate(across(where(is.character), as.factor))
@@ -198,16 +198,17 @@ ggplot(aes(x = X, y = Y), data = tsne_df) +
 
 
 
-#################
-#random samples 10,000 rows
-demographic4 <- demographic3 %>% 
-  sample_n(10000)
-
-gower_df2 <- daisy(demographic4, metric = "gower")
+################
+#stratified random samples by coverage status
+set.seed(1127)
+tmp <- demographic3 %>% 
+  group_by(coverage) %>% 
+  sample_n(1000)
+gower_df <- daisy(tmp, metric = "gower")
 silhouette <- c()
 silhouette = c(silhouette, NA)
 for(i in 2:10){
-  pam_clusters = pam(as.matrix(gower_df2),
+  pam_clusters = pam(as.matrix(gower_df),
                      diss = TRUE,
                      k = i)
   silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
@@ -216,77 +217,55 @@ plot(1:10, silhouette,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette)
-pam_nhis2 = pam(gower_df2, diss = TRUE, k = 10)
-pam_nhis3 = pam(gower_df2, diss = TRUE, k = 5)
+pam_nhis = pam(gower_df, diss = TRUE, k = 5)
 
-demographic4[pam_nhis2$medoids, ]
-pam_summary2 <- demographic4 %>%
+tmp[pam_nhis$medoids, ]
+pam_summary  <- tmp %>%
+  ungroup() %>% 
+  mutate(cluster = pam_nhis$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary$cluster_summary[5]
+
+
+#stratified random samples by race
+set.seed(68)
+tmp2 <- demographic3 %>% 
+  filter(coverage == "Not covered") %>% 
+  group_by(race) %>% 
+  sample_n(20)
+gower_df2 <- daisy(tmp2, metric = "gower")
+
+silhouette2 <- c()
+silhouette2 = c(silhouette2, NA)
+for(i in 2:10){
+  pam_clusters2 = pam(as.matrix(gower_df2),
+                     diss = TRUE,
+                     k = i)
+  silhouette2 = c(silhouette2, pam_clusters2$silinfo$avg.width)
+}
+plot(1:10, silhouette2,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette2)
+pam_nhis2 = pam(gower_df2, diss = TRUE, k = 7)
+
+
+tmp2[pam_nhis2$medoids, ]
+pam_summary2 <- tmp2 %>%
+  ungroup() %>% 
   mutate(cluster = pam_nhis2$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
-pam_summary2$cluster_summary[[9]]
+pam_summary2$cluster_summary[[7]]
 
 tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
 tsne_df2 <- tsne_object2$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis2$clustering))
-ggplot(aes(x = X, y = Y), data = tsne_df2) +
-  geom_point(aes(color = cluster))
-
-demographic4[pam_nhis3$medoids, ]
-pam_summary3 <- demographic4 %>%
-  mutate(cluster = pam_nhis3$clustering) %>%
-  group_by(cluster) %>%
-  do(cluster_summary = summary(.))
-pam_summary3$cluster_summary[[1]]
-
-tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
-tsne_df2 <- tsne_object2$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis3$clustering))
-
-ggplot(aes(x = X, y = Y), data = tsne_df2) + 
-  geom_point(aes(color = cluster))
-
-################
-#stratified random samples
-set.seed(1119)
-demographic5 <- demographic3 %>% 
-  group_by(sex_orientation, race) %>% 
-  sample_n(3)
-write_csv(demographic5, "data/demographic17.csv")
-
-gower_df3 <- daisy(demographic5, metric = "gower")
-silhouette <- c()
-silhouette = c(silhouette, NA)
-for(i in 2:10){
-  pam_clusters = pam(as.matrix(gower_df3),
-                     diss = TRUE,
-                     k = i)
-  silhouette = c(silhouette ,pam_clusters$silinfo$avg.width)
-}
-plot(1:10, silhouette,
-     xlab = "Clusters",
-     ylab = "Silhouette Width")
-lines(1:10, silhouette)
-pam_nhis4 = pam(gower_df3, diss = TRUE, k = 7)
-
-demographic5[pam_nhis4$medoids, ]
-pam_summary4 <- demographic5 %>%
-  mutate(cluster = pam_nhis4$clustering) %>%
-  group_by(cluster) %>%
-  do(cluster_summary = summary(.))
-pam_summary2$cluster_summary[[9]]
-
-tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 15)
-tsne_df3 <- tsne_object3$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis4$clustering))
 my_pal <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
-ggplot(aes(x = X, y = Y), data = tsne_df3) +
+ggplot(aes(x = X, y = Y), data = tsne_df2) +
   geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
   # geom_mark_ellipse(aes(color = cluster,
   #                       label=cluster),
@@ -297,94 +276,49 @@ ggplot(aes(x = X, y = Y), data = tsne_df3) +
   scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
 
 
+#stratified random samples by sexual orientation
+tmp3 <- demographic3 %>% 
+  filter(coverage == "Not covered", sex_orientation != "Something else") %>%
+  group_by(sex_orientation) %>% 
+  sample_n(18)
+  
+gower_df3 <- daisy(tmp3, metric = "gower")
+
+silhouette3 <- c()
+silhouette3 = c(silhouette3, NA)
+for(i in 2:10){
+  pam_clusters3 = pam(as.matrix(gower_df3),
+                      diss = TRUE,
+                      k = i)
+  silhouette3 = c(silhouette3, pam_clusters3$silinfo$avg.width)
+}
+plot(1:10, silhouette3,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette3)
+pam_nhis3 = pam(gower_df3, diss = TRUE, k = 10)
 
 
+tmp3[pam_nhis3$medoids, ]
+pam_summary3 <- tmp3 %>%
+  ungroup() %>% 
+  mutate(cluster = pam_nhis3$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+pam_summary3$cluster_summary[[1]]
 
-# tmp <- demographic2 %>% 
-#   group_by(coverage, barrier) %>% 
-#   summarise(count = n())
-
-# access_all <- demographic2 %>% 
-#   group_by(race, sex, edu, citizen, income_group) %>% 
-#   summarize(access = n())
-# 
-# tmp1 <- demographic2 %>% 
-#   group_by(race, sex) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = race, target = sex)
-# tmp2 <- demographic2 %>% 
-#   group_by(race, edu) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = race, target = edu)
-# tmp3 <- demographic2 %>% 
-#   group_by(race, citizen) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = race, target = citizen)
-# tmp4 <- demographic2 %>% 
-#   group_by(race, income_group) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = race, target = income_group)
-# race <- bind_rows(tmp1, tmp2, tmp3, tmp4)
-# race_asian <- race %>% 
-#   filter(source == "Asian")
-# tmp5 <- demographic2 %>% 
-#   group_by(sex, edu) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = sex, target = edu)
-# tmp6 <- demographic2 %>% 
-#   group_by(sex, citizen) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = sex, target = citizen)
-# tmp7 <- demographic2 %>% 
-#   group_by(sex, income_group) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = sex, target = income_group)
-# tmp8 <- demographic2 %>% 
-#   group_by(edu, citizen) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = edu, target = citizen)
-# tmp9 <- demographic2 %>% 
-#   group_by(edu, income_group) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = edu, target = income_group)
-# tmp10 <- demographic2 %>% 
-#   group_by(citizen, income_group) %>% 
-#   summarise(access = n()) %>% 
-#   dplyr::rename(source = citizen, target = income_group)
-# other <- bind_rows(tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
-# 
-# tmp <- bind_rows(tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10)
-# 
-# 
-# #9428 observations
-# access_no <- demographic2 %>% 
-#   filter(if_any(starts_with(c("unafford", "delayed", "bill", "skip", "less")), ~. =="Yes")) %>% 
-#   group_by(race, sex, edu, citizen, income_group) %>% 
-#   summarize(access = n())
-# access <- left_join(access_all, access_no, by=c("race" = "race", "sex" = "sex", "edu" = "edu",
-#                                                 "citizen" = "citizen", "income_group" = "income_group"),
-#                     suffix = c(".all", ".no")) %>% 
-#   mutate(access.no = ifelse(is.na(access.no), 0, access.no)) 
-
-# tmp_asian <- bind_rows(race_asian, other)
-# asian_igraph <- graph_from_data_frame(tmp, directed = TRUE)
-# summary(asian_igraph)
-# asian_network <- ggnetwork(asian_igraph)
-# g <- ggplot(data = asian_network, aes(x = x, y = y, xend = xend, yend = yend)) +
-#   geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")), color = "lightgray",
-#              aes(size = access)) +
-#   geom_nodes() +
-#   geom_nodelabel(aes(label = name)) +
-#   theme_blank()
-# 
-# 
-# nhis_igraph <- graph_from_data_frame(tmp, directed = FALSE)
-# summary(nhis_igraph)
-# nhis_network <- ggnetwork(nhis_igraph)
-# 
-# g <- ggplot(data = nhis_network, aes(x = x, y = y, xend = xend, yend = yend)) +
-#   geom_edges(arrow = arrow(type = "closed", length = unit(8, "pt")),
-#              color = "lightgray") +
-#   geom_nodes() +
-#   geom_nodelabel(aes(label = name)) +
-#   theme_blank()
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 16)
+tsne_df3 <- tsne_object3$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis3$clustering))
+my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
+ggplot(aes(x = X, y = Y), data = tsne_df3) +
+  geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+  # geom_mark_ellipse(aes(color = cluster,
+  #                       label=cluster),
+  #                   expand = unit(0.5,"mm"),
+  #                   label.buffer = unit(-5, 'mm'))+
+  theme_bw() +
+  scale_color_manual(values=c(my_pal)) +
+  scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
