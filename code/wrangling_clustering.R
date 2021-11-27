@@ -113,6 +113,7 @@ tmp2 <- demographic3 %>%
   filter(coverage == "Not covered") %>% 
   group_by(race) %>% 
   sample_n(75)
+write_csv(tmp2, "demographic_race.csv")
 gower_df2 <- daisy(tmp2, metric = "gower")
 
 silhouette2 <- c()
@@ -127,7 +128,7 @@ plot(1:10, silhouette2,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette2)
-pam_nhis2 = pam(gower_df2, diss = TRUE, k = 7)
+pam_nhis2 = pam(gower_df2, diss = TRUE, k = 8)
 
 
 tmp2[pam_nhis2$medoids, ]
