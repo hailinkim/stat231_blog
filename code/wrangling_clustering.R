@@ -10,7 +10,7 @@ library(ggforce)
 nhis19 <- read_csv("data/adult19.csv")
 
 demographic <- nhis19 %>% 
-  select(SEX_A, ORIENT_A, HISPALLP_A, EDUC_A, NOTCOV_A, CITZNSTP_A, YRSINUS_A, FAMINCTC_A) %>% 
+  select(SEX_A, ORIENT_A, HISPALLP_A, EDUC_A, NOTCOV_A, CITZNSTP_A, FAMINCTC_A) %>% 
   mutate(
     sex = case_when(
       SEX_A == 1 ~ "Male",
@@ -59,19 +59,6 @@ demographic <- nhis19 %>%
       CITZNSTP_A == 2 ~ "Non-US Citizen",
       TRUE ~ "Other"
     ),
-    years_in_us = case_when(
-      YRSINUS_A == 1 ~ "Less than 1 year",
-      YRSINUS_A == 2 ~ "1 to less than 5 years",
-      YRSINUS_A == 3 ~ "5 to less than 10 years",
-      YRSINUS_A == 4 ~ "10 to less than 15 years",
-      YRSINUS_A == 5 ~ "15 years or more",
-      TRUE ~ "Unknown"
-    ),
-    citizen_years = paste0(citizen, ", ", years_in_us),
-    citizen_years = case_when(
-      str_detect(citizen_years, "^US Citizen") ~ "US Citizen",
-      TRUE ~ citizen_years
-    ),
     income = FAMINCTC_A 
   )
 
@@ -79,11 +66,9 @@ demographic <- nhis19 %>%
 
 #30032 observations
 demographic2 <- demographic %>% 
-  select(-c(SEX_A:FAMINCTC_A, citizen, years_in_us)) %>% 
-  filter(across(sex:coverage, ~. != "Other"),
-         !str_detect(citizen_years, "Unknown|Other")) %>% 
+  filter(across(sex:citizen, ~. != "Other")) %>% 
   mutate(income_sqrt = sqrt(income)) %>% 
-  select(-income)
+  select(-c(SEX_A:FAMINCTC_A, income))
 demographic3 <- demographic2 %>% 
   mutate(across(where(is.character), as.factor))
 
@@ -113,7 +98,7 @@ plot(1:10, silhouette,
 lines(1:10, silhouette)
 pam_nhis = pam(gower_df, diss = TRUE, k = 5)
 
-tmp[pam_nhis$medoids, ]
+tmp[pam_nhis$medoids, ] #mediois represented by row numbers
 pam_summary  <- tmp %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis$clustering) %>%
@@ -127,7 +112,7 @@ set.seed(68)
 tmp2 <- demographic3 %>% 
   filter(coverage == "Not covered") %>% 
   group_by(race) %>% 
-  sample_n(20)
+  sample_n(75)
 gower_df2 <- daisy(tmp2, metric = "gower")
 
 silhouette2 <- c()
@@ -161,10 +146,6 @@ tsne_df2 <- tsne_object2$Y %>%
 my_pal <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
 ggplot(aes(x = X, y = Y), data = tsne_df2) +
   geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
-  # geom_mark_ellipse(aes(color = cluster,
-  #                       label=cluster),
-  #                   expand = unit(0.5,"mm"),
-  #                   label.buffer = unit(-5, 'mm'))+
   theme_bw() +
   scale_color_manual(values=c(my_pal)) +
   scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
@@ -174,10 +155,10 @@ ggplot(aes(x = X, y = Y), data = tsne_df2) +
 tmp3 <- demographic3 %>% 
   filter(coverage == "Not covered", sex_orientation != "Something else") %>%
   group_by(sex_orientation) %>% 
-  sample_n(18)
-  
-gower_df3 <- daisy(tmp3, metric = "gower")
+  sample_n(30)
+write_csv(tmp3, "demographic_sex_orientation.csv")
 
+gower_df3 <- daisy(tmp3, metric = "gower")
 silhouette3 <- c()
 silhouette3 = c(silhouette3, NA)
 for(i in 2:10){
@@ -192,7 +173,6 @@ plot(1:10, silhouette3,
 lines(1:10, silhouette3)
 pam_nhis3 = pam(gower_df3, diss = TRUE, k = 10)
 
-
 tmp3[pam_nhis3$medoids, ]
 pam_summary3 <- tmp3 %>%
   ungroup() %>% 
@@ -201,11 +181,17 @@ pam_summary3 <- tmp3 %>%
   do(cluster_summary = summary(.))
 pam_summary3$cluster_summary[[1]]
 
-tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 16)
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 29)
+
 tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis3$clustering))
+cluster3 <- tmp3 %>%
+  ungroup() %>% 
+  mutate(cluster = as.factor(pam_nhis3$clustering))
+tsne <- cluster3 %>% 
+  inner_join(tsne_df3, by = "cluster")
 my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
 ggplot(aes(x = X, y = Y), data = tsne_df3) +
   geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
