@@ -2,11 +2,11 @@
 title: "US Health Care Equity"
 author: "Abbey Skinner, Angelica Kim"
 date: "11/22/2021"
+# runtime: shiny
 output:
   rmdformats::readthedown:
     thumbnails: false
     highlight: "kate"
-runtime: shiny
 ---
 
 ```{r setup, include = FALSE}
@@ -45,7 +45,7 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 ## Questions of Interest
 
 1. blah
-2. blah
+2. What are the factors that drive health care inequity? Does intersectionality play a role in exacerbating inequality even in health care settings?
 3. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
 
 
@@ -92,8 +92,14 @@ The Affordable Care Act, which was passed under Obama administration, attempted 
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
-```{r shiny, echo=FALSE}
-ratings <- read_csv("ratings.csv")
+```{r}
+knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
+  height = "600px")
+```
+
+
+```{r shiny, echo=FALSE, eval = FALSE}
+ratings <- read_csv("blog-wordcloud/ratings.csv")
 # for selectInput
 type_choices <- unique(ratings$rating_type)
 
