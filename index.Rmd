@@ -44,7 +44,7 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 ## Questions of Interest
 
-1. blah
+1. What are the geographical differences in health care coverage throughout the United States? How has health care coverage changed over time?
 2. What are the factors that drive health care inequity? Does intersectionality play a role in exacerbating inequality even in health care settings?
 3. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
 
@@ -64,7 +64,9 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 * [Link to the dataset](https://www2.census.gov/programs-surveys/sahie/datasets/time-series/estimates-acs/)
 
-* Description: (to be added)
+* These datasets are from the United States Census Bureau. This is census data from 2012-2019. Each year is a separate dataset which measures the amount of people who have/don't have health insurance in each of the 50 states (plus D.C.). It also breaks down the numbers for different racial groups, ages, genders, and income levels. Each of these variables had a choice which included all people in the state (i.e "all genders" or "all income levels"). This dataset was in .csv format.
+
+* For this project, we decided to look just at different racial groups and kept all the other demographic information to the option which included all of the people in that state, that way we were able to look at all people of a certain race in each state. Additionally, numbers of people being insured/uninsured are represented in percentages.
 
 
 
@@ -73,10 +75,18 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 ## Map
 
 ```{r shiny-map}
-knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600px")
+knitr::include_app("", height = "600px")
 ```
 
+### Info
+This map shows the how the number of people who are uninsured has changed over the years from 2012-2019. The Affordable Care Act was passed in 2010, and in 2013 it began expanding health insurance coverage. From the maps you can see this drastic difference when more people begin to acquire health care.  
+ blah blah blah (ADD MORE ABOUT GEOGRAPHICAL TRENDS)
+
 ## Timeseries
+
+### info
+the time series allows us to see how the trends per state have flucuated over the years. This is a similar data breakdown as the map, however allows you to see more of the numbers and a state-by-state comparison. can see the decrease again at the same time when obmanacare begain to take force. some states have steady rates (mass)
+--> NEED TO LOOK AT SOME MORE to make observations
 
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
 
