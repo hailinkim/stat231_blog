@@ -69,8 +69,8 @@ demographic2 <- demographic %>%
   filter(across(sex:citizen, ~. != "Other")) %>% 
   mutate(income_sqrt = sqrt(income)) %>% 
   select(-c(SEX_A:FAMINCTC_A, income))
-demographic3 <- demographic2 %>% 
-  mutate(across(where(is.character), as.factor))
+
+write_csv(demographic2, "data/demographic.csv")
 
 #checking the distribution of income
 ggplot(demographic3, aes(x = income_sqrt)) +
@@ -80,7 +80,7 @@ ggplot(demographic3, aes(x = income_sqrt)) +
 ################
 #stratified random samples by coverage status
 set.seed(112)
-tmp <- demographic3 %>% 
+tmp <- demographic2 %>% 
   group_by(coverage) %>% 
   sample_n(2500)
 gower_df <- daisy(tmp, metric = "gower")
