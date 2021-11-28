@@ -2,7 +2,7 @@
 title: "US Health Care Equity"
 author: "Abbey Skinner, Angelica Kim"
 date: "11/22/2021"
-# runtime: shiny
+runtime: shiny
 output:
   rmdformats::readthedown:
     thumbnails: false
@@ -23,6 +23,7 @@ library(Rtsne)
 library(ggplot2)
 library(ggforce)
 library(shiny)
+library(plotly)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
@@ -204,12 +205,9 @@ demographic_coverage <- demographic %>%
 
 Due to the fact that the data set contains a disproportionate number of survey respondents for each health insurance coverage status (i.e. whether insured or uninsured), our initial clustering analysis results were dominated by those insured. Instead, we drew 2500 stratified random samples from each coverage status group.
 
+
 ```{r, echo = TRUE, eval=FALSE}
-#converting character type variables to factors
-demographic_coverage2 <- demographic_coverage %>% 
-  ungroup() %>% 
-  mutate(across(where(is.character), as.factor))
-gower_df <- daisy(demographic_coverage2, metric = "gower")
+gower_df <- daisy(demographic_coverage, metric = "gower")
 ```
 
 ```{r, fig.cap = "Summary of the gower_df data frame"}
@@ -247,7 +245,7 @@ pam_nhis = pam(gower_df, diss = TRUE, k = 5)
 demographic_coverage2[pam_nhis$medoids, ]
 ```
 
-```{r, fig.cap = "Medioids Table"}
+```{r}
 medioids <- read_csv("data/medioids.csv", show_col_types = FALSE)
 medioids
 ```
@@ -265,14 +263,93 @@ pam_summary$cluster_summary[5]
 pam_summary <- readRDS("data/pam_summary.rds")
 ```
 
-```{r, echo = FALSE, fig.cap = "Summary Stats for Cluster 5"}
+```{r, echo = FALSE}
 pam_summary$cluster_summary[5]
 ```
 
-We construct a PAM model with 5 clusters and examine medioids to interpret the clusters. In the medioids table above, each row represents a cluster; two clusters of respondents are insured, and the other three are not. We can also infer from the table that respondents belonging to Cluster 5 are uninsured and tend to be male; straight; Hispanic; non-US citizens; have less than a high school degree; earn the lowest income among all clusters. In other words, the uninsured tend to possess multiple social identities often identified as minority. However, it seems difficult to gain meaningful insights from the other 4 clusters because all of them tend to show very similar characteristics. This is due to the fact that there are a disproportionate number of survey participants who are White or straight. In order to address this issue, we apply clustering algorithm to the stratified random samples from each group of races or sexual orientation among the uninsured.
+We construct a PAM model with 5 clusters and examine medioids to interpret the clusters. In the medioids table above, each row represents a cluster; two clusters of respondents are insured, and the other three are not. We can also infer from the table that respondents belonging to Cluster 5 are uninsured and tend to be male; straight; Hispanic; non-US citizens; have less than a high school degree; earn the lowest income among all clusters. In other words, the uninsured tend to possess multiple social identities often identified as minority. However, it seems difficult to gain meaningful insights from the other 4 clusters because all of them tend to show very similar characteristics. This is due to the fact that there are a disproportionate number of survey participants who are White or straight. In order to address this issue, we apply clustering algorithm to the stratified random samples from each group of either race or sexual orientation.
 
+```{r, echo = FALSE}
+medioids_race <- read_csv("data/medioids_race.csv", show_col_types = FALSE)
+medioids_race %>% 
+  arrange(coverage, desc(income_sqrt))
+```
 
+The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to be either American Indian and Alaska Native, Black, Asian, or Hispanic, except for cluster 7; possess less than a college degree except for cluster 9; their median income tends to be less than approximately $35K with the exception of White and Asian participants. Moreover, those with multiple social minority statuses are more likely to be not covered by health insurance than those with either the racial or educational aspect alone.
 
+```{r, echo = TRUE, eval = FALSE}
+tsne_object <- Rtsne(gower_df, is_distance = TRUE)
+tsne_df <- tsne_object$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis$clustering))
+```
+
+To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
+
+```{r}
+set.seed(1291)
+demographic_race <- demographic %>% 
+  group_by(race, coverage) %>% 
+  sample_n(75) %>% 
+  ungroup() %>% 
+  mutate(across(where(is.character), as.factor))
+gower_df <- daisy(demographic_race, metric = "gower")
+
+silhouette <- c()
+silhouette = c(silhouette, NA)
+for(i in 2:10){
+  pam_clusters = pam(as.matrix(gower_df),
+                      diss = TRUE,
+                      k = i)
+  silhouette = c(silhouette, pam_clusters$silinfo$avg.width)
+}
+pam_nhis = pam(gower_df, diss = TRUE, k = 3)
+
+tsne_object <- Rtsne(gower_df, is_distance = TRUE)
+
+tsne_df <- tsne_object$Y %>%
+  data.frame() %>%
+  setNames(c("X", "Y")) %>%
+  mutate(cluster = factor(pam_nhis$clustering))
+cluster10 <- demographic_race %>%
+  ungroup() %>% 
+  mutate(cluster = factor(pam_nhis$clustering))
+tsne <- cluster10 %>% 
+  cbind(tsne_df) 
+tsne <- tsne[, -11] %>% 
+  filter(coverage == "Not covered")
+
+ui <- fluidPage(
+  
+  plotlyOutput("clustering")
+  # uiOutput("hover_info")
+)
+
+server <- function(input, output) {
+  
+  output$clustering <- renderPlotly({
+    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
+    g <- ggplot(data = tsne, aes(x = X, y = Y, 
+                                 text = paste(
+                                   "Coverage Status: ", coverage,
+                                   "\nRace: ", race,
+                                   "\nSexual Orientation: ", sex_orientation,
+                                   "\nEducation level: ", edu,
+                                   "\nCitizenship status: ", citizen
+                                   )
+                                 )) +
+      geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+      theme_bw() +
+      scale_color_manual(values=c(my_pal)) +
+      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+    ggplotly(g, tooltip = "text")
+  })
+  
+}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
 
 
 
