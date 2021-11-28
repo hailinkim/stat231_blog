@@ -184,6 +184,77 @@ We believe the intersectionality is an important concept for understanding and r
 
 ### Clustering
 
+We employ clustering analysis approach to examine the effect of intersectionality on health care inequities. We use the national health interview survey data set, which contains health insurance coverage status and various socioeconomic information of its respondents; we focus on race, sexual orientation, citizenship status, and education level. We hope to identify clusters of survey participants with various socioeconomic identities. By doing so, we aim to explore how coverage status differs according to different combinations of social locations.
+
+```{r echo=FALSE, include = FALSE}
+demographic <- read_csv("data/demographic.csv")
+```
+
+```{r, echo=FALSE}
+demographic %>% 
+  count(coverage)
+```
+
+```{r echo = TRUE}
+demographic_coverage <- demographic %>% 
+  group_by(coverage) %>% 
+  sample_n(2000)
+```
+
+Due to the fact that the data set contains a disproportionate number of survey respondents for each health insurance coverage status (i.e. whether insured or uninsured), our initial clustering analysis results were dominated by those insured. Instead, we drew 2500 stratified random samples from each coverage status group.
+
+```{r, echo = TRUE, eval=FALSE}
+#converting character type variables to factors
+demographic_coverage2 <- demographic_coverage %>% 
+  ungroup() %>% 
+  mutate(across(where(is.character), as.factor))
+
+gower_df <- daisy(demographic_coverage2, metric = "gower")
+silhouette <- c()
+silhouette = c(silhouette, NA)
+for(i in 2:10){
+  pam_clusters = pam(as.matrix(gower_df),
+                     diss = TRUE,
+                     k = i)
+  silhouette = c(silhouette, pam_clusters$silinfo$avg.width)
+}
+plot(1:10, silhouette,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette)
+pam_nhis = pam(gower_df, diss = TRUE, k = 5)
+
+demographic_coverage2[pam_nhis$medoids, ]
+```
+
+```{r}
+medioids <- read_csv("data/medioids.csv", show_col_types = FALSE)
+medioids
+```
+
+
+```{r, echo = TRUE, eval=FALSE}
+pam_summary  <- demographic_coverage2 %>%
+  ungroup() %>%
+  mutate(cluster = pam_nhis$clustering) %>%
+  group_by(cluster) %>%
+  do(cluster_summary = summary(.))
+```
+
+```{r}
+pam_summary <- readRDS("data/pam_summary.rds")
+```
+
+
+```{r, echo = TRUE}
+pam_summary$cluster_summary[5]
+```
+
+
+
+
+
+
 
 
 
