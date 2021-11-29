@@ -93,7 +93,7 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 
 ## Map
 
-```{r}
+```{r, eval =FALSE}
 total_data <- read_csv("~/stat231/blog_aaa/Map_Of_Healthcare/total_data.csv", 
                        show_col_types = FALSE)
 
@@ -172,7 +172,7 @@ Overall, there is a drastic difference in the percent of people that are uninsur
 
 ## Timeseries
 
-```{r}
+```{r, eval =FALSE}
 totalDATA <- read_csv("~/stat231/blog_aaa/Time-Series/totalDATA.csv", show_col_types = FALSE)
 
 # For widgets: 
