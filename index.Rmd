@@ -51,16 +51,17 @@ Everyone deserves access to quality health care. However, this is not a reality 
 We begin this BLOG with an overview of health care disparities in the United States by looking at how health insurance coverage status differs across states over time. We then analyze how socially disadvantaged populations experience greater obstacles to health based on their racial/ethnic group; socioeconomic status; gender and sexual orientation. Finally, in response to our shared passion for improving minority groups' access to quality health care, we present an analysis of quality of public health insurance by examining people's opinions about their health insurance plans captured in Medicare ratings data set.
 
 
+## Affordable Care Act
+The Affordable Care Act, which was passed under Obama administration in 2010 and began to take effect in 2014, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes.
+
 
 ## Questions of Interest
 
 1. What are the geographical differences of health care coverage in the United States and how has this changed over the years? 
 2. Have the rates of health care coverage changed at a consistent pattern across races? Do some races have a higher rates of coverage?
 3. What are the factors that drive health care inequity? Does intersectionality play a role in exacerbating inequality even in health care settings?
-4. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
+4. How can we address health inequality? Would improving Medicare help enhance the overall quality of health care?
 
-## Affordable Care Act
-The Affordable Care Act, which was passed under Obama administration in 2010 and began to take effect in 2014, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes.
 
 
 # Data
@@ -75,6 +76,7 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 
 
 **Dataset 2**
+
 * [Link to the dataset](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
 
 * Description: The National Center for Health Statistics, which is part of the CDC, conducts the National Health Interview Survey annually to monitor the health of the United States population. We use the survey data that sampled adults aged 18 years old or older. It cotains a wide variety of variables, including respondents' demographic information, socioeconomic status, and their barriers to accessing and using appropriate health care, which we choose to focus on. Each row in the data set represents a sample adult. Given the special nature of survey data that the responses are categorized into number codes, we wrangled them to be categorical variables with more descriptive values. Our final data set thus contains a mix of quantitative and categorical variables, and we deploy appropriate clustering algorithm for such data.
