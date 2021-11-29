@@ -79,6 +79,14 @@ knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600p
 
 ## Timeseries
 
+<<<<<<< HEAD
+### info
+The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
+can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
+--> NEED TO LOOK AT SOME MORE to make observations
+
+=======
+>>>>>>> fa8d6a1e39f15dd6112975e264cbda6fbec3cbe7
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
 
 ### Background
