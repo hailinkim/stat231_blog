@@ -1,4 +1,5 @@
 sex,sex_orientation,race,edu,coverage,citizen,income_sqrt
+<<<<<<< HEAD
 Female,Straight,White,Bachelor's degree,Covered,US Citizen,254.95097567963924
 Male,Straight,White,High school graduate,Covered,US Citizen,244.94897427831782
 Female,Gay/Lesbian,Black/African American,"Some college, no degree",Covered,US Citizen,244.94897427831782
@@ -9,3 +10,13 @@ Male,Straight,Hispanic,High school graduate,Not covered,Non-US Citizen,187.08286
 Female,Bisexual,Black/African American,"Some college, no degree",Not covered,US Citizen,172.8583234906552
 Female,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,144.9137674618944
 Male,Bisexual,White,Associate degree,Not covered,US Citizen,111.80339887498948
+=======
+Male,Straight,White,Associate degree,Covered,US Citizen,300
+Male,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,244.94897427831782
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,212.13203435596427
+Female,Bisexual,White,High school graduate,Covered,US Citizen,173.20508075688772
+Female,Bisexual,White,High school graduate,Not covered,US Citizen,200
+Male,Straight,White,"Some college, no degree",Not covered,US Citizen,200
+Female,Gay/Lesbian,Black/African American,Bachelor's degree,Not covered,US Citizen,178.88543819998318
+Female,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,141.4213562373095
+>>>>>>> 1bc94ef4c85289561181b8556e8f889fbb3dc7d9

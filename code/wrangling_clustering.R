@@ -187,22 +187,30 @@ cluster10 <- tmp4 %>%
 tsne <- cluster10 %>% 
   cbind(tsne_df4) 
 tsne <- tsne[, -11]
-write_csv(tsne, "data/tsne.csv")
+write_csv(tsne, "data/tsne_race.csv")
 
 
 
 #stratified random samples by sexual orientation
+<<<<<<< HEAD
 set.seed(1293)
+=======
+set.seed(1298)
+>>>>>>> 1bc94ef4c85289561181b8556e8f889fbb3dc7d9
 tmp3 <- demographic2 %>% 
   filter(sex_orientation != "Something else") %>%
   group_by(sex_orientation, coverage) %>% 
   sample_n(30) %>% 
   ungroup() %>% 
   mutate(across(where(is.character), as.factor))
+<<<<<<< HEAD
 write_csv(tmp3, "demographic_sex_orientation.csv")
  
 tmp3 <- read_csv("data/demographic_sex_orientation.csv") %>% 
   mutate(across(where(is.character), as.factor))
+=======
+write_csv(tmp3, "data/demographic_sex_orientation.csv")
+>>>>>>> 1bc94ef4c85289561181b8556e8f889fbb3dc7d9
 
 gower_df3 <- daisy(tmp3, metric = "gower")
 silhouette3 <- c()
@@ -217,11 +225,18 @@ plot(1:10, silhouette3,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette3)
-pam_nhis3 = pam(gower_df3, diss = TRUE, k = 10)
+pam_nhis3 = pam(gower_df3, diss = TRUE, k = 8)
 
 medioids_sex <- tmp3[pam_nhis3$medoids, ] %>% 
   arrange(coverage, desc(income_sqrt))
 write_csv(medioids_sex, "data/medioids_sex.csv")
+
+<<<<<<< HEAD
+medioids_sex <- tmp3[pam_nhis3$medoids, ] %>% 
+  arrange(coverage, desc(income_sqrt))
+write_csv(medioids_sex, "data/medioids_sex.csv")
+=======
+>>>>>>> 1bc94ef4c85289561181b8556e8f889fbb3dc7d9
 pam_summary3 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis3$clustering) %>%
@@ -235,6 +250,7 @@ tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis3$clustering))
+<<<<<<< HEAD
 cluster10 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = as.factor(pam_nhis3$clustering))
@@ -252,3 +268,12 @@ ggplot(aes(x = X, y = Y), data = tsne_df3) +
   theme_bw() +
   scale_color_manual(values=c(my_pal)) +
   scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+=======
+cluster8 <- tmp3 %>%
+  ungroup() %>% 
+  mutate(cluster = as.factor(pam_nhis3$clustering))
+tsne_sex <- cluster8 %>% 
+  cbind(tsne_df3)
+tsne_sex <- tsne_sex[, -11]
+write_csv(tsne_sex, "data/tsne_sex.csv")
+>>>>>>> 1bc94ef4c85289561181b8556e8f889fbb3dc7d9
