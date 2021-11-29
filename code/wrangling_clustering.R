@@ -140,6 +140,7 @@ write_csv(medioids_race, "data/medioids_race.csv")
 
 set.seed(1294)
 tmp4 <- demographic2 %>% 
+  select(-sex) %>% 
   group_by(race, coverage) %>% 
   sample_n(75) %>% 
   ungroup() %>% 
@@ -171,7 +172,8 @@ pam_summary4 <- tmp4 %>%
   do(cluster_summary = summary(.))
 pam_summary4$cluster_summary[3]
 
-medioids_race <- tmp4[pam_nhis4$medoids, ]
+medioids_race <- tmp4[pam_nhis4$medoids, ] %>% 
+  arrange(coverage, desc(income_sqrt))
 write_csv(medioids_race, "data/medioids_race.csv")
 
 tsne_object4 <- Rtsne(gower_df4, is_distance = TRUE)
@@ -190,11 +192,17 @@ write_csv(tsne, "data/tsne.csv")
 
 
 #stratified random samples by sexual orientation
-tmp3 <- demographic3 %>% 
-  filter(coverage == "Not covered", sex_orientation != "Something else") %>%
-  group_by(sex_orientation) %>% 
-  sample_n(30)
+set.seed(1293)
+tmp3 <- demographic2 %>% 
+  filter(sex_orientation != "Something else") %>%
+  group_by(sex_orientation, coverage) %>% 
+  sample_n(30) %>% 
+  ungroup() %>% 
+  mutate(across(where(is.character), as.factor))
 write_csv(tmp3, "demographic_sex_orientation.csv")
+ 
+tmp3 <- read_csv("data/demographic_sex_orientation.csv") %>% 
+  mutate(across(where(is.character), as.factor))
 
 gower_df3 <- daisy(tmp3, metric = "gower")
 silhouette3 <- c()
@@ -211,7 +219,9 @@ plot(1:10, silhouette3,
 lines(1:10, silhouette3)
 pam_nhis3 = pam(gower_df3, diss = TRUE, k = 10)
 
-tmp3[pam_nhis3$medoids, ]
+medioids_sex <- tmp3[pam_nhis3$medoids, ] %>% 
+  arrange(coverage, desc(income_sqrt))
+write_csv(medioids_sex, "data/medioids_sex.csv")
 pam_summary3 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis3$clustering) %>%
@@ -219,17 +229,19 @@ pam_summary3 <- tmp3 %>%
   do(cluster_summary = summary(.))
 pam_summary3$cluster_summary[[1]]
 
-tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 29)
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE)
 
 tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis3$clustering))
-cluster3 <- tmp3 %>%
+cluster10 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = as.factor(pam_nhis3$clustering))
-tsne <- cluster3 %>% 
-  inner_join(tsne_df3, by = "cluster")
+tsne3 <- cluster10 %>% 
+  cbind(tsne_df3)
+tsne3 <- tsne3[,-11]
+write_csv(tsne3, "tsne_sex.csv")
 my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
 ggplot(aes(x = X, y = Y), data = tsne_df3) +
   geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
