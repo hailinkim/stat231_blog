@@ -1,0 +1,1225 @@
+Year,Age,Race,Sex,Income,Uninsured,Insured,Percent_Uninsured,State
+2018,Under 65,White,Both Sexes,All income levels,255754,2256395,10.2,Alabama
+2018,Under 65,Black,Both Sexes,All income levels,143788,938130,13.3,Alabama
+2018,Under 65,Hispanic,Both Sexes,All income levels,52469,149556,26,Alabama
+2018,Under 65,White,Both Sexes,All income levels,39798,332058,10.7,Alaska
+2018,Under 65,Black,Both Sexes,All income levels,3560,18135,16.4,Alaska
+2018,Under 65,Hispanic,Both Sexes,All income levels,11564,37612,23.5,Alaska
+2018,Under 65,White,Both Sexes,All income levels,231627,2605195,8.2,Arizona
+2018,Under 65,Black,Both Sexes,All income levels,30880,237295,11.5,Arizona
+2018,Under 65,Hispanic,Both Sexes,All income levels,395320,1653322,19.3,Arizona
+2018,Under 65,White,Both Sexes,All income levels,132836,1562354,7.8,Arkansas
+2018,Under 65,Black,Both Sexes,All income levels,38420,350364,9.9,Arkansas
+2018,Under 65,Hispanic,Both Sexes,All income levels,48788,170450,22.3,Arkansas
+2018,Under 65,White,Both Sexes,All income levels,559114,10566733,5,California
+2018,Under 65,Black,Both Sexes,All income levels,123035,1697619,6.8,California
+2018,Under 65,Hispanic,Both Sexes,All income levels,1771364,12345295,12.5,California
+2018,Under 65,White,Both Sexes,All income levels,196762,2938786,6.3,Colorado
+2018,Under 65,Black,Both Sexes,All income levels,17374,178121,8.9,Colorado
+2018,Under 65,Hispanic,Both Sexes,All income levels,181802,941319,16.2,Colorado
+2018,Under 65,White,Both Sexes,All income levels,70803,1741995,3.9,Connecticut
+2018,Under 65,Black,Both Sexes,All income levels,21685,286724,7,Connecticut
+2018,Under 65,Hispanic,Both Sexes,All income levels,73930,463119,13.8,Connecticut
+2018,Under 65,White,Both Sexes,All income levels,22985,421622,5.2,Delaware
+2018,Under 65,Black,Both Sexes,All income levels,11692,164523,6.6,Delaware
+2018,Under 65,Hispanic,Both Sexes,All income levels,13365,71800,15.7,Delaware
+2018,Under 65,White,Both Sexes,All income levels,3869,211130,1.8,District of Columbia
+2018,Under 65,Black,Both Sexes,All income levels,10283,244934,4,District of Columbia
+2018,Under 65,Hispanic,Both Sexes,All income levels,5297,66994,7.3,District of Columbia
+2018,Under 65,White,Both Sexes,All income levels,1048169,6995777,13,Florida
+2018,Under 65,Black,Both Sexes,All income levels,460727,2337700,16.5,Florida
+2018,Under 65,Hispanic,Both Sexes,All income levels,1044205,3773970,21.7,Florida
+2018,Under 65,White,Both Sexes,All income levels,560237,3831743,12.8,Georgia
+2018,Under 65,Black,Both Sexes,All income levels,443896,2395831,15.6,Georgia
+2018,Under 65,Hispanic,Both Sexes,All income levels,317294,642602,33.1,Georgia
+2018,Under 65,White,Both Sexes,All income levels,7781,217121,3.5,Hawaii
+2018,Under 65,Black,Both Sexes,All income levels,1292,22599,5.4,Hawaii
+2018,Under 65,Hispanic,Both Sexes,All income levels,11737,127354,8.4,Hawaii
+2018,Under 65,White,Both Sexes,All income levels,128868,1027023,11.1,Idaho
+2018,Under 65,Black,Both Sexes,All income levels,1745,9943,14.9,Idaho
+2018,Under 65,Hispanic,Both Sexes,All income levels,49846,157071,24.1,Idaho
+2018,Under 65,White,Both Sexes,All income levels,326261,5816719,5.3,Illinois
+2018,Under 65,Black,Both Sexes,All income levels,133921,1350030,9,Illinois
+2018,Under 65,Hispanic,Both Sexes,All income levels,335615,1703846,16.5,Illinois
+2018,Under 65,White,Both Sexes,All income levels,349989,3865743,8.3,Indiana
+2018,Under 65,Black,Both Sexes,All income levels,61859,477135,11.5,Indiana
+2018,Under 65,Hispanic,Both Sexes,All income levels,92897,347851,21.1,Indiana
+2018,Under 65,White,Both Sexes,All income levels,98913,2018020,4.7,Iowa
+2018,Under 65,Black,Both Sexes,All income levels,9319,95459,8.9,Iowa
+2018,Under 65,Hispanic,Both Sexes,All income levels,25061,156319,13.8,Iowa
+2018,Under 65,White,Both Sexes,All income levels,137869,1609622,7.9,Kansas
+2018,Under 65,Black,Both Sexes,All income levels,16988,122040,12.2,Kansas
+2018,Under 65,Hispanic,Both Sexes,All income levels,69998,256412,21.4,Kansas
+2018,Under 65,White,Both Sexes,All income levels,176555,2835377,5.9,Kentucky
+2018,Under 65,Black,Both Sexes,All income levels,23007,279328,7.6,Kentucky
+2018,Under 65,Hispanic,Both Sexes,All income levels,31552,126852,19.9,Kentucky
+2018,Under 65,White,Both Sexes,All income levels,165871,2017413,7.6,Louisiana
+2018,Under 65,Black,Both Sexes,All income levels,118159,1137908,9.4,Louisiana
+2018,Under 65,Hispanic,Both Sexes,All income levels,54845,163461,25.1,Louisiana
+2018,Under 65,White,Both Sexes,All income levels,93268,861955,9.8,Maine
+2018,Under 65,Black,Both Sexes,All income levels,2650,16070,14.2,Maine
+2018,Under 65,Hispanic,Both Sexes,All income levels,4616,15904,22.5,Maine
+2018,Under 65,White,Both Sexes,All income levels,91640,2301038,3.8,Maryland
+2018,Under 65,Black,Both Sexes,All income levels,106945,1411896,7,Maryland
+2018,Under 65,Hispanic,Both Sexes,All income levels,119083,465794,20.4,Maryland
+2018,Under 65,White,Both Sexes,All income levels,97777,3718270,2.6,Massachusetts
+2018,Under 65,Black,Both Sexes,All income levels,17649,411290,4.1,Massachusetts
+2018,Under 65,Hispanic,Both Sexes,All income levels,50193,721560,6.5,Massachusetts
+2018,Under 65,White,Both Sexes,All income levels,344211,5571848,5.8,Michigan
+2018,Under 65,Black,Both Sexes,All income levels,83352,1063168,7.3,Michigan
+2018,Under 65,Hispanic,Both Sexes,All income levels,63232,413240,13.3,Michigan
+2018,Under 65,White,Both Sexes,All income levels,140397,3431178,3.9,Minnesota
+2018,Under 65,Black,Both Sexes,All income levels,22463,311500,6.7,Minnesota
+2018,Under 65,Hispanic,Both Sexes,All income levels,46470,243904,16,Minnesota
+2018,Under 65,White,Both Sexes,All income levels,162963,1154626,12.4,Mississippi
+2018,Under 65,Black,Both Sexes,All income levels,150172,789946,16,Mississippi
+2018,Under 65,Hispanic,Both Sexes,All income levels,25125,63186,28.5,Mississippi
+2018,Under 65,White,Both Sexes,All income levels,397703,3451856,10.3,Missouri
+2018,Under 65,Black,Both Sexes,All income levels,81517,512388,13.7,Missouri
+2018,Under 65,Hispanic,Both Sexes,All income levels,55060,185946,22.8,Missouri
+2018,Under 65,White,Both Sexes,All income levels,65175,645577,9.2,Montana
+2018,Under 65,Black,Both Sexes,All income levels,659,4275,13.4,Montana
+2018,Under 65,Hispanic,Both Sexes,All income levels,7547,31078,19.5,Montana
+2018,Under 65,White,Both Sexes,All income levels,87299,1118459,7.2,Nebraska
+2018,Under 65,Black,Both Sexes,All income levels,9766,70739,12.1,Nebraska
+2018,Under 65,Hispanic,Both Sexes,All income levels,41125,159994,20.4,Nebraska
+2018,Under 65,White,Both Sexes,All income levels,95385,1029572,8.5,Nevada
+2018,Under 65,Black,Both Sexes,All income levels,26791,209254,11.3,Nevada
+2018,Under 65,Hispanic,Both Sexes,All income levels,168547,646336,20.7,Nevada
+2018,Under 65,White,Both Sexes,All income levels,61796,894475,6.5,New Hampshire
+2018,Under 65,Black,Both Sexes,All income levels,1578,15124,9.4,New Hampshire
+2018,Under 65,Hispanic,Both Sexes,All income levels,8077,40123,16.8,New Hampshire
+2018,Under 65,White,Both Sexes,All income levels,189867,3619879,5,New Jersey
+2018,Under 65,Black,Both Sexes,All income levels,88629,874915,9.2,New Jersey
+2018,Under 65,Hispanic,Both Sexes,All income levels,306803,1354626,18.5,New Jersey
+2018,Under 65,White,Both Sexes,All income levels,36064,515938,6.5,New Mexico
+2018,Under 65,Black,Both Sexes,All income levels,3312,27851,10.6,New Mexico
+2018,Under 65,Hispanic,Both Sexes,All income levels,125954,762437,14.2,New Mexico
+2018,Under 65,White,Both Sexes,All income levels,343052,8067707,4.1,New York
+2018,Under 65,Black,Both Sexes,All income levels,152657,2193142,6.5,New York
+2018,Under 65,Hispanic,Both Sexes,All income levels,391970,2919765,11.8,New York
+2018,Under 65,White,Both Sexes,All income levels,508621,4576304,10,North Carolina
+2018,Under 65,Black,Both Sexes,All income levels,232892,1612392,12.6,North Carolina
+2018,Under 65,Hispanic,Both Sexes,All income levels,269459,668347,28.7,North Carolina
+2018,Under 65,White,Both Sexes,All income levels,34702,478701,6.8,North Dakota
+2018,Under 65,Black,Both Sexes,All income levels,2858,20327,12.3,North Dakota
+2018,Under 65,Hispanic,Both Sexes,All income levels,5258,22655,18.8,North Dakota
+2018,Under 65,White,Both Sexes,All income levels,503549,6776622,6.9,Ohio
+2018,Under 65,Black,Both Sexes,All income levels,115205,1115133,9.4,Ohio
+2018,Under 65,Hispanic,Both Sexes,All income levels,70780,351437,16.8,Ohio
+2018,Under 65,White,Both Sexes,All income levels,260356,1749155,13,Oklahoma
+2018,Under 65,Black,Both Sexes,All income levels,41855,199555,17.3,Oklahoma
+2018,Under 65,Hispanic,Both Sexes,All income levels,107871,292127,27,Oklahoma
+2018,Under 65,White,Both Sexes,All income levels,163714,2278926,6.7,Oregon
+2018,Under 65,Black,Both Sexes,All income levels,6588,64188,9.3,Oregon
+2018,Under 65,Hispanic,Both Sexes,All income levels,87740,431990,16.9,Oregon
+2018,Under 65,White,Both Sexes,All income levels,435120,7055835,5.8,Pennsylvania
+2018,Under 65,Black,Both Sexes,All income levels,86952,1053802,7.6,Pennsylvania
+2018,Under 65,Hispanic,Both Sexes,All income levels,119658,768460,13.5,Pennsylvania
+2018,Under 65,White,Both Sexes,All income levels,19364,558393,3.4,Rhode Island
+2018,Under 65,Black,Both Sexes,All income levels,2718,51296,5,Rhode Island
+2018,Under 65,Hispanic,Both Sexes,All income levels,15764,138551,10.2,Rhode Island
+2018,Under 65,White,Both Sexes,All income levels,263407,2226415,10.6,South Carolina
+2018,Under 65,Black,Both Sexes,All income levels,154136,962130,13.8,South Carolina
+2018,Under 65,Hispanic,Both Sexes,All income levels,74591,197631,27.4,South Carolina
+2018,Under 65,White,Both Sexes,All income levels,49108,515365,8.7,South Dakota
+2018,Under 65,Black,Both Sexes,All income levels,2869,15464,15.6,South Dakota
+2018,Under 65,Hispanic,Both Sexes,All income levels,8279,25411,24.6,South Dakota
+2018,Under 65,White,Both Sexes,All income levels,403122,3555747,10.2,Tennessee
+2018,Under 65,Black,Both Sexes,All income levels,130362,833809,13.5,Tennessee
+2018,Under 65,Hispanic,Both Sexes,All income levels,101424,256717,28.3,Tennessee
+2018,Under 65,White,Both Sexes,All income levels,1179644,8276353,12.5,Texas
+2018,Under 65,Black,Both Sexes,All income levels,493337,2461257,16.7,Texas
+2018,Under 65,Hispanic,Both Sexes,All income levels,2991200,7328460,29,Texas
+2018,Under 65,White,Both Sexes,All income levels,157817,1966452,7.4,Utah
+2018,Under 65,Black,Both Sexes,All income levels,4504,28313,13.7,Utah
+2018,Under 65,Hispanic,Both Sexes,All income levels,104192,315982,24.8,Utah
+2018,Under 65,White,Both Sexes,All income levels,20351,423611,4.6,Vermont
+2018,Under 65,Black,Both Sexes,All income levels,463,6581,6.6,Vermont
+2018,Under 65,Hispanic,Both Sexes,All income levels,1392,9322,13,Vermont
+2018,Under 65,White,Both Sexes,All income levels,307115,3819899,7.4,Virginia
+2018,Under 65,Black,Both Sexes,All income levels,158333,1183745,11.8,Virginia
+2018,Under 65,Hispanic,Both Sexes,All income levels,176807,584978,23.2,Virginia
+2018,Under 65,White,Both Sexes,All income levels,223229,3845275,5.5,Washington
+2018,Under 65,Black,Both Sexes,All income levels,22180,236239,8.6,Washington
+2018,Under 65,Hispanic,Both Sexes,All income levels,161329,749571,17.7,Washington
+2018,Under 65,White,Both Sexes,All income levels,96403,1189057,7.5,West Virginia
+2018,Under 65,Black,Both Sexes,All income levels,4913,43110,10.2,West Virginia
+2018,Under 65,Hispanic,Both Sexes,All income levels,4489,21570,17.2,West Virginia
+2018,Under 65,White,Both Sexes,All income levels,193756,3520722,5.2,Wisconsin
+2018,Under 65,Black,Both Sexes,All income levels,26501,291899,8.3,Wisconsin
+2018,Under 65,Hispanic,Both Sexes,All income levels,62263,315171,16.5,Wisconsin
+2018,Under 65,White,Both Sexes,All income levels,41920,346285,10.8,Wyoming
+2018,Under 65,Black,Both Sexes,All income levels,875,4610,16,Wyoming
+2018,Under 65,Hispanic,Both Sexes,All income levels,12198,40260,23.3,Wyoming
+2019,Under 65,White,Both Sexes,All income levels,250283,2250971,10,Alabama
+2019,Under 65,Black,Both Sexes,All income levels,139506,937603,13,Alabama
+2019,Under 65,Hispanic,Both Sexes,All income levels,50135,156849,24.2,Alabama
+2019,Under 65,White,Both Sexes,All income levels,34396,329617,9.4,Alaska
+2019,Under 65,Black,Both Sexes,All income levels,2999,17908,14.3,Alaska
+2019,Under 65,Hispanic,Both Sexes,All income levels,11339,37562,23.2,Alaska
+2019,Under 65,White,Both Sexes,All income levels,245549,2591780,8.7,Arizona
+2019,Under 65,Black,Both Sexes,All income levels,32889,244593,11.9,Arizona
+2019,Under 65,Hispanic,Both Sexes,All income levels,421448,1657709,20.3,Arizona
+2019,Under 65,White,Both Sexes,All income levels,152555,1531255,9.1,Arkansas
+2019,Under 65,Black,Both Sexes,All income levels,40890,345631,10.6,Arkansas
+2019,Under 65,Hispanic,Both Sexes,All income levels,53787,167597,24.3,Arkansas
+2019,Under 65,White,Both Sexes,All income levels,564346,10355313,5.2,California
+2019,Under 65,Black,Both Sexes,All income levels,115766,1693797,6.4,California
+2019,Under 65,Hispanic,Both Sexes,All income levels,1921358,12160076,13.6,California
+2019,Under 65,White,Both Sexes,All income levels,218150,2920066,7,Colorado
+2019,Under 65,Black,Both Sexes,All income levels,18782,179833,9.5,Colorado
+2019,Under 65,Hispanic,Both Sexes,All income levels,187486,951649,16.5,Colorado
+2019,Under 65,White,Both Sexes,All income levels,85124,1691716,4.8,Connecticut
+2019,Under 65,Black,Both Sexes,All income levels,22395,289064,7.2,Connecticut
+2019,Under 65,Hispanic,Both Sexes,All income levels,79509,466181,14.6,Connecticut
+2019,Under 65,White,Both Sexes,All income levels,27170,413047,6.2,Delaware
+2019,Under 65,Black,Both Sexes,All income levels,14831,163031,8.3,Delaware
+2019,Under 65,Hispanic,Both Sexes,All income levels,14678,71287,17.1,Delaware
+2019,Under 65,White,Both Sexes,All income levels,5187,213563,2.4,District of Columbia
+2019,Under 65,Black,Both Sexes,All income levels,11027,241685,4.4,District of Columbia
+2019,Under 65,Hispanic,Both Sexes,All income levels,5848,66387,8.1,District of Columbia
+2019,Under 65,White,Both Sexes,All income levels,1057409,6939509,13.2,Florida
+2019,Under 65,Black,Both Sexes,All income levels,477362,2327377,17,Florida
+2019,Under 65,Hispanic,Both Sexes,All income levels,1059120,3824348,21.7,Florida
+2019,Under 65,White,Both Sexes,All income levels,556408,3815578,12.7,Georgia
+2019,Under 65,Black,Both Sexes,All income levels,436980,2429134,15.2,Georgia
+2019,Under 65,Hispanic,Both Sexes,All income levels,316953,659594,32.5,Georgia
+2019,Under 65,White,Both Sexes,All income levels,8618,212051,3.9,Hawaii
+2019,Under 65,Black,Both Sexes,All income levels,1247,22422,5.3,Hawaii
+2019,Under 65,Hispanic,Both Sexes,All income levels,10840,127387,7.8,Hawaii
+2019,Under 65,White,Both Sexes,All income levels,127677,1041235,10.9,Idaho
+2019,Under 65,Black,Both Sexes,All income levels,1752,10388,14.4,Idaho
+2019,Under 65,Hispanic,Both Sexes,All income levels,47441,164675,22.4,Idaho
+2019,Under 65,White,Both Sexes,All income levels,353793,5687877,5.9,Illinois
+2019,Under 65,Black,Both Sexes,All income levels,141050,1328442,9.6,Illinois
+2019,Under 65,Hispanic,Both Sexes,All income levels,351820,1683090,17.3,Illinois
+2019,Under 65,White,Both Sexes,All income levels,388069,3802766,9.3,Indiana
+2019,Under 65,Black,Both Sexes,All income levels,62028,483908,11.4,Indiana
+2019,Under 65,Hispanic,Both Sexes,All income levels,86669,366034,19.1,Indiana
+2019,Under 65,White,Both Sexes,All income levels,100553,1996837,4.8,Iowa
+2019,Under 65,Black,Both Sexes,All income levels,8474,99142,7.9,Iowa
+2019,Under 65,Hispanic,Both Sexes,All income levels,25979,158864,14.1,Iowa
+2019,Under 65,White,Both Sexes,All income levels,140947,1588259,8.2,Kansas
+2019,Under 65,Black,Both Sexes,All income levels,18010,120311,13,Kansas
+2019,Under 65,Hispanic,Both Sexes,All income levels,76132,253384,23.1,Kansas
+2019,Under 65,White,Both Sexes,All income levels,204436,2781288,6.8,Kentucky
+2019,Under 65,Black,Both Sexes,All income levels,27756,274928,9.2,Kentucky
+2019,Under 65,Hispanic,Both Sexes,All income levels,31071,129258,19.4,Kentucky
+2019,Under 65,White,Both Sexes,All income levels,183661,1972818,8.5,Louisiana
+2019,Under 65,Black,Both Sexes,All income levels,131535,1114146,10.6,Louisiana
+2019,Under 65,Hispanic,Both Sexes,All income levels,57556,162537,26.2,Louisiana
+2019,Under 65,White,Both Sexes,All income levels,93046,855264,9.8,Maine
+2019,Under 65,Black,Both Sexes,All income levels,2325,17166,11.9,Maine
+2019,Under 65,Hispanic,Both Sexes,All income levels,4428,16755,20.9,Maine
+2019,Under 65,White,Both Sexes,All income levels,96464,2258100,4.1,Maryland
+2019,Under 65,Black,Both Sexes,All income levels,98829,1419803,6.5,Maryland
+2019,Under 65,Hispanic,Both Sexes,All income levels,120579,476630,20.2,Maryland
+2019,Under 65,White,Both Sexes,All income levels,105779,3657802,2.8,Massachusetts
+2019,Under 65,Black,Both Sexes,All income levels,19058,413418,4.4,Massachusetts
+2019,Under 65,Hispanic,Both Sexes,All income levels,53672,722809,6.9,Massachusetts
+2019,Under 65,White,Both Sexes,All income levels,369655,5486566,6.3,Michigan
+2019,Under 65,Black,Both Sexes,All income levels,85510,1055540,7.5,Michigan
+2019,Under 65,Hispanic,Both Sexes,All income levels,70346,413010,14.6,Michigan
+2019,Under 65,White,Both Sexes,All income levels,161077,3384531,4.5,Minnesota
+2019,Under 65,Black,Both Sexes,All income levels,28711,318344,8.3,Minnesota
+2019,Under 65,Hispanic,Both Sexes,All income levels,48909,246095,16.6,Minnesota
+2019,Under 65,White,Both Sexes,All income levels,177327,1128556,13.6,Mississippi
+2019,Under 65,Black,Both Sexes,All income levels,151541,779960,16.3,Mississippi
+2019,Under 65,Hispanic,Both Sexes,All income levels,27770,59649,31.8,Mississippi
+2019,Under 65,White,Both Sexes,All income levels,423378,3402235,11.1,Missouri
+2019,Under 65,Black,Both Sexes,All income levels,80278,511789,13.6,Missouri
+2019,Under 65,Hispanic,Both Sexes,All income levels,54846,190301,22.4,Missouri
+2019,Under 65,White,Both Sexes,All income levels,63689,644977,9,Montana
+2019,Under 65,Black,Both Sexes,All income levels,677,4331,13.5,Montana
+2019,Under 65,Hispanic,Both Sexes,All income levels,7849,31374,20,Montana
+2019,Under 65,White,Both Sexes,All income levels,85552,1109900,7.2,Nebraska
+2019,Under 65,Black,Both Sexes,All income levels,10659,71372,13,Nebraska
+2019,Under 65,Hispanic,Both Sexes,All income levels,43140,160856,21.1,Nebraska
+2019,Under 65,White,Both Sexes,All income levels,102321,1019495,9.1,Nevada
+2019,Under 65,Black,Both Sexes,All income levels,25314,218110,10.4,Nevada
+2019,Under 65,Hispanic,Both Sexes,All income levels,179488,649493,21.7,Nevada
+2019,Under 65,White,Both Sexes,All income levels,67070,882062,7.1,New Hampshire
+2019,Under 65,Black,Both Sexes,All income levels,1759,15792,10,New Hampshire
+2019,Under 65,Hispanic,Both Sexes,All income levels,8857,41048,17.7,New Hampshire
+2019,Under 65,White,Both Sexes,All income levels,193544,3554078,5.2,New Jersey
+2019,Under 65,Black,Both Sexes,All income levels,95495,862894,10,New Jersey
+2019,Under 65,Hispanic,Both Sexes,All income levels,329321,1339347,19.7,New Jersey
+2019,Under 65,White,Both Sexes,All income levels,40934,500009,7.6,New Mexico
+2019,Under 65,Black,Both Sexes,All income levels,3362,28603,10.5,New Mexico
+2019,Under 65,Hispanic,Both Sexes,All income levels,127379,758626,14.4,New Mexico
+2019,Under 65,White,Both Sexes,All income levels,328531,7963083,4,New York
+2019,Under 65,Black,Both Sexes,All income levels,147410,2169989,6.4,New York
+2019,Under 65,Hispanic,Both Sexes,All income levels,376901,2914592,11.5,New York
+2019,Under 65,White,Both Sexes,All income levels,528565,4550869,10.4,North Carolina
+2019,Under 65,Black,Both Sexes,All income levels,251670,1598788,13.6,North Carolina
+2019,Under 65,Hispanic,Both Sexes,All income levels,291184,669147,30.3,North Carolina
+2019,Under 65,White,Both Sexes,All income levels,30335,479959,5.9,North Dakota
+2019,Under 65,Black,Both Sexes,All income levels,2706,20677,11.6,North Dakota
+2019,Under 65,Hispanic,Both Sexes,All income levels,5435,24372,18.2,North Dakota
+2019,Under 65,White,Both Sexes,All income levels,516986,6691560,7.2,Ohio
+2019,Under 65,Black,Both Sexes,All income levels,110810,1119274,9,Ohio
+2019,Under 65,Hispanic,Both Sexes,All income levels,74091,355005,17.3,Ohio
+2019,Under 65,White,Both Sexes,All income levels,265107,1730341,13.3,Oklahoma
+2019,Under 65,Black,Both Sexes,All income levels,39506,201221,16.4,Oklahoma
+2019,Under 65,Hispanic,Both Sexes,All income levels,115216,291511,28.3,Oklahoma
+2019,Under 65,White,Both Sexes,All income levels,169658,2260076,7,Oregon
+2019,Under 65,Black,Both Sexes,All income levels,6009,64894,8.5,Oregon
+2019,Under 65,Hispanic,Both Sexes,All income levels,89693,438221,17,Oregon
+2019,Under 65,White,Both Sexes,All income levels,449935,6945214,6.1,Pennsylvania
+2019,Under 65,Black,Both Sexes,All income levels,85617,1055014,7.5,Pennsylvania
+2019,Under 65,Hispanic,Both Sexes,All income levels,125499,781398,13.8,Pennsylvania
+2019,Under 65,White,Both Sexes,All income levels,19829,549092,3.5,Rhode Island
+2019,Under 65,Black,Both Sexes,All income levels,2955,52241,5.4,Rhode Island
+2019,Under 65,Hispanic,Both Sexes,All income levels,16214,141308,10.3,Rhode Island
+2019,Under 65,White,Both Sexes,All income levels,279020,2223743,11.1,South Carolina
+2019,Under 65,Black,Both Sexes,All income levels,154375,961317,13.8,South Carolina
+2019,Under 65,Hispanic,Both Sexes,All income levels,84214,196952,30,South Carolina
+2019,Under 65,White,Both Sexes,All income levels,52667,509674,9.4,South Dakota
+2019,Under 65,Black,Both Sexes,All income levels,3083,14584,17.5,South Dakota
+2019,Under 65,Hispanic,Both Sexes,All income levels,9436,25060,27.4,South Dakota
+2019,Under 65,White,Both Sexes,All income levels,401910,3559900,10.1,Tennessee
+2019,Under 65,Black,Both Sexes,All income levels,125018,840721,12.9,Tennessee
+2019,Under 65,Hispanic,Both Sexes,All income levels,114257,252208,31.2,Tennessee
+2019,Under 65,White,Both Sexes,All income levels,1214381,8213933,12.9,Texas
+2019,Under 65,Black,Both Sexes,All income levels,484824,2511033,16.2,Texas
+2019,Under 65,Hispanic,Both Sexes,All income levels,3181408,7232479,30.5,Texas
+2019,Under 65,White,Both Sexes,All income levels,166107,1970705,7.8,Utah
+2019,Under 65,Black,Both Sexes,All income levels,4733,29695,13.7,Utah
+2019,Under 65,Hispanic,Both Sexes,All income levels,102666,327095,23.9,Utah
+2019,Under 65,White,Both Sexes,All income levels,23363,414648,5.3,Vermont
+2019,Under 65,Black,Both Sexes,All income levels,559,6443,8,Vermont
+2019,Under 65,Hispanic,Both Sexes,All income levels,1687,9118,15.6,Vermont
+2019,Under 65,White,Both Sexes,All income levels,272939,3819177,6.7,Virginia
+2019,Under 65,Black,Both Sexes,All income levels,127528,1211247,9.5,Virginia
+2019,Under 65,Hispanic,Both Sexes,All income levels,181357,589725,23.5,Virginia
+2019,Under 65,White,Both Sexes,All income levels,225279,3821099,5.6,Washington
+2019,Under 65,Black,Both Sexes,All income levels,23099,241807,8.7,Washington
+2019,Under 65,Hispanic,Both Sexes,All income levels,170243,757015,18.4,Washington
+2019,Under 65,White,Both Sexes,All income levels,99416,1166880,7.9,West Virginia
+2019,Under 65,Black,Both Sexes,All income levels,4470,42750,9.5,West Virginia
+2019,Under 65,Hispanic,Both Sexes,All income levels,4758,22144,17.7,West Virginia
+2019,Under 65,White,Both Sexes,All income levels,196040,3486160,5.3,Wisconsin
+2019,Under 65,Black,Both Sexes,All income levels,27856,290233,8.8,Wisconsin
+2019,Under 65,Hispanic,Both Sexes,All income levels,72442,312624,18.8,Wisconsin
+2019,Under 65,White,Both Sexes,All income levels,47777,337015,12.4,Wyoming
+2019,Under 65,Black,Both Sexes,All income levels,975,4428,18,Wyoming
+2019,Under 65,Hispanic,Both Sexes,All income levels,15567,36980,29.6,Wyoming
+2017,Under 65,White,Both Sexes,All income levels,238418,2286726,9.4,Alabama
+2017,Under 65,Black,Both Sexes,All income levels,132824,955333,12.2,Alabama
+2017,Under 65,Hispanic,Both Sexes,All income levels,48885,147780,24.9,Alabama
+2017,Under 65,White,Both Sexes,All income levels,41086,339083,10.8,Alaska
+2017,Under 65,Black,Both Sexes,All income levels,3402,18307,15.7,Alaska
+2017,Under 65,Hispanic,Both Sexes,All income levels,10888,37293,22.6,Alaska
+2017,Under 65,White,Both Sexes,All income levels,232789,2592804,8.2,Arizona
+2017,Under 65,Black,Both Sexes,All income levels,25942,232427,10,Arizona
+2017,Under 65,Hispanic,Both Sexes,All income levels,354621,1640441,17.8,Arizona
+2017,Under 65,White,Both Sexes,All income levels,130682,1573991,7.7,Arkansas
+2017,Under 65,Black,Both Sexes,All income levels,36285,354133,9.3,Arkansas
+2017,Under 65,Hispanic,Both Sexes,All income levels,45748,168596,21.3,Arkansas
+2017,Under 65,White,Both Sexes,All income levels,545726,10775892,4.8,California
+2017,Under 65,Black,Both Sexes,All income levels,114773,1718552,6.3,California
+2017,Under 65,Hispanic,Both Sexes,All income levels,1750354,12352340,12.4,California
+2017,Under 65,White,Both Sexes,All income levels,195579,2929742,6.3,Colorado
+2017,Under 65,Black,Both Sexes,All income levels,15452,176482,8.1,Colorado
+2017,Under 65,Hispanic,Both Sexes,All income levels,174389,924523,15.9,Colorado
+2017,Under 65,White,Both Sexes,All income levels,75001,1774671,4.1,Connecticut
+2017,Under 65,Black,Both Sexes,All income levels,21491,287415,7,Connecticut
+2017,Under 65,Hispanic,Both Sexes,All income levels,73320,454834,13.9,Connecticut
+2017,Under 65,White,Both Sexes,All income levels,20658,429445,4.6,Delaware
+2017,Under 65,Black,Both Sexes,All income levels,10209,165315,5.8,Delaware
+2017,Under 65,Hispanic,Both Sexes,All income levels,12257,70922,14.7,Delaware
+2017,Under 65,White,Both Sexes,All income levels,5277,205442,2.5,District of Columbia
+2017,Under 65,Black,Both Sexes,All income levels,10795,245817,4.2,District of Columbia
+2017,Under 65,Hispanic,Both Sexes,All income levels,7050,62738,10.1,District of Columbia
+2017,Under 65,White,Both Sexes,All income levels,1029333,7045829,12.7,Florida
+2017,Under 65,Black,Both Sexes,All income levels,459344,2322086,16.5,Florida
+2017,Under 65,Hispanic,Both Sexes,All income levels,1017912,3640865,21.8,Florida
+2017,Under 65,White,Both Sexes,All income levels,529026,3887881,12,Georgia
+2017,Under 65,Black,Both Sexes,All income levels,433323,2388924,15.4,Georgia
+2017,Under 65,Hispanic,Both Sexes,All income levels,310871,630706,33,Georgia
+2017,Under 65,White,Both Sexes,All income levels,8998,221611,3.9,Hawaii
+2017,Under 65,Black,Both Sexes,All income levels,1176,22770,4.9,Hawaii
+2017,Under 65,Hispanic,Both Sexes,All income levels,10065,128218,7.3,Hawaii
+2017,Under 65,White,Both Sexes,All income levels,111476,1030494,9.8,Idaho
+2017,Under 65,Black,Both Sexes,All income levels,1451,9587,13.1,Idaho
+2017,Under 65,Hispanic,Both Sexes,All income levels,45521,154970,22.7,Idaho
+2017,Under 65,White,Both Sexes,All income levels,315832,5932401,5.1,Illinois
+2017,Under 65,Black,Both Sexes,All income levels,122130,1380326,8.1,Illinois
+2017,Under 65,Hispanic,Both Sexes,All income levels,344392,1695664,16.9,Illinois
+2017,Under 65,White,Both Sexes,All income levels,349818,3894672,8.2,Indiana
+2017,Under 65,Black,Both Sexes,All income levels,60993,473418,11.4,Indiana
+2017,Under 65,Hispanic,Both Sexes,All income levels,91646,341979,21.1,Indiana
+2017,Under 65,White,Both Sexes,All income levels,98217,2035041,4.6,Iowa
+2017,Under 65,Black,Both Sexes,All income levels,6804,94325,6.7,Iowa
+2017,Under 65,Hispanic,Both Sexes,All income levels,24624,152908,13.9,Iowa
+2017,Under 65,White,Both Sexes,All income levels,138826,1626001,7.9,Kansas
+2017,Under 65,Black,Both Sexes,All income levels,17367,123426,12.3,Kansas
+2017,Under 65,Hispanic,Both Sexes,All income levels,67737,255939,20.9,Kansas
+2017,Under 65,White,Both Sexes,All income levels,168825,2862493,5.6,Kentucky
+2017,Under 65,Black,Both Sexes,All income levels,23344,278719,7.7,Kentucky
+2017,Under 65,Hispanic,Both Sexes,All income levels,27304,123182,18.1,Kentucky
+2017,Under 65,White,Both Sexes,All income levels,171750,2042590,7.8,Louisiana
+2017,Under 65,Black,Both Sexes,All income levels,126059,1141644,9.9,Louisiana
+2017,Under 65,Hispanic,Both Sexes,All income levels,56852,163628,25.8,Louisiana
+2017,Under 65,White,Both Sexes,All income levels,95139,868448,9.9,Maine
+2017,Under 65,Black,Both Sexes,All income levels,2194,15856,12.2,Maine
+2017,Under 65,Hispanic,Both Sexes,All income levels,4323,15455,21.9,Maine
+2017,Under 65,White,Both Sexes,All income levels,103444,2329990,4.3,Maryland
+2017,Under 65,Black,Both Sexes,All income levels,104258,1423845,6.8,Maryland
+2017,Under 65,Hispanic,Both Sexes,All income levels,117242,456282,20.4,Maryland
+2017,Under 65,White,Both Sexes,All income levels,97708,3765820,2.5,Massachusetts
+2017,Under 65,Black,Both Sexes,All income levels,16695,404127,4,Massachusetts
+2017,Under 65,Hispanic,Both Sexes,All income levels,49560,691974,6.7,Massachusetts
+2017,Under 65,White,Both Sexes,All income levels,326187,5629593,5.5,Michigan
+2017,Under 65,Black,Both Sexes,All income levels,81199,1072142,7,Michigan
+2017,Under 65,Hispanic,Both Sexes,All income levels,57012,407181,12.3,Michigan
+2017,Under 65,White,Both Sexes,All income levels,141775,3451738,3.9,Minnesota
+2017,Under 65,Black,Both Sexes,All income levels,21287,299753,6.6,Minnesota
+2017,Under 65,Hispanic,Both Sexes,All income levels,44576,238895,15.7,Minnesota
+2017,Under 65,White,Both Sexes,All income levels,166168,1164640,12.5,Mississippi
+2017,Under 65,Black,Both Sexes,All income levels,149558,799439,15.8,Mississippi
+2017,Under 65,Hispanic,Both Sexes,All income levels,24792,58534,29.8,Mississippi
+2017,Under 65,White,Both Sexes,All income levels,373306,3498433,9.6,Missouri
+2017,Under 65,Black,Both Sexes,All income levels,84499,511902,14.2,Missouri
+2017,Under 65,Hispanic,Both Sexes,All income levels,51018,186701,21.5,Missouri
+2017,Under 65,White,Both Sexes,All income levels,65103,646239,9.2,Montana
+2017,Under 65,Black,Both Sexes,All income levels,666,4179,13.7,Montana
+2017,Under 65,Hispanic,Both Sexes,All income levels,7146,28715,19.9,Montana
+2017,Under 65,White,Both Sexes,All income levels,88154,1125900,7.3,Nebraska
+2017,Under 65,Black,Both Sexes,All income levels,9594,69784,12.1,Nebraska
+2017,Under 65,Hispanic,Both Sexes,All income levels,43400,153677,22,Nebraska
+2017,Under 65,White,Both Sexes,All income levels,99910,1028401,8.9,Nevada
+2017,Under 65,Black,Both Sexes,All income levels,24664,203365,10.8,Nevada
+2017,Under 65,Hispanic,Both Sexes,All income levels,165562,635500,20.7,Nevada
+2017,Under 65,White,Both Sexes,All income levels,61500,898781,6.4,New Hampshire
+2017,Under 65,Black,Both Sexes,All income levels,1426,13655,9.5,New Hampshire
+2017,Under 65,Hispanic,Both Sexes,All income levels,7712,37624,17,New Hampshire
+2017,Under 65,White,Both Sexes,All income levels,189408,3701047,4.9,New Jersey
+2017,Under 65,Black,Both Sexes,All income levels,90374,887643,9.2,New Jersey
+2017,Under 65,Hispanic,Both Sexes,All income levels,327130,1339842,19.6,New Jersey
+2017,Under 65,White,Both Sexes,All income levels,37428,527083,6.6,New Mexico
+2017,Under 65,Black,Both Sexes,All income levels,2733,28131,8.9,New Mexico
+2017,Under 65,Hispanic,Both Sexes,All income levels,115444,767965,13.1,New Mexico
+2017,Under 65,White,Both Sexes,All income levels,360524,8220997,4.2,New York
+2017,Under 65,Black,Both Sexes,All income levels,167904,2241356,7,New York
+2017,Under 65,Hispanic,Both Sexes,All income levels,415649,2962522,12.3,New York
+2017,Under 65,White,Both Sexes,All income levels,497481,4593649,9.8,North Carolina
+2017,Under 65,Black,Both Sexes,All income levels,235707,1603818,12.8,North Carolina
+2017,Under 65,Hispanic,Both Sexes,All income levels,268305,647339,29.3,North Carolina
+2017,Under 65,White,Both Sexes,All income levels,35945,480715,7,North Dakota
+2017,Under 65,Black,Both Sexes,All income levels,2856,18329,13.5,North Dakota
+2017,Under 65,Hispanic,Both Sexes,All income levels,5390,21033,20.4,North Dakota
+2017,Under 65,White,Both Sexes,All income levels,475122,6869726,6.5,Ohio
+2017,Under 65,Black,Both Sexes,All income levels,100721,1125770,8.2,Ohio
+2017,Under 65,Hispanic,Both Sexes,All income levels,61289,342904,15.2,Ohio
+2017,Under 65,White,Both Sexes,All income levels,260627,1767032,12.9,Oklahoma
+2017,Under 65,Black,Both Sexes,All income levels,40156,202420,16.6,Oklahoma
+2017,Under 65,Hispanic,Both Sexes,All income levels,103653,286329,26.6,Oklahoma
+2017,Under 65,White,Both Sexes,All income levels,159799,2291084,6.5,Oregon
+2017,Under 65,Black,Both Sexes,All income levels,5632,63016,8.2,Oregon
+2017,Under 65,Hispanic,Both Sexes,All income levels,85661,420817,16.9,Oregon
+2017,Under 65,White,Both Sexes,All income levels,433655,7155842,5.7,Pennsylvania
+2017,Under 65,Black,Both Sexes,All income levels,84064,1058676,7.4,Pennsylvania
+2017,Under 65,Hispanic,Both Sexes,All income levels,117727,738491,13.7,Pennsylvania
+2017,Under 65,White,Both Sexes,All income levels,21349,566135,3.6,Rhode Island
+2017,Under 65,Black,Both Sexes,All income levels,3117,50712,5.8,Rhode Island
+2017,Under 65,Hispanic,Both Sexes,All income levels,18456,132089,12.3,Rhode Island
+2017,Under 65,White,Both Sexes,All income levels,269864,2209539,10.9,South Carolina
+2017,Under 65,Black,Both Sexes,All income levels,159196,959622,14.2,South Carolina
+2017,Under 65,Hispanic,Both Sexes,All income levels,77015,186883,29.2,South Carolina
+2017,Under 65,White,Both Sexes,All income levels,46621,519206,8.2,South Dakota
+2017,Under 65,Black,Both Sexes,All income levels,2471,13750,15.2,South Dakota
+2017,Under 65,Hispanic,Both Sexes,All income levels,6939,23560,22.8,South Dakota
+2017,Under 65,White,Both Sexes,All income levels,382634,3576497,9.7,Tennessee
+2017,Under 65,Black,Both Sexes,All income levels,116332,848926,12.1,Tennessee
+2017,Under 65,Hispanic,Both Sexes,All income levels,96492,248894,27.9,Tennessee
+2017,Under 65,White,Both Sexes,All income levels,1122857,8366268,11.8,Texas
+2017,Under 65,Black,Both Sexes,All income levels,472589,2434115,16.3,Texas
+2017,Under 65,Hispanic,Both Sexes,All income levels,2897177,7253483,28.5,Texas
+2017,Under 65,White,Both Sexes,All income levels,151688,1953002,7.2,Utah
+2017,Under 65,Black,Both Sexes,All income levels,3289,27545,10.7,Utah
+2017,Under 65,Hispanic,Both Sexes,All income levels,98510,308090,24.2,Utah
+2017,Under 65,White,Both Sexes,All income levels,23603,424564,5.3,Vermont
+2017,Under 65,Black,Both Sexes,All income levels,452,6316,6.7,Vermont
+2017,Under 65,Hispanic,Both Sexes,All income levels,1413,8844,13.8,Vermont
+2017,Under 65,White,Both Sexes,All income levels,316937,3846678,7.6,Virginia
+2017,Under 65,Black,Both Sexes,All income levels,156286,1189209,11.6,Virginia
+2017,Under 65,Hispanic,Both Sexes,All income levels,173644,566139,23.5,Virginia
+2017,Under 65,White,Both Sexes,All income levels,211592,3860331,5.2,Washington
+2017,Under 65,Black,Both Sexes,All income levels,18692,230023,7.5,Washington
+2017,Under 65,Hispanic,Both Sexes,All income levels,148803,735834,16.8,Washington
+2017,Under 65,White,Both Sexes,All income levels,93941,1211564,7.2,West Virginia
+2017,Under 65,Black,Both Sexes,All income levels,4680,43666,9.7,West Virginia
+2017,Under 65,Hispanic,Both Sexes,All income levels,4264,20672,17.1,West Virginia
+2017,Under 65,White,Both Sexes,All income levels,190719,3551668,5.1,Wisconsin
+2017,Under 65,Black,Both Sexes,All income levels,25349,292036,8,Wisconsin
+2017,Under 65,Hispanic,Both Sexes,All income levels,61371,312257,16.4,Wisconsin
+2017,Under 65,White,Both Sexes,All income levels,47450,346571,12,Wyoming
+2017,Under 65,Black,Both Sexes,All income levels,973,4554,17.6,Wyoming
+2017,Under 65,Hispanic,Both Sexes,All income levels,14828,37839,28.2,Wyoming
+2016,Under 65,White,Both Sexes,All income levels,225765,2315175,8.9,Alabama
+2016,Under 65,Black,Both Sexes,All income levels,135138,954666,12.4,Alabama
+2016,Under 65,Hispanic,Both Sexes,All income levels,49907,140210,26.3,Alabama
+2016,Under 65,White,Both Sexes,All income levels,41481,346916,10.7,Alaska
+2016,Under 65,Black,Both Sexes,All income levels,3615,18279,16.5,Alaska
+2016,Under 65,Hispanic,Both Sexes,All income levels,12346,35323,25.9,Alaska
+2016,Under 65,White,Both Sexes,All income levels,211807,2625218,7.5,Arizona
+2016,Under 65,Black,Both Sexes,All income levels,24771,226100,9.9,Arizona
+2016,Under 65,Hispanic,Both Sexes,All income levels,360510,1586790,18.5,Arizona
+2016,Under 65,White,Both Sexes,All income levels,134684,1578187,7.9,Arkansas
+2016,Under 65,Black,Both Sexes,All income levels,34638,356121,8.9,Arkansas
+2016,Under 65,Hispanic,Both Sexes,All income levels,46884,159238,22.7,Arkansas
+2016,Under 65,White,Both Sexes,All income levels,542457,10926857,4.7,California
+2016,Under 65,Black,Both Sexes,All income levels,114380,1722226,6.2,California
+2016,Under 65,Hispanic,Both Sexes,All income levels,1808761,12161708,12.9,California
+2016,Under 65,White,Both Sexes,All income levels,180408,2941326,5.8,Colorado
+2016,Under 65,Black,Both Sexes,All income levels,13775,174815,7.3,Colorado
+2016,Under 65,Hispanic,Both Sexes,All income levels,186100,892012,17.3,Colorado
+2016,Under 65,White,Both Sexes,All income levels,69210,1813370,3.7,Connecticut
+2016,Under 65,Black,Both Sexes,All income levels,18903,287843,6.2,Connecticut
+2016,Under 65,Hispanic,Both Sexes,All income levels,68335,446961,13.3,Connecticut
+2016,Under 65,White,Both Sexes,All income levels,22832,431071,5,Delaware
+2016,Under 65,Black,Both Sexes,All income levels,11931,160691,6.9,Delaware
+2016,Under 65,Hispanic,Both Sexes,All income levels,12941,68500,15.9,Delaware
+2016,Under 65,White,Both Sexes,All income levels,4493,201537,2.2,District of Columbia
+2016,Under 65,Black,Both Sexes,All income levels,10687,246635,4.2,District of Columbia
+2016,Under 65,Hispanic,Both Sexes,All income levels,6646,61502,9.8,District of Columbia
+2016,Under 65,White,Both Sexes,All income levels,977379,7120443,12.1,Florida
+2016,Under 65,Black,Both Sexes,All income levels,414520,2316661,15.2,Florida
+2016,Under 65,Hispanic,Both Sexes,All income levels,975120,3487879,21.8,Florida
+2016,Under 65,White,Both Sexes,All income levels,523547,3917419,11.8,Georgia
+2016,Under 65,Black,Both Sexes,All income levels,403113,2382797,14.5,Georgia
+2016,Under 65,Hispanic,Both Sexes,All income levels,299010,613120,32.8,Georgia
+2016,Under 65,White,Both Sexes,All income levels,7855,229033,3.3,Hawaii
+2016,Under 65,Black,Both Sexes,All income levels,1208,22809,5,Hawaii
+2016,Under 65,Hispanic,Both Sexes,All income levels,10216,126519,7.5,Hawaii
+2016,Under 65,White,Both Sexes,All income levels,109885,1018368,9.7,Idaho
+2016,Under 65,Black,Both Sexes,All income levels,1324,8987,12.8,Idaho
+2016,Under 65,Hispanic,Both Sexes,All income levels,45230,148631,23.3,Idaho
+2016,Under 65,White,Both Sexes,All income levels,297194,6043056,4.7,Illinois
+2016,Under 65,Black,Both Sexes,All income levels,116358,1400095,7.7,Illinois
+2016,Under 65,Hispanic,Both Sexes,All income levels,333349,1689343,16.5,Illinois
+2016,Under 65,White,Both Sexes,All income levels,357048,3918068,8.4,Indiana
+2016,Under 65,Black,Both Sexes,All income levels,53167,476653,10,Indiana
+2016,Under 65,Hispanic,Both Sexes,All income levels,85582,333600,20.4,Indiana
+2016,Under 65,White,Both Sexes,All income levels,88622,2061044,4.1,Iowa
+2016,Under 65,Black,Both Sexes,All income levels,6422,89990,6.7,Iowa
+2016,Under 65,Hispanic,Both Sexes,All income levels,24503,146476,14.3,Iowa
+2016,Under 65,White,Both Sexes,All income levels,136754,1647190,7.7,Kansas
+2016,Under 65,Black,Both Sexes,All income levels,18086,123441,12.8,Kansas
+2016,Under 65,Hispanic,Both Sexes,All income levels,67288,248827,21.3,Kansas
+2016,Under 65,White,Both Sexes,All income levels,163727,2886232,5.4,Kentucky
+2016,Under 65,Black,Both Sexes,All income levels,19721,279572,6.6,Kentucky
+2016,Under 65,Hispanic,Both Sexes,All income levels,26310,117094,18.3,Kentucky
+2016,Under 65,White,Both Sexes,All income levels,215362,2024721,9.6,Louisiana
+2016,Under 65,Black,Both Sexes,All income levels,161006,1111831,12.6,Louisiana
+2016,Under 65,Hispanic,Both Sexes,All income levels,62710,150329,29.4,Louisiana
+2016,Under 65,White,Both Sexes,All income levels,94510,875343,9.7,Maine
+2016,Under 65,Black,Both Sexes,All income levels,2021,14986,11.9,Maine
+2016,Under 65,Hispanic,Both Sexes,All income levels,4296,14514,22.8,Maine
+2016,Under 65,White,Both Sexes,All income levels,106757,2358654,4.3,Maryland
+2016,Under 65,Black,Both Sexes,All income levels,102455,1419394,6.7,Maryland
+2016,Under 65,Hispanic,Both Sexes,All income levels,115083,433391,21,Maryland
+2016,Under 65,White,Both Sexes,All income levels,89446,3815301,2.3,Massachusetts
+2016,Under 65,Black,Both Sexes,All income levels,14799,396208,3.6,Massachusetts
+2016,Under 65,Hispanic,Both Sexes,All income levels,45892,667458,6.4,Massachusetts
+2016,Under 65,White,Both Sexes,All income levels,335408,5663676,5.6,Michigan
+2016,Under 65,Black,Both Sexes,All income levels,85549,1071195,7.4,Michigan
+2016,Under 65,Hispanic,Both Sexes,All income levels,63388,390412,14,Michigan
+2016,Under 65,White,Both Sexes,All income levels,128840,3480145,3.6,Minnesota
+2016,Under 65,Black,Both Sexes,All income levels,20646,281570,6.8,Minnesota
+2016,Under 65,Hispanic,Both Sexes,All income levels,45226,227404,16.6,Minnesota
+2016,Under 65,White,Both Sexes,All income levels,162699,1181943,12.1,Mississippi
+2016,Under 65,Black,Both Sexes,All income levels,145323,808778,15.2,Mississippi
+2016,Under 65,Hispanic,Both Sexes,All income levels,23477,57302,29.1,Mississippi
+2016,Under 65,White,Both Sexes,All income levels,370868,3522658,9.5,Missouri
+2016,Under 65,Black,Both Sexes,All income levels,75601,521504,12.7,Missouri
+2016,Under 65,Hispanic,Both Sexes,All income levels,52666,177294,22.9,Missouri
+2016,Under 65,White,Both Sexes,All income levels,61970,649949,8.7,Montana
+2016,Under 65,Black,Both Sexes,All income levels,650,4093,13.7,Montana
+2016,Under 65,Hispanic,Both Sexes,All income levels,7701,26657,22.4,Montana
+2016,Under 65,White,Both Sexes,All income levels,89566,1131667,7.3,Nebraska
+2016,Under 65,Black,Both Sexes,All income levels,9683,67994,12.5,Nebraska
+2016,Under 65,Hispanic,Both Sexes,All income levels,44285,146080,23.3,Nebraska
+2016,Under 65,White,Both Sexes,All income levels,94219,1040621,8.3,Nevada
+2016,Under 65,Black,Both Sexes,All income levels,22871,194339,10.5,Nevada
+2016,Under 65,Hispanic,Both Sexes,All income levels,173200,604533,22.3,Nevada
+2016,Under 65,White,Both Sexes,All income levels,64943,901357,6.7,New Hampshire
+2016,Under 65,Black,Both Sexes,All income levels,1345,12894,9.4,New Hampshire
+2016,Under 65,Hispanic,Both Sexes,All income levels,7387,35556,17.2,New Hampshire
+2016,Under 65,White,Both Sexes,All income levels,188082,3753036,4.8,New Jersey
+2016,Under 65,Black,Both Sexes,All income levels,88066,887860,9,New Jersey
+2016,Under 65,Hispanic,Both Sexes,All income levels,336717,1287053,20.7,New Jersey
+2016,Under 65,White,Both Sexes,All income levels,36127,542059,6.2,New Mexico
+2016,Under 65,Black,Both Sexes,All income levels,2879,27609,9.4,New Mexico
+2016,Under 65,Hispanic,Both Sexes,All income levels,119295,760616,13.6,New Mexico
+2016,Under 65,White,Both Sexes,All income levels,388558,8295705,4.5,New York
+2016,Under 65,Black,Both Sexes,All income levels,178299,2233193,7.4,New York
+2016,Under 65,Hispanic,Both Sexes,All income levels,440938,2901023,13.2,New York
+2016,Under 65,White,Both Sexes,All income levels,472867,4629147,9.3,North Carolina
+2016,Under 65,Black,Both Sexes,All income levels,230393,1599299,12.6,North Carolina
+2016,Under 65,Hispanic,Both Sexes,All income levels,256402,624788,29.1,North Carolina
+2016,Under 65,White,Both Sexes,All income levels,32351,492337,6.2,North Dakota
+2016,Under 65,Black,Both Sexes,All income levels,2443,17522,12.2,North Dakota
+2016,Under 65,Hispanic,Both Sexes,All income levels,5331,20560,20.6,North Dakota
+2016,Under 65,White,Both Sexes,All income levels,446814,6956522,6,Ohio
+2016,Under 65,Black,Both Sexes,All income levels,95319,1121744,7.8,Ohio
+2016,Under 65,Hispanic,Both Sexes,All income levels,60189,329990,15.4,Ohio
+2016,Under 65,White,Both Sexes,All income levels,245960,1804614,12,Oklahoma
+2016,Under 65,Black,Both Sexes,All income levels,40792,201710,16.8,Oklahoma
+2016,Under 65,Hispanic,Both Sexes,All income levels,107146,270882,28.3,Oklahoma
+2016,Under 65,White,Both Sexes,All income levels,144363,2308788,5.9,Oregon
+2016,Under 65,Black,Both Sexes,All income levels,4671,61079,7.1,Oregon
+2016,Under 65,Hispanic,Both Sexes,All income levels,76623,413393,15.6,Oregon
+2016,Under 65,White,Both Sexes,All income levels,439977,7240479,5.7,Pennsylvania
+2016,Under 65,Black,Both Sexes,All income levels,89454,1048592,7.9,Pennsylvania
+2016,Under 65,Hispanic,Both Sexes,All income levels,121808,699366,14.8,Pennsylvania
+2016,Under 65,White,Both Sexes,All income levels,21068,575116,3.5,Rhode Island
+2016,Under 65,Black,Both Sexes,All income levels,2821,49784,5.4,Rhode Island
+2016,Under 65,Hispanic,Both Sexes,All income levels,16722,128380,11.5,Rhode Island
+2016,Under 65,White,Both Sexes,All income levels,252782,2218560,10.2,South Carolina
+2016,Under 65,Black,Both Sexes,All income levels,138171,978625,12.4,South Carolina
+2016,Under 65,Hispanic,Both Sexes,All income levels,73717,179476,29.1,South Carolina
+2016,Under 65,White,Both Sexes,All income levels,45666,522252,8,South Dakota
+2016,Under 65,Black,Both Sexes,All income levels,2179,12642,14.7,South Dakota
+2016,Under 65,Hispanic,Both Sexes,All income levels,7369,22399,24.8,South Dakota
+2016,Under 65,White,Both Sexes,All income levels,353437,3602206,8.9,Tennessee
+2016,Under 65,Black,Both Sexes,All income levels,111242,847982,11.6,Tennessee
+2016,Under 65,Hispanic,Both Sexes,All income levels,93136,235771,28.3,Tennessee
+2016,Under 65,White,Both Sexes,All income levels,1053007,8470680,11.1,Texas
+2016,Under 65,Black,Both Sexes,All income levels,426866,2422930,15,Texas
+2016,Under 65,Hispanic,Both Sexes,All income levels,2770458,7157521,27.9,Texas
+2016,Under 65,White,Both Sexes,All income levels,147497,1939531,7.1,Utah
+2016,Under 65,Black,Both Sexes,All income levels,3234,26123,11,Utah
+2016,Under 65,Hispanic,Both Sexes,All income levels,89387,305473,22.6,Utah
+2016,Under 65,White,Both Sexes,All income levels,20066,433704,4.4,Vermont
+2016,Under 65,Black,Both Sexes,All income levels,400,6052,6.2,Vermont
+2016,Under 65,Hispanic,Both Sexes,All income levels,1354,8509,13.7,Vermont
+2016,Under 65,White,Both Sexes,All income levels,305157,3894471,7.3,Virginia
+2016,Under 65,Black,Both Sexes,All income levels,147877,1192643,11,Virginia
+2016,Under 65,Hispanic,Both Sexes,All income levels,174714,538707,24.5,Virginia
+2016,Under 65,White,Both Sexes,All income levels,199975,3865635,4.9,Washington
+2016,Under 65,Black,Both Sexes,All income levels,16904,224659,7,Washington
+2016,Under 65,Hispanic,Both Sexes,All income levels,141455,711821,16.6,Washington
+2016,Under 65,White,Both Sexes,All income levels,82834,1245356,6.2,West Virginia
+2016,Under 65,Black,Both Sexes,All income levels,4155,45212,8.4,West Virginia
+2016,Under 65,Hispanic,Both Sexes,All income levels,4110,20135,17,West Virginia
+2016,Under 65,White,Both Sexes,All income levels,187516,3581785,5,Wisconsin
+2016,Under 65,Black,Both Sexes,All income levels,25780,289656,8.2,Wisconsin
+2016,Under 65,Hispanic,Both Sexes,All income levels,61963,301966,17,Wisconsin
+2016,Under 65,White,Both Sexes,All income levels,45925,357234,11.4,Wyoming
+2016,Under 65,Black,Both Sexes,All income levels,951,4507,17.4,Wyoming
+2016,Under 65,Hispanic,Both Sexes,All income levels,14074,38911,26.6,Wyoming
+2015,Under 65,White,Both Sexes,All income levels,252890,2303106,9.9,Alabama
+2015,Under 65,Black,Both Sexes,All income levels,150603,948264,13.7,Alabama
+2015,Under 65,Hispanic,Both Sexes,All income levels,53081,137174,27.9,Alabama
+2015,Under 65,White,Both Sexes,All income levels,45041,346681,11.5,Alaska
+2015,Under 65,Black,Both Sexes,All income levels,4396,18845,18.9,Alaska
+2015,Under 65,Hispanic,Both Sexes,All income levels,12383,35648,25.8,Alaska
+2015,Under 65,White,Both Sexes,All income levels,223380,2617946,7.9,Arizona
+2015,Under 65,Black,Both Sexes,All income levels,26424,219713,10.7,Arizona
+2015,Under 65,Hispanic,Both Sexes,All income levels,380192,1527943,19.9,Arizona
+2015,Under 65,White,Both Sexes,All income levels,159401,1558711,9.3,Arkansas
+2015,Under 65,Black,Both Sexes,All income levels,44463,348836,11.3,Arkansas
+2015,Under 65,Hispanic,Both Sexes,All income levels,50940,151146,25.2,Arkansas
+2015,Under 65,White,Both Sexes,All income levels,653125,10961601,5.6,California
+2015,Under 65,Black,Both Sexes,All income levels,131232,1727506,7.1,California
+2015,Under 65,Hispanic,Both Sexes,All income levels,2079030,11824773,15,California
+2015,Under 65,White,Both Sexes,All income levels,196114,2897834,6.3,Colorado
+2015,Under 65,Black,Both Sexes,All income levels,16068,171217,8.6,Colorado
+2015,Under 65,Hispanic,Both Sexes,All income levels,192232,872677,18.1,Colorado
+2015,Under 65,White,Both Sexes,All income levels,79941,1835480,4.2,Connecticut
+2015,Under 65,Black,Both Sexes,All income levels,24992,282106,8.1,Connecticut
+2015,Under 65,Hispanic,Both Sexes,All income levels,81894,426082,16.1,Connecticut
+2015,Under 65,White,Both Sexes,All income levels,24188,434043,5.3,Delaware
+2015,Under 65,Black,Both Sexes,All income levels,11967,159621,7,Delaware
+2015,Under 65,Hispanic,Both Sexes,All income levels,13186,66588,16.5,Delaware
+2015,Under 65,White,Both Sexes,All income levels,4857,196201,2.4,District of Columbia
+2015,Under 65,Black,Both Sexes,All income levels,11002,247281,4.3,District of Columbia
+2015,Under 65,Hispanic,Both Sexes,All income levels,6781,58286,10.4,District of Columbia
+2015,Under 65,White,Both Sexes,All income levels,1024719,7065846,12.7,Florida
+2015,Under 65,Black,Both Sexes,All income levels,469669,2243713,17.3,Florida
+2015,Under 65,Hispanic,Both Sexes,All income levels,996686,3330964,23,Florida
+2015,Under 65,White,Both Sexes,All income levels,541766,3923024,12.1,Georgia
+2015,Under 65,Black,Both Sexes,All income levels,441806,2315142,16,Georgia
+2015,Under 65,Hispanic,Both Sexes,All income levels,306249,591145,34.1,Georgia
+2015,Under 65,White,Both Sexes,All income levels,9713,241461,3.9,Hawaii
+2015,Under 65,Black,Both Sexes,All income levels,1783,28392,5.9,Hawaii
+2015,Under 65,Hispanic,Both Sexes,All income levels,11399,126019,8.3,Hawaii
+2015,Under 65,White,Both Sexes,All income levels,117695,998845,10.5,Idaho
+2015,Under 65,Black,Both Sexes,All income levels,1496,8796,14.5,Idaho
+2015,Under 65,Hispanic,Both Sexes,All income levels,48426,140500,25.6,Idaho
+2015,Under 65,White,Both Sexes,All income levels,317967,6108989,4.9,Illinois
+2015,Under 65,Black,Both Sexes,All income levels,138269,1400847,9,Illinois
+2015,Under 65,Hispanic,Both Sexes,All income levels,371650,1650261,18.4,Illinois
+2015,Under 65,White,Both Sexes,All income levels,421920,3883150,9.8,Indiana
+2015,Under 65,Black,Both Sexes,All income levels,68704,460822,13,Indiana
+2015,Under 65,Hispanic,Both Sexes,All income levels,101536,310431,24.6,Indiana
+2015,Under 65,White,Both Sexes,All income levels,102520,2062819,4.7,Iowa
+2015,Under 65,Black,Both Sexes,All income levels,8533,83861,9.2,Iowa
+2015,Under 65,Hispanic,Both Sexes,All income levels,28360,138961,16.9,Iowa
+2015,Under 65,White,Both Sexes,All income levels,140576,1657996,7.8,Kansas
+2015,Under 65,Black,Both Sexes,All income levels,19533,126289,13.4,Kansas
+2015,Under 65,Hispanic,Both Sexes,All income levels,74306,240386,23.6,Kansas
+2015,Under 65,White,Both Sexes,All income levels,193325,2873525,6.3,Kentucky
+2015,Under 65,Black,Both Sexes,All income levels,23879,277116,7.9,Kentucky
+2015,Under 65,Hispanic,Both Sexes,All income levels,29370,111161,20.9,Kentucky
+2015,Under 65,White,Both Sexes,All income levels,248639,2004423,11,Louisiana
+2015,Under 65,Black,Both Sexes,All income levels,205616,1074196,16.1,Louisiana
+2015,Under 65,Hispanic,Both Sexes,All income levels,59993,150420,28.5,Louisiana
+2015,Under 65,White,Both Sexes,All income levels,97102,879317,9.9,Maine
+2015,Under 65,Black,Both Sexes,All income levels,2106,14357,12.8,Maine
+2015,Under 65,Hispanic,Both Sexes,All income levels,4386,14359,23.4,Maine
+2015,Under 65,White,Both Sexes,All income levels,105730,2396707,4.2,Maryland
+2015,Under 65,Black,Both Sexes,All income levels,114402,1407604,7.5,Maryland
+2015,Under 65,Hispanic,Both Sexes,All income levels,119716,415671,22.4,Maryland
+2015,Under 65,White,Both Sexes,All income levels,101807,3848959,2.6,Massachusetts
+2015,Under 65,Black,Both Sexes,All income levels,15944,389321,3.9,Massachusetts
+2015,Under 65,Hispanic,Both Sexes,All income levels,45939,649401,6.6,Massachusetts
+2015,Under 65,White,Both Sexes,All income levels,386579,5660123,6.4,Michigan
+2015,Under 65,Black,Both Sexes,All income levels,99715,1071553,8.5,Michigan
+2015,Under 65,Hispanic,Both Sexes,All income levels,66971,381639,14.9,Michigan
+2015,Under 65,White,Both Sexes,All income levels,137222,3492129,3.8,Minnesota
+2015,Under 65,Black,Both Sexes,All income levels,21717,267631,7.5,Minnesota
+2015,Under 65,Hispanic,Both Sexes,All income levels,48204,219846,18,Minnesota
+2015,Under 65,White,Both Sexes,All income levels,178647,1176858,13.2,Mississippi
+2015,Under 65,Black,Both Sexes,All income levels,148913,812765,15.5,Mississippi
+2015,Under 65,Hispanic,Both Sexes,All income levels,26565,54389,32.8,Mississippi
+2015,Under 65,White,Both Sexes,All income levels,407318,3506277,10.4,Missouri
+2015,Under 65,Black,Both Sexes,All income levels,84626,515964,14.1,Missouri
+2015,Under 65,Hispanic,Both Sexes,All income levels,54241,172941,23.9,Missouri
+2015,Under 65,White,Both Sexes,All income levels,87050,623949,12.2,Montana
+2015,Under 65,Black,Both Sexes,All income levels,1065,3950,21.2,Montana
+2015,Under 65,Hispanic,Both Sexes,All income levels,9859,23983,29.1,Montana
+2015,Under 65,White,Both Sexes,All income levels,88519,1139279,7.2,Nebraska
+2015,Under 65,Black,Both Sexes,All income levels,9482,68056,12.2,Nebraska
+2015,Under 65,Hispanic,Both Sexes,All income levels,41061,143982,22.2,Nebraska
+2015,Under 65,White,Both Sexes,All income levels,102966,1041879,9,Nevada
+2015,Under 65,Black,Both Sexes,All income levels,25370,182746,12.2,Nevada
+2015,Under 65,Hispanic,Both Sexes,All income levels,177584,579876,23.4,Nevada
+2015,Under 65,White,Both Sexes,All income levels,69703,903160,7.2,New Hampshire
+2015,Under 65,Black,Both Sexes,All income levels,1509,12847,10.5,New Hampshire
+2015,Under 65,Hispanic,Both Sexes,All income levels,7788,33877,18.7,New Hampshire
+2015,Under 65,White,Both Sexes,All income levels,222811,3777227,5.6,New Jersey
+2015,Under 65,Black,Both Sexes,All income levels,102495,880947,10.4,New Jersey
+2015,Under 65,Hispanic,Both Sexes,All income levels,339997,1264780,21.2,New Jersey
+2015,Under 65,White,Both Sexes,All income levels,50488,543508,8.5,New Mexico
+2015,Under 65,Black,Both Sexes,All income levels,3836,28550,11.8,New Mexico
+2015,Under 65,Hispanic,Both Sexes,All income levels,135837,739424,15.5,New Mexico
+2015,Under 65,White,Both Sexes,All income levels,454610,8351083,5.2,New York
+2015,Under 65,Black,Both Sexes,All income levels,214251,2227375,8.8,New York
+2015,Under 65,Hispanic,Both Sexes,All income levels,515141,2816679,15.5,New York
+2015,Under 65,White,Both Sexes,All income levels,501609,4596363,9.8,North Carolina
+2015,Under 65,Black,Both Sexes,All income levels,242886,1582068,13.3,North Carolina
+2015,Under 65,Hispanic,Both Sexes,All income levels,272922,596144,31.4,North Carolina
+2015,Under 65,White,Both Sexes,All income levels,38160,493766,7.2,North Dakota
+2015,Under 65,Black,Both Sexes,All income levels,2121,14077,13.1,North Dakota
+2015,Under 65,Hispanic,Both Sexes,All income levels,5605,19483,22.3,North Dakota
+2015,Under 65,White,Both Sexes,All income levels,520851,6955358,7,Ohio
+2015,Under 65,Black,Both Sexes,All income levels,113698,1106803,9.3,Ohio
+2015,Under 65,Hispanic,Both Sexes,All income levels,64966,316005,17.1,Ohio
+2015,Under 65,White,Both Sexes,All income levels,249726,1816449,12.1,Oklahoma
+2015,Under 65,Black,Both Sexes,All income levels,44571,199935,18.2,Oklahoma
+2015,Under 65,Hispanic,Both Sexes,All income levels,108281,263056,29.2,Oklahoma
+2015,Under 65,White,Both Sexes,All income levels,162267,2275963,6.7,Oregon
+2015,Under 65,Black,Both Sexes,All income levels,5541,58223,8.7,Oregon
+2015,Under 65,Hispanic,Both Sexes,All income levels,83367,397685,17.3,Oregon
+2015,Under 65,White,Both Sexes,All income levels,497332,7275423,6.4,Pennsylvania
+2015,Under 65,Black,Both Sexes,All income levels,115664,1030510,10.1,Pennsylvania
+2015,Under 65,Hispanic,Both Sexes,All income levels,126753,668539,15.9,Pennsylvania
+2015,Under 65,White,Both Sexes,All income levels,28169,577734,4.6,Rhode Island
+2015,Under 65,Black,Both Sexes,All income levels,3903,48351,7.5,Rhode Island
+2015,Under 65,Hispanic,Both Sexes,All income levels,21088,119370,15,Rhode Island
+2015,Under 65,White,Both Sexes,All income levels,270550,2182639,11,South Carolina
+2015,Under 65,Black,Both Sexes,All income levels,152509,968168,13.6,South Carolina
+2015,Under 65,Hispanic,Both Sexes,All income levels,74200,173820,29.9,South Carolina
+2015,Under 65,White,Both Sexes,All income levels,51086,518415,9,South Dakota
+2015,Under 65,Black,Both Sexes,All income levels,2433,11010,18.1,South Dakota
+2015,Under 65,Hispanic,Both Sexes,All income levels,8245,20454,28.7,South Dakota
+2015,Under 65,White,Both Sexes,All income levels,399132,3552628,10.1,Tennessee
+2015,Under 65,Black,Both Sexes,All income levels,133157,828789,13.8,Tennessee
+2015,Under 65,Hispanic,Both Sexes,All income levels,97735,224092,30.4,Tennessee
+2015,Under 65,White,Both Sexes,All income levels,1067336,8469010,11.2,Texas
+2015,Under 65,Black,Both Sexes,All income levels,455026,2358784,16.2,Texas
+2015,Under 65,Hispanic,Both Sexes,All income levels,2820287,6927257,28.9,Texas
+2015,Under 65,White,Both Sexes,All income levels,172365,1887757,8.4,Utah
+2015,Under 65,Black,Both Sexes,All income levels,4009,24418,14.1,Utah
+2015,Under 65,Hispanic,Both Sexes,All income levels,103349,282535,26.8,Utah
+2015,Under 65,White,Both Sexes,All income levels,20418,438714,4.4,Vermont
+2015,Under 65,Black,Both Sexes,All income levels,391,6074,6,Vermont
+2015,Under 65,Hispanic,Both Sexes,All income levels,1293,8512,13.2,Vermont
+2015,Under 65,White,Both Sexes,All income levels,327618,3902101,7.7,Virginia
+2015,Under 65,Black,Both Sexes,All income levels,164240,1177898,12.2,Virginia
+2015,Under 65,Hispanic,Both Sexes,All income levels,161397,543043,22.9,Virginia
+2015,Under 65,White,Both Sexes,All income levels,223690,3819854,5.5,Washington
+2015,Under 65,Black,Both Sexes,All income levels,19612,218117,8.2,Washington
+2015,Under 65,Hispanic,Both Sexes,All income levels,154385,680618,18.5,Washington
+2015,Under 65,White,Both Sexes,All income levels,94726,1253452,7,West Virginia
+2015,Under 65,Black,Both Sexes,All income levels,4801,46199,9.4,West Virginia
+2015,Under 65,Hispanic,Both Sexes,All income levels,4103,19610,17.3,West Virginia
+2015,Under 65,White,Both Sexes,All income levels,197984,3599066,5.2,Wisconsin
+2015,Under 65,Black,Both Sexes,All income levels,28517,289006,9,Wisconsin
+2015,Under 65,Hispanic,Both Sexes,All income levels,64648,294270,18,Wisconsin
+2015,Under 65,White,Both Sexes,All income levels,45741,360226,11.3,Wyoming
+2015,Under 65,Black,Both Sexes,All income levels,1096,4969,18.1,Wyoming
+2015,Under 65,Hispanic,Both Sexes,All income levels,14209,38650,26.9,Wyoming
+2014,Under 65,White,Both Sexes,All income levels,311436,2261849,12.1,Alabama
+2014,Under 65,Black,Both Sexes,All income levels,177431,922997,16.1,Alabama
+2014,Under 65,Hispanic,Both Sexes,All income levels,57164,131304,30.3,Alabama
+2014,Under 65,White,Both Sexes,All income levels,55196,340658,13.9,Alaska
+2014,Under 65,Black,Both Sexes,All income levels,5552,17803,23.8,Alaska
+2014,Under 65,Hispanic,Both Sexes,All income levels,15468,31104,33.2,Alaska
+2014,Under 65,White,Both Sexes,All income levels,312486,2540485,11,Arizona
+2014,Under 65,Black,Both Sexes,All income levels,31788,206029,13.4,Arizona
+2014,Under 65,Hispanic,Both Sexes,All income levels,447046,1428841,23.8,Arizona
+2014,Under 65,White,Both Sexes,All income levels,206979,1520987,12,Arkansas
+2014,Under 65,Black,Both Sexes,All income levels,56472,337599,14.3,Arkansas
+2014,Under 65,Hispanic,Both Sexes,All income levels,56770,140743,28.7,Arkansas
+2014,Under 65,White,Both Sexes,All income levels,1009576,10714357,8.6,California
+2014,Under 65,Black,Both Sexes,All income levels,200754,1661557,10.8,California
+2014,Under 65,Hispanic,Both Sexes,All income levels,2874657,10896889,20.9,California
+2014,Under 65,White,Both Sexes,All income levels,258174,2807797,8.4,Colorado
+2014,Under 65,Black,Both Sexes,All income levels,21494,161396,11.8,Colorado
+2014,Under 65,Hispanic,Both Sexes,All income levels,224665,814620,21.6,Colorado
+2014,Under 65,White,Both Sexes,All income levels,107955,1839445,5.5,Connecticut
+2014,Under 65,Black,Both Sexes,All income levels,27952,277554,9.1,Connecticut
+2014,Under 65,Hispanic,Both Sexes,All income levels,85807,411060,17.3,Connecticut
+2014,Under 65,White,Both Sexes,All income levels,32833,427285,7.1,Delaware
+2014,Under 65,Black,Both Sexes,All income levels,16512,153069,9.7,Delaware
+2014,Under 65,Hispanic,Both Sexes,All income levels,16026,61927,20.6,Delaware
+2014,Under 65,White,Both Sexes,All income levels,6278,189412,3.2,District of Columbia
+2014,Under 65,Black,Both Sexes,All income levels,15733,242254,6.1,District of Columbia
+2014,Under 65,Hispanic,Both Sexes,All income levels,8603,54008,13.7,District of Columbia
+2014,Under 65,White,Both Sexes,All income levels,1295636,6779281,16,Florida
+2014,Under 65,Black,Both Sexes,All income levels,542855,2133328,20.3,Florida
+2014,Under 65,Hispanic,Both Sexes,All income levels,1199999,2987562,28.7,Florida
+2014,Under 65,White,Both Sexes,All income levels,612152,3863942,13.7,Georgia
+2014,Under 65,Black,Both Sexes,All income levels,520842,2202838,19.1,Georgia
+2014,Under 65,Hispanic,Both Sexes,All income levels,325937,554128,37,Georgia
+2014,Under 65,White,Both Sexes,All income levels,12605,239996,5,Hawaii
+2014,Under 65,Black,Both Sexes,All income levels,1877,26254,6.7,Hawaii
+2014,Under 65,Hispanic,Both Sexes,All income levels,12549,119607,9.5,Hawaii
+2014,Under 65,White,Both Sexes,All income levels,146143,967817,13.1,Idaho
+2014,Under 65,Black,Both Sexes,All income levels,1792,8296,17.8,Idaho
+2014,Under 65,Hispanic,Both Sexes,All income levels,56657,127573,30.8,Idaho
+2014,Under 65,White,Both Sexes,All income levels,483879,6025524,7.4,Illinois
+2014,Under 65,Black,Both Sexes,All income levels,209589,1342625,13.5,Illinois
+2014,Under 65,Hispanic,Both Sexes,All income levels,438369,1569995,21.8,Illinois
+2014,Under 65,White,Both Sexes,All income levels,539752,3788355,12.5,Indiana
+2014,Under 65,Black,Both Sexes,All income levels,87708,439726,16.6,Indiana
+2014,Under 65,Hispanic,Both Sexes,All income levels,105273,298656,26.1,Indiana
+2014,Under 65,White,Both Sexes,All income levels,138988,2034766,6.4,Iowa
+2014,Under 65,Black,Both Sexes,All income levels,8909,80384,10,Iowa
+2014,Under 65,Hispanic,Both Sexes,All income levels,27511,135327,16.9,Iowa
+2014,Under 65,White,Both Sexes,All income levels,165086,1645899,9.1,Kansas
+2014,Under 65,Black,Both Sexes,All income levels,22515,123019,15.5,Kansas
+2014,Under 65,Hispanic,Both Sexes,All income levels,75628,233000,24.5,Kansas
+2014,Under 65,White,Both Sexes,All income levels,276317,2804562,9,Kentucky
+2014,Under 65,Black,Both Sexes,All income levels,35276,264907,11.8,Kentucky
+2014,Under 65,Hispanic,Both Sexes,All income levels,35151,102712,25.5,Kentucky
+2014,Under 65,White,Both Sexes,All income levels,301953,1958534,13.4,Louisiana
+2014,Under 65,Black,Both Sexes,All income levels,259185,1024459,20.2,Louisiana
+2014,Under 65,Hispanic,Both Sexes,All income levels,71671,132287,35.1,Louisiana
+2014,Under 65,White,Both Sexes,All income levels,118421,867161,12,Maine
+2014,Under 65,Black,Both Sexes,All income levels,2411,14039,14.7,Maine
+2014,Under 65,Hispanic,Both Sexes,All income levels,4592,13469,25.4,Maine
+2014,Under 65,White,Both Sexes,All income levels,142739,2387978,5.6,Maryland
+2014,Under 65,Black,Both Sexes,All income levels,135700,1379646,9,Maryland
+2014,Under 65,Hispanic,Both Sexes,All income levels,130811,391577,25,Maryland
+2014,Under 65,White,Both Sexes,All income levels,117430,3865902,2.9,Massachusetts
+2014,Under 65,Black,Both Sexes,All income levels,19375,377570,4.9,Massachusetts
+2014,Under 65,Hispanic,Both Sexes,All income levels,52549,619281,7.8,Massachusetts
+2014,Under 65,White,Both Sexes,All income levels,545191,5543437,9,Michigan
+2014,Under 65,Black,Both Sexes,All income levels,147794,1033190,12.5,Michigan
+2014,Under 65,Hispanic,Both Sexes,All income levels,83052,357422,18.9,Michigan
+2014,Under 65,White,Both Sexes,All income levels,188012,3457831,5.2,Minnesota
+2014,Under 65,Black,Both Sexes,All income levels,27788,255690,9.8,Minnesota
+2014,Under 65,Hispanic,Both Sexes,All income levels,57638,204020,22,Minnesota
+2014,Under 65,White,Both Sexes,All income levels,201483,1166199,14.7,Mississippi
+2014,Under 65,Black,Both Sexes,All income levels,182439,783607,18.9,Mississippi
+2014,Under 65,Hispanic,Both Sexes,All income levels,27646,50878,35.2,Mississippi
+2014,Under 65,White,Both Sexes,All income levels,477485,3453297,12.1,Missouri
+2014,Under 65,Black,Both Sexes,All income levels,109470,491597,18.2,Missouri
+2014,Under 65,Hispanic,Both Sexes,All income levels,59695,161460,27,Missouri
+2014,Under 65,White,Both Sexes,All income levels,105431,605405,14.8,Montana
+2014,Under 65,Black,Both Sexes,All income levels,1194,3751,24.1,Montana
+2014,Under 65,Hispanic,Both Sexes,All income levels,10492,21651,32.6,Montana
+2014,Under 65,White,Both Sexes,All income levels,107029,1123476,8.7,Nebraska
+2014,Under 65,Black,Both Sexes,All income levels,10913,65781,14.2,Nebraska
+2014,Under 65,Hispanic,Both Sexes,All income levels,44541,135300,24.8,Nebraska
+2014,Under 65,White,Both Sexes,All income levels,142490,1008836,12.4,Nevada
+2014,Under 65,Black,Both Sexes,All income levels,31130,170536,15.4,Nevada
+2014,Under 65,Hispanic,Both Sexes,All income levels,196201,542273,26.6,Nevada
+2014,Under 65,White,Both Sexes,All income levels,100506,879134,10.3,New Hampshire
+2014,Under 65,Black,Both Sexes,All income levels,2104,12367,14.5,New Hampshire
+2014,Under 65,Hispanic,Both Sexes,All income levels,9795,30082,24.6,New Hampshire
+2014,Under 65,White,Both Sexes,All income levels,303439,3748346,7.5,New Jersey
+2014,Under 65,Black,Both Sexes,All income levels,134994,850670,13.7,New Jersey
+2014,Under 65,Hispanic,Both Sexes,All income levels,403369,1176316,25.5,New Jersey
+2014,Under 65,White,Both Sexes,All income levels,64323,544530,10.6,New Mexico
+2014,Under 65,Black,Both Sexes,All income levels,5039,27078,15.7,New Mexico
+2014,Under 65,Hispanic,Both Sexes,All income levels,177271,696068,20.3,New Mexico
+2014,Under 65,White,Both Sexes,All income levels,578307,8319861,6.5,New York
+2014,Under 65,Black,Both Sexes,All income levels,259318,2192757,10.6,New York
+2014,Under 65,Hispanic,Both Sexes,All income levels,613045,2681323,18.6,New York
+2014,Under 65,White,Both Sexes,All income levels,605952,4492632,11.9,North Carolina
+2014,Under 65,Black,Both Sexes,All income levels,294565,1523542,16.2,North Carolina
+2014,Under 65,Hispanic,Both Sexes,All income levels,284034,565588,33.4,North Carolina
+2014,Under 65,White,Both Sexes,All income levels,40836,483748,7.8,North Dakota
+2014,Under 65,Black,Both Sexes,All income levels,2001,11650,14.7,North Dakota
+2014,Under 65,Hispanic,Both Sexes,All income levels,5258,16715,23.9,North Dakota
+2014,Under 65,White,Both Sexes,All income levels,680877,6849301,9,Ohio
+2014,Under 65,Black,Both Sexes,All income levels,149322,1066798,12.3,Ohio
+2014,Under 65,Hispanic,Both Sexes,All income levels,72605,298745,19.6,Ohio
+2014,Under 65,White,Both Sexes,All income levels,287780,1784008,13.9,Oklahoma
+2014,Under 65,Black,Both Sexes,All income levels,46156,196141,19,Oklahoma
+2014,Under 65,Hispanic,Both Sexes,All income levels,111864,245869,31.3,Oklahoma
+2014,Under 65,White,Both Sexes,All income levels,234537,2198734,9.6,Oregon
+2014,Under 65,Black,Both Sexes,All income levels,7392,54259,12,Oregon
+2014,Under 65,Hispanic,Both Sexes,All income levels,102088,365212,21.8,Oregon
+2014,Under 65,White,Both Sexes,All income levels,667929,7184082,8.5,Pennsylvania
+2014,Under 65,Black,Both Sexes,All income levels,154062,991262,13.5,Pennsylvania
+2014,Under 65,Hispanic,Both Sexes,All income levels,162772,603073,21.3,Pennsylvania
+2014,Under 65,White,Both Sexes,All income levels,38116,575916,6.2,Rhode Island
+2014,Under 65,Black,Both Sexes,All income levels,5152,46620,10,Rhode Island
+2014,Under 65,Hispanic,Both Sexes,All income levels,25616,111392,18.7,Rhode Island
+2014,Under 65,White,Both Sexes,All income levels,326878,2110272,13.4,South Carolina
+2014,Under 65,Black,Both Sexes,All income levels,198979,921140,17.8,South Carolina
+2014,Under 65,Hispanic,Both Sexes,All income levels,83527,159163,34.4,South Carolina
+2014,Under 65,White,Both Sexes,All income levels,52572,517688,9.2,South Dakota
+2014,Under 65,Black,Both Sexes,All income levels,2184,11533,15.9,South Dakota
+2014,Under 65,Hispanic,Both Sexes,All income levels,7192,20965,25.5,South Dakota
+2014,Under 65,White,Both Sexes,All income levels,483672,3468375,12.2,Tennessee
+2014,Under 65,Black,Both Sexes,All income levels,144654,814743,15.1,Tennessee
+2014,Under 65,Hispanic,Both Sexes,All income levels,104340,207023,33.5,Tennessee
+2014,Under 65,White,Both Sexes,All income levels,1225400,8278259,12.9,Texas
+2014,Under 65,Black,Both Sexes,All income levels,487888,2275511,17.7,Texas
+2014,Under 65,Hispanic,Both Sexes,All income levels,3033431,6501299,31.8,Texas
+2014,Under 65,White,Both Sexes,All income levels,211263,1826951,10.4,Utah
+2014,Under 65,Black,Both Sexes,All income levels,4601,23642,16.3,Utah
+2014,Under 65,Hispanic,Both Sexes,All income levels,118881,255973,31.7,Utah
+2014,Under 65,White,Both Sexes,All income levels,26973,437536,5.8,Vermont
+2014,Under 65,Black,Both Sexes,All income levels,480,5633,7.9,Vermont
+2014,Under 65,Hispanic,Both Sexes,All income levels,1457,7983,15.4,Vermont
+2014,Under 65,White,Both Sexes,All income levels,385163,3869252,9.1,Virginia
+2014,Under 65,Black,Both Sexes,All income levels,201733,1138226,15.1,Virginia
+2014,Under 65,Hispanic,Both Sexes,All income levels,192473,497678,27.9,Virginia
+2014,Under 65,White,Both Sexes,All income levels,337459,3704040,8.3,Washington
+2014,Under 65,Black,Both Sexes,All income levels,24831,207492,10.7,Washington
+2014,Under 65,Hispanic,Both Sexes,All income levels,177264,632931,21.9,Washington
+2014,Under 65,White,Both Sexes,All income levels,139431,1222737,10.2,West Virginia
+2014,Under 65,Black,Both Sexes,All income levels,6581,44526,12.9,West Virginia
+2014,Under 65,Hispanic,Both Sexes,All income levels,5107,17769,22.3,West Virginia
+2014,Under 65,White,Both Sexes,All income levels,263185,3561981,6.9,Wisconsin
+2014,Under 65,Black,Both Sexes,All income levels,38283,278239,12.1,Wisconsin
+2014,Under 65,Hispanic,Both Sexes,All income levels,75300,275085,21.5,Wisconsin
+2014,Under 65,White,Both Sexes,All income levels,50492,357038,12.4,Wyoming
+2014,Under 65,Black,Both Sexes,All income levels,1231,5615,18,Wyoming
+2014,Under 65,Hispanic,Both Sexes,All income levels,13524,38387,26.1,Wyoming
+2013,Under 65,White,Both Sexes,All income levels,345368,2245661,13.3,Alabama
+2013,Under 65,Black,Both Sexes,All income levels,205371,894332,18.7,Alabama
+2013,Under 65,Hispanic,Both Sexes,All income levels,63460,123755,33.9,Alabama
+2013,Under 65,White,Both Sexes,All income levels,64604,337944,16,Alaska
+2013,Under 65,Black,Both Sexes,All income levels,6020,17320,25.8,Alaska
+2013,Under 65,Hispanic,Both Sexes,All income levels,15094,30083,33.4,Alaska
+2013,Under 65,White,Both Sexes,All income levels,403883,2461652,14.1,Arizona
+2013,Under 65,Black,Both Sexes,All income levels,43021,186776,18.7,Arizona
+2013,Under 65,Hispanic,Both Sexes,All income levels,533967,1301752,29.1,Arizona
+2013,Under 65,White,Both Sexes,All income levels,295630,1445023,17,Arkansas
+2013,Under 65,Black,Both Sexes,All income levels,80520,313897,20.4,Arkansas
+2013,Under 65,Hispanic,Both Sexes,All income levels,62296,131360,32.2,Arkansas
+2013,Under 65,White,Both Sexes,All income levels,1446338,10379481,12.2,California
+2013,Under 65,Black,Both Sexes,All income levels,311722,1544193,16.8,California
+2013,Under 65,Hispanic,Both Sexes,All income levels,3759017,9808174,27.7,California
+2013,Under 65,White,Both Sexes,All income levels,376483,2674861,12.3,Colorado
+2013,Under 65,Black,Both Sexes,All income levels,29865,146874,16.9,Colorado
+2013,Under 65,Hispanic,Both Sexes,All income levels,274129,742597,27,Colorado
+2013,Under 65,White,Both Sexes,All income levels,152539,1825988,7.7,Connecticut
+2013,Under 65,Black,Both Sexes,All income levels,41184,260826,13.6,Connecticut
+2013,Under 65,Hispanic,Both Sexes,All income levels,106915,377921,22.1,Connecticut
+2013,Under 65,White,Both Sexes,All income levels,41153,420957,8.9,Delaware
+2013,Under 65,Black,Both Sexes,All income levels,18427,149499,11,Delaware
+2013,Under 65,Hispanic,Both Sexes,All income levels,17196,58624,22.7,Delaware
+2013,Under 65,White,Both Sexes,All income levels,8569,182820,4.5,District of Columbia
+2013,Under 65,Black,Both Sexes,All income levels,20547,235095,8,District of Columbia
+2013,Under 65,Hispanic,Both Sexes,All income levels,8950,51174,14.9,District of Columbia
+2013,Under 65,White,Both Sexes,All income levels,1517376,6579144,18.7,Florida
+2013,Under 65,Black,Both Sexes,All income levels,672034,1958912,25.5,Florida
+2013,Under 65,Hispanic,Both Sexes,All income levels,1418084,2633615,35,Florida
+2013,Under 65,White,Both Sexes,All income levels,720191,3777484,16,Georgia
+2013,Under 65,Black,Both Sexes,All income levels,613105,2080757,22.8,Georgia
+2013,Under 65,Hispanic,Both Sexes,All income levels,364181,500379,42.1,Georgia
+2013,Under 65,White,Both Sexes,All income levels,17513,236203,6.9,Hawaii
+2013,Under 65,Black,Both Sexes,All income levels,2416,23798,9.2,Hawaii
+2013,Under 65,Hispanic,Both Sexes,All income levels,13919,113475,10.9,Hawaii
+2013,Under 65,White,Both Sexes,All income levels,183237,927485,16.5,Idaho
+2013,Under 65,Black,Both Sexes,All income levels,2040,7560,21.3,Idaho
+2013,Under 65,Hispanic,Both Sexes,All income levels,57696,121121,32.3,Idaho
+2013,Under 65,White,Both Sexes,All income levels,659455,5933493,10,Illinois
+2013,Under 65,Black,Both Sexes,All income levels,294038,1268311,18.8,Illinois
+2013,Under 65,Hispanic,Both Sexes,All income levels,531055,1454523,26.7,Illinois
+2013,Under 65,White,Both Sexes,All income levels,630107,3724227,14.5,Indiana
+2013,Under 65,Black,Both Sexes,All income levels,101735,421341,19.4,Indiana
+2013,Under 65,Hispanic,Both Sexes,All income levels,115571,280059,29.2,Indiana
+2013,Under 65,White,Both Sexes,All income levels,186079,1997970,8.5,Iowa
+2013,Under 65,Black,Both Sexes,All income levels,11354,73439,13.4,Iowa
+2013,Under 65,Hispanic,Both Sexes,All income levels,34051,124521,21.5,Iowa
+2013,Under 65,White,Both Sexes,All income levels,207197,1614992,11.4,Kansas
+2013,Under 65,Black,Both Sexes,All income levels,25222,119359,17.4,Kansas
+2013,Under 65,Hispanic,Both Sexes,All income levels,84411,219014,27.8,Kansas
+2013,Under 65,White,Both Sexes,All income levels,487100,2611567,15.7,Kentucky
+2013,Under 65,Black,Both Sexes,All income levels,60936,237499,20.4,Kentucky
+2013,Under 65,Hispanic,Both Sexes,All income levels,44214,90738,32.8,Kentucky
+2013,Under 65,White,Both Sexes,All income levels,347491,1922725,15.3,Louisiana
+2013,Under 65,Black,Both Sexes,All income levels,289905,991304,22.6,Louisiana
+2013,Under 65,Hispanic,Both Sexes,All income levels,75495,121571,38.3,Louisiana
+2013,Under 65,White,Both Sexes,All income levels,130335,864919,13.1,Maine
+2013,Under 65,Black,Both Sexes,All income levels,2471,13061,15.9,Maine
+2013,Under 65,Hispanic,Both Sexes,All income levels,4698,12651,27.1,Maine
+2013,Under 65,White,Both Sexes,All income levels,194551,2362209,7.6,Maryland
+2013,Under 65,Black,Both Sexes,All income levels,187416,1317298,12.5,Maryland
+2013,Under 65,Hispanic,Both Sexes,All income levels,143230,356798,28.6,Maryland
+2013,Under 65,White,Both Sexes,All income levels,137438,3879417,3.4,Massachusetts
+2013,Under 65,Black,Both Sexes,All income levels,22349,362979,5.8,Massachusetts
+2013,Under 65,Hispanic,Both Sexes,All income levels,57888,589669,8.9,Massachusetts
+2013,Under 65,White,Both Sexes,All income levels,698843,5437551,11.4,Michigan
+2013,Under 65,Black,Both Sexes,All income levels,202887,984739,17.1,Michigan
+2013,Under 65,Hispanic,Both Sexes,All income levels,94547,337491,21.9,Michigan
+2013,Under 65,White,Both Sexes,All income levels,276479,3385747,7.5,Minnesota
+2013,Under 65,Black,Both Sexes,All income levels,39791,232981,14.6,Minnesota
+2013,Under 65,Hispanic,Both Sexes,All income levels,69502,186478,27.2,Minnesota
+2013,Under 65,White,Both Sexes,All income levels,232251,1147561,16.8,Mississippi
+2013,Under 65,Black,Both Sexes,All income levels,221448,746045,22.9,Mississippi
+2013,Under 65,Hispanic,Both Sexes,All income levels,29030,48501,37.4,Mississippi
+2013,Under 65,White,Both Sexes,All income levels,540378,3412981,13.7,Missouri
+2013,Under 65,Black,Both Sexes,All income levels,121046,478526,20.2,Missouri
+2013,Under 65,Hispanic,Both Sexes,All income levels,63121,151475,29.4,Missouri
+2013,Under 65,White,Both Sexes,All income levels,127569,584732,17.9,Montana
+2013,Under 65,Black,Both Sexes,All income levels,1337,3384,28.3,Montana
+2013,Under 65,Hispanic,Both Sexes,All income levels,11283,19231,37,Montana
+2013,Under 65,White,Both Sexes,All income levels,129108,1105484,10.5,Nebraska
+2013,Under 65,Black,Both Sexes,All income levels,13197,62314,17.5,Nebraska
+2013,Under 65,Hispanic,Both Sexes,All income levels,46348,128254,26.5,Nebraska
+2013,Under 65,White,Both Sexes,All income levels,200376,958890,17.3,Nevada
+2013,Under 65,Black,Both Sexes,All income levels,44788,150989,22.9,Nevada
+2013,Under 65,Hispanic,Both Sexes,All income levels,243847,475045,33.9,Nevada
+2013,Under 65,White,Both Sexes,All income levels,119791,867241,12.1,New Hampshire
+2013,Under 65,Black,Both Sexes,All income levels,2438,11667,17.3,New Hampshire
+2013,Under 65,Hispanic,Both Sexes,All income levels,9966,28299,26,New Hampshire
+2013,Under 65,White,Both Sexes,All income levels,383712,3719421,9.4,New Jersey
+2013,Under 65,Black,Both Sexes,All income levels,166803,815760,17,New Jersey
+2013,Under 65,Hispanic,Both Sexes,All income levels,460234,1081916,29.8,New Jersey
+2013,Under 65,White,Both Sexes,All income levels,86166,538006,13.8,New Mexico
+2013,Under 65,Black,Both Sexes,All income levels,6552,25208,20.6,New Mexico
+2013,Under 65,Hispanic,Both Sexes,All income levels,228229,642106,26.2,New Mexico
+2013,Under 65,White,Both Sexes,All income levels,747210,8245205,8.3,New York
+2013,Under 65,Black,Both Sexes,All income levels,318101,2121400,13,New York
+2013,Under 65,Hispanic,Both Sexes,All income levels,714026,2530249,22,New York
+2013,Under 65,White,Both Sexes,All income levels,715790,4391641,14,North Carolina
+2013,Under 65,Black,Both Sexes,All income levels,370488,1437057,20.5,North Carolina
+2013,Under 65,Hispanic,Both Sexes,All income levels,315899,514835,38,North Carolina
+2013,Under 65,White,Both Sexes,All income levels,54798,462716,10.6,North Dakota
+2013,Under 65,Black,Both Sexes,All income levels,2256,9101,19.9,North Dakota
+2013,Under 65,Hispanic,Both Sexes,All income levels,5641,13734,29.1,North Dakota
+2013,Under 65,White,Both Sexes,All income levels,908862,6679902,12,Ohio
+2013,Under 65,Black,Both Sexes,All income levels,194065,1015880,16,Ohio
+2013,Under 65,Hispanic,Both Sexes,All income levels,87252,271524,24.3,Ohio
+2013,Under 65,White,Both Sexes,All income levels,344180,1737713,16.5,Oklahoma
+2013,Under 65,Black,Both Sexes,All income levels,54377,185819,22.6,Oklahoma
+2013,Under 65,Hispanic,Both Sexes,All income levels,122746,224348,35.4,Oklahoma
+2013,Under 65,White,Both Sexes,All income levels,367505,2074939,15,Oregon
+2013,Under 65,Black,Both Sexes,All income levels,10931,49191,18.2,Oregon
+2013,Under 65,Hispanic,Both Sexes,All income levels,132752,323652,29.1,Oregon
+2013,Under 65,White,Both Sexes,All income levels,780401,7152815,9.8,Pennsylvania
+2013,Under 65,Black,Both Sexes,All income levels,176700,965075,15.5,Pennsylvania
+2013,Under 65,Hispanic,Both Sexes,All income levels,168052,570999,22.7,Pennsylvania
+2013,Under 65,White,Both Sexes,All income levels,64919,557064,10.4,Rhode Island
+2013,Under 65,Black,Both Sexes,All income levels,8668,41808,17.2,Rhode Island
+2013,Under 65,Hispanic,Both Sexes,All income levels,37120,95180,28.1,Rhode Island
+2013,Under 65,White,Both Sexes,All income levels,379390,2047039,15.6,South Carolina
+2013,Under 65,Black,Both Sexes,All income levels,232435,883988,20.8,South Carolina
+2013,Under 65,Hispanic,Both Sexes,All income levels,89534,147331,37.8,South Carolina
+2013,Under 65,White,Both Sexes,All income levels,59892,509488,10.5,South Dakota
+2013,Under 65,Black,Both Sexes,All income levels,2352,10853,17.8,South Dakota
+2013,Under 65,Hispanic,Both Sexes,All income levels,7265,18947,27.7,South Dakota
+2013,Under 65,White,Both Sexes,All income levels,558423,3398091,14.1,Tennessee
+2013,Under 65,Black,Both Sexes,All income levels,172595,780848,18.1,Tennessee
+2013,Under 65,Hispanic,Both Sexes,All income levels,111587,191382,36.8,Tennessee
+2013,Under 65,White,Both Sexes,All income levels,1446053,8035131,15.3,Texas
+2013,Under 65,Black,Both Sexes,All income levels,587442,2118756,21.7,Texas
+2013,Under 65,Hispanic,Both Sexes,All income levels,3386064,5939038,36.3,Texas
+2013,Under 65,White,Both Sexes,All income levels,236199,1787758,11.7,Utah
+2013,Under 65,Black,Both Sexes,All income levels,5008,22192,18.4,Utah
+2013,Under 65,Hispanic,Both Sexes,All income levels,123417,241520,33.8,Utah
+2013,Under 65,White,Both Sexes,All income levels,39056,430925,8.3,Vermont
+2013,Under 65,Black,Both Sexes,All income levels,687,5134,11.8,Vermont
+2013,Under 65,Hispanic,Both Sexes,All income levels,1866,7064,20.9,Vermont
+2013,Under 65,White,Both Sexes,All income levels,454259,3824936,10.6,Virginia
+2013,Under 65,Black,Both Sexes,All income levels,222436,1111439,16.7,Virginia
+2013,Under 65,Hispanic,Both Sexes,All income levels,201697,466356,30.2,Virginia
+2013,Under 65,White,Both Sexes,All income levels,526461,3526684,13,Washington
+2013,Under 65,Black,Both Sexes,All income levels,41706,183524,18.5,Washington
+2013,Under 65,Hispanic,Both Sexes,All income levels,235184,550670,29.9,Washington
+2013,Under 65,White,Both Sexes,All income levels,229439,1148846,16.6,West Virginia
+2013,Under 65,Black,Both Sexes,All income levels,10468,40512,20.5,West Virginia
+2013,Under 65,Hispanic,Both Sexes,All income levels,7173,14684,32.8,West Virginia
+2013,Under 65,White,Both Sexes,All income levels,340679,3514773,8.8,Wisconsin
+2013,Under 65,Black,Both Sexes,All income levels,47028,268019,14.9,Wisconsin
+2013,Under 65,Hispanic,Both Sexes,All income levels,83346,260477,24.2,Wisconsin
+2013,Under 65,White,Both Sexes,All income levels,56708,353048,13.8,Wyoming
+2013,Under 65,Black,Both Sexes,All income levels,1602,5848,21.5,Wyoming
+2013,Under 65,Hispanic,Both Sexes,All income levels,14686,36509,28.7,Wyoming
+2012,Under 65,White,Both Sexes,All income levels,336695,2263864,12.9,Alabama
+2012,Under 65,Black,Both Sexes,All income levels,208094,885288,19,Alabama
+2012,Under 65,Hispanic,Both Sexes,All income levels,64249,121555,34.6,Alabama
+2012,Under 65,White,Both Sexes,All income levels,71546,334473,17.6,Alaska
+2012,Under 65,Black,Both Sexes,All income levels,5695,16635,25.5,Alaska
+2012,Under 65,Hispanic,Both Sexes,All income levels,13969,27768,33.5,Alaska
+2012,Under 65,White,Both Sexes,All income levels,410067,2464019,14.3,Arizona
+2012,Under 65,Black,Both Sexes,All income levels,40494,181357,18.3,Arizona
+2012,Under 65,Hispanic,Both Sexes,All income levels,541272,1273293,29.8,Arizona
+2012,Under 65,White,Both Sexes,All income levels,306719,1439412,17.6,Arkansas
+2012,Under 65,Black,Both Sexes,All income levels,82491,309461,21,Arkansas
+2012,Under 65,Hispanic,Both Sexes,All income levels,62150,127738,32.7,Arkansas
+2012,Under 65,White,Both Sexes,All income levels,1508681,10395937,12.7,California
+2012,Under 65,Black,Both Sexes,All income levels,312886,1538390,16.9,California
+2012,Under 65,Hispanic,Both Sexes,All income levels,3857457,9575668,28.7,California
+2012,Under 65,White,Both Sexes,All income levels,377888,2649132,12.5,Colorado
+2012,Under 65,Black,Both Sexes,All income levels,31327,140440,18.2,Colorado
+2012,Under 65,Hispanic,Both Sexes,All income levels,291165,709241,29.1,Colorado
+2012,Under 65,White,Both Sexes,All income levels,149398,1855685,7.5,Connecticut
+2012,Under 65,Black,Both Sexes,All income levels,40504,256684,13.6,Connecticut
+2012,Under 65,Hispanic,Both Sexes,All income levels,100125,370550,21.3,Connecticut
+2012,Under 65,White,Both Sexes,All income levels,37614,426661,8.1,Delaware
+2012,Under 65,Black,Both Sexes,All income levels,17776,147561,10.8,Delaware
+2012,Under 65,Hispanic,Both Sexes,All income levels,16743,57422,22.6,Delaware
+2012,Under 65,White,Both Sexes,All income levels,7690,177348,4.2,District of Columbia
+2012,Under 65,Black,Both Sexes,All income levels,18686,233121,7.4,District of Columbia
+2012,Under 65,Hispanic,Both Sexes,All income levels,8078,49253,14.1,District of Columbia
+2012,Under 65,White,Both Sexes,All income levels,1484894,6657856,18.2,Florida
+2012,Under 65,Black,Both Sexes,All income levels,674439,1910061,26.1,Florida
+2012,Under 65,Hispanic,Both Sexes,All income levels,1387309,2556420,35.2,Florida
+2012,Under 65,White,Both Sexes,All income levels,724459,3790747,16,Georgia
+2012,Under 65,Black,Both Sexes,All income levels,577864,2074332,21.8,Georgia
+2012,Under 65,Hispanic,Both Sexes,All income levels,353251,508408,41,Georgia
+2012,Under 65,White,Both Sexes,All income levels,17435,233718,6.9,Hawaii
+2012,Under 65,Black,Both Sexes,All income levels,2279,21311,9.7,Hawaii
+2012,Under 65,Hispanic,Both Sexes,All income levels,13535,107366,11.2,Hawaii
+2012,Under 65,White,Both Sexes,All income levels,176053,932105,15.9,Idaho
+2012,Under 65,Black,Both Sexes,All income levels,1855,7050,20.8,Idaho
+2012,Under 65,Hispanic,Both Sexes,All income levels,58577,115783,33.6,Idaho
+2012,Under 65,White,Both Sexes,All income levels,666053,5972802,10,Illinois
+2012,Under 65,Black,Both Sexes,All income levels,289272,1275610,18.5,Illinois
+2012,Under 65,Hispanic,Both Sexes,All income levels,529771,1443613,26.8,Illinois
+2012,Under 65,White,Both Sexes,All income levels,641210,3719047,14.7,Indiana
+2012,Under 65,Black,Both Sexes,All income levels,103519,411164,20.1,Indiana
+2012,Under 65,Hispanic,Both Sexes,All income levels,123998,263401,32,Indiana
+2012,Under 65,White,Both Sexes,All income levels,190104,1996930,8.7,Iowa
+2012,Under 65,Black,Both Sexes,All income levels,10654,70089,13.2,Iowa
+2012,Under 65,Hispanic,Both Sexes,All income levels,35875,117228,23.4,Iowa
+2012,Under 65,White,Both Sexes,All income levels,213365,1616106,11.7,Kansas
+2012,Under 65,Black,Both Sexes,All income levels,25762,117377,18,Kansas
+2012,Under 65,Hispanic,Both Sexes,All income levels,84247,213524,28.3,Kansas
+2012,Under 65,White,Both Sexes,All income levels,471074,2633612,15.2,Kentucky
+2012,Under 65,Black,Both Sexes,All income levels,56923,236554,19.4,Kentucky
+2012,Under 65,Hispanic,Both Sexes,All income levels,43107,89012,32.6,Kentucky
+2012,Under 65,White,Both Sexes,All income levels,356319,1918412,15.7,Louisiana
+2012,Under 65,Black,Both Sexes,All income levels,293632,977070,23.1,Louisiana
+2012,Under 65,Hispanic,Both Sexes,All income levels,70963,118833,37.4,Louisiana
+2012,Under 65,White,Both Sexes,All income levels,121153,882595,12.1,Maine
+2012,Under 65,Black,Both Sexes,All income levels,2106,12696,14.2,Maine
+2012,Under 65,Hispanic,Both Sexes,All income levels,4041,12781,24,Maine
+2012,Under 65,White,Both Sexes,All income levels,193976,2380756,7.5,Maryland
+2012,Under 65,Black,Both Sexes,All income levels,185087,1302597,12.4,Maryland
+2012,Under 65,Hispanic,Both Sexes,All income levels,152556,329188,31.7,Maryland
+2012,Under 65,White,Both Sexes,All income levels,145352,3896956,3.6,Massachusetts
+2012,Under 65,Black,Both Sexes,All income levels,23035,352582,6.1,Massachusetts
+2012,Under 65,Hispanic,Both Sexes,All income levels,55665,565397,9,Massachusetts
+2012,Under 65,White,Both Sexes,All income levels,745608,5418510,12.1,Michigan
+2012,Under 65,Black,Both Sexes,All income levels,200556,990593,16.8,Michigan
+2012,Under 65,Hispanic,Both Sexes,All income levels,90629,332153,21.4,Michigan
+2012,Under 65,White,Both Sexes,All income levels,273447,3391264,7.5,Minnesota
+2012,Under 65,Black,Both Sexes,All income levels,34425,227854,13.1,Minnesota
+2012,Under 65,Hispanic,Both Sexes,All income levels,65779,185217,26.2,Minnesota
+2012,Under 65,White,Both Sexes,All income levels,236037,1151357,17,Mississippi
+2012,Under 65,Black,Both Sexes,All income levels,212495,751372,22,Mississippi
+2012,Under 65,Hispanic,Both Sexes,All income levels,27930,47952,36.8,Mississippi
+2012,Under 65,White,Both Sexes,All income levels,558333,3402124,14.1,Missouri
+2012,Under 65,Black,Both Sexes,All income levels,127929,467483,21.5,Missouri
+2012,Under 65,Hispanic,Both Sexes,All income levels,63737,144511,30.6,Missouri
+2012,Under 65,White,Both Sexes,All income levels,138989,571529,19.6,Montana
+2012,Under 65,Black,Both Sexes,All income levels,1407,3197,30.6,Montana
+2012,Under 65,Hispanic,Both Sexes,All income levels,10935,17744,38.1,Montana
+2012,Under 65,White,Both Sexes,All income levels,126137,1108985,10.2,Nebraska
+2012,Under 65,Black,Both Sexes,All income levels,12707,60742,17.3,Nebraska
+2012,Under 65,Hispanic,Both Sexes,All income levels,48678,120877,28.7,Nebraska
+2012,Under 65,White,Both Sexes,All income levels,209356,959256,17.9,Nevada
+2012,Under 65,Black,Both Sexes,All income levels,45715,144804,24,Nevada
+2012,Under 65,Hispanic,Both Sexes,All income levels,258174,449450,36.5,Nevada
+2012,Under 65,White,Both Sexes,All income levels,118192,876522,11.9,New Hampshire
+2012,Under 65,Black,Both Sexes,All income levels,2463,11102,18.2,New Hampshire
+2012,Under 65,Hispanic,Both Sexes,All income levels,9826,26858,26.8,New Hampshire
+2012,Under 65,White,Both Sexes,All income levels,366160,3780313,8.8,New Jersey
+2012,Under 65,Black,Both Sexes,All income levels,160907,815230,16.5,New Jersey
+2012,Under 65,Hispanic,Both Sexes,All income levels,438846,1067514,29.1,New Jersey
+2012,Under 65,White,Both Sexes,All income levels,91305,547502,14.3,New Mexico
+2012,Under 65,Black,Both Sexes,All income levels,6112,24931,19.7,New Mexico
+2012,Under 65,Hispanic,Both Sexes,All income levels,220891,647253,25.4,New Mexico
+2012,Under 65,White,Both Sexes,All income levels,741463,8306726,8.2,New York
+2012,Under 65,Black,Both Sexes,All income levels,325188,2097263,13.4,New York
+2012,Under 65,Hispanic,Both Sexes,All income levels,730820,2472956,22.8,New York
+2012,Under 65,White,Both Sexes,All income levels,754056,4351282,14.8,North Carolina
+2012,Under 65,Black,Both Sexes,All income levels,374589,1411171,21,North Carolina
+2012,Under 65,Hispanic,Both Sexes,All income levels,335369,477021,41.3,North Carolina
+2012,Under 65,White,Both Sexes,All income levels,52903,451050,10.5,North Dakota
+2012,Under 65,Black,Both Sexes,All income levels,1719,7203,19.3,North Dakota
+2012,Under 65,Hispanic,Both Sexes,All income levels,4294,11642,26.9,North Dakota
+2012,Under 65,White,Both Sexes,All income levels,935821,6688329,12.3,Ohio
+2012,Under 65,Black,Both Sexes,All income levels,217981,980577,18.2,Ohio
+2012,Under 65,Hispanic,Both Sexes,All income levels,85912,262500,24.7,Ohio
+2012,Under 65,White,Both Sexes,All income levels,356275,1722058,17.1,Oklahoma
+2012,Under 65,Black,Both Sexes,All income levels,52188,183876,22.1,Oklahoma
+2012,Under 65,Hispanic,Both Sexes,All income levels,127250,207914,38,Oklahoma
+2012,Under 65,White,Both Sexes,All income levels,373539,2075059,15.3,Oregon
+2012,Under 65,Black,Both Sexes,All income levels,11013,48084,18.6,Oregon
+2012,Under 65,Hispanic,Both Sexes,All income levels,132009,316438,29.4,Oregon
+2012,Under 65,White,Both Sexes,All income levels,798525,7198495,10,Pennsylvania
+2012,Under 65,Black,Both Sexes,All income levels,175340,957698,15.5,Pennsylvania
+2012,Under 65,Hispanic,Both Sexes,All income levels,163867,552052,22.9,Pennsylvania
+2012,Under 65,White,Both Sexes,All income levels,59949,568845,9.5,Rhode Island
+2012,Under 65,Black,Both Sexes,All income levels,8090,41688,16.3,Rhode Island
+2012,Under 65,Hispanic,Both Sexes,All income levels,34134,94211,26.6,Rhode Island
+2012,Under 65,White,Both Sexes,All income levels,402003,2012986,16.6,South Carolina
+2012,Under 65,Black,Both Sexes,All income levels,244195,864406,22,South Carolina
+2012,Under 65,Hispanic,Both Sexes,All income levels,94559,138130,40.6,South Carolina
+2012,Under 65,White,Both Sexes,All income levels,64732,501395,11.4,South Dakota
+2012,Under 65,Black,Both Sexes,All income levels,2304,9596,19.4,South Dakota
+2012,Under 65,Hispanic,Both Sexes,All income levels,6875,16731,29.1,South Dakota
+2012,Under 65,White,Both Sexes,All income levels,560642,3397576,14.2,Tennessee
+2012,Under 65,Black,Both Sexes,All income levels,169474,774032,18,Tennessee
+2012,Under 65,Hispanic,Both Sexes,All income levels,109530,187477,36.9,Tennessee
+2012,Under 65,White,Both Sexes,All income levels,1486687,7975491,15.7,Texas
+2012,Under 65,Black,Both Sexes,All income levels,580085,2062267,22,Texas
+2012,Under 65,Hispanic,Both Sexes,All income levels,3354863,5819731,36.6,Texas
+2012,Under 65,White,Both Sexes,All income levels,236488,1762406,11.8,Utah
+2012,Under 65,Black,Both Sexes,All income levels,5083,20927,19.5,Utah
+2012,Under 65,Hispanic,Both Sexes,All income levels,126417,231721,35.3,Utah
+2012,Under 65,White,Both Sexes,All income levels,35686,437524,7.5,Vermont
+2012,Under 65,Black,Both Sexes,All income levels,580,4730,10.9,Vermont
+2012,Under 65,Hispanic,Both Sexes,All income levels,1642,6855,19.3,Vermont
+2012,Under 65,White,Both Sexes,All income levels,455016,3831355,10.6,Virginia
+2012,Under 65,Black,Both Sexes,All income levels,226541,1093949,17.2,Virginia
+2012,Under 65,Hispanic,Both Sexes,All income levels,198664,445809,30.8,Virginia
+2012,Under 65,White,Both Sexes,All income levels,528081,3532590,13,Washington
+2012,Under 65,Black,Both Sexes,All income levels,40173,177084,18.5,Washington
+2012,Under 65,Hispanic,Both Sexes,All income levels,229121,535434,30,Washington
+2012,Under 65,White,Both Sexes,All income levels,240343,1146892,17.3,West Virginia
+2012,Under 65,Black,Both Sexes,All income levels,10286,39857,20.5,West Virginia
+2012,Under 65,Hispanic,Both Sexes,All income levels,6256,14941,29.5,West Virginia
+2012,Under 65,White,Both Sexes,All income levels,327002,3542217,8.5,Wisconsin
+2012,Under 65,Black,Both Sexes,All income levels,46670,265265,15,Wisconsin
+2012,Under 65,Hispanic,Both Sexes,All income levels,87440,249032,26,Wisconsin
+2012,Under 65,White,Both Sexes,All income levels,61403,347105,15,Wyoming
+2012,Under 65,Black,Both Sexes,All income levels,1579,4875,24.5,Wyoming
+2012,Under 65,Hispanic,Both Sexes,All income levels,16200,33777,32.4,Wyoming
