@@ -5,7 +5,6 @@ library(tidyverse)
 library(maps)
 library(ggplot2)
 library(sf)
-library(leaflet)
 library(viridis)
 
 total_data <- read_csv("total_data.csv")
@@ -71,9 +70,3 @@ server  <- function(input, output){
   })
 }
 shinyApp(ui = ui, server = server)  
-
-
-
-
-
-
