@@ -85,7 +85,8 @@ This map shows the how the number of people who are uninsured has changed over t
 ## Timeseries
 
 ### info
-the time series allows us to see how the trends per state have flucuated over the years. This is a similar data breakdown as the map, however allows you to see more of the numbers and a state-by-state comparison. can see the decrease again at the same time when obmanacare begain to take force. some states have steady rates (mass)
+The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
+can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
 --> NEED TO LOOK AT SOME MORE to make observations
 
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
