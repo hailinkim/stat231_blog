@@ -189,7 +189,7 @@ Another improvement to be made would be the quality of service delivery--specifi
 #### What is Intersectionality?
 Intersectionality is a research approach that explores the interaction of different social categories such as race, ethnicity, gender, class, religion and sexuality. It assumes that social categories intersect in dynamic ways to privilege or disadvantage different people depending on their characteristics and contexts.
 
-We believe the intersectionality is an important concept for understanding and responding to health inequalities. Because interactions between social identities can be multiplicative in effect, either positively or negatively, people who possess multiple minority identities are more likely to experience barriers to health care. In other words, health care inequity may disproportionately affect patients who are most in need of medical cae based on their social locations. Thus, understanding intersectionality would lead to precise insights about what drives health inequalities and who is affected by them.
+We believe the intersectionality is an important concept for understanding and responding to health inequalities. Because interactions between social identities can be multiplicative in effect, either positively or negatively, people who possess multiple minority identities are more likely to experience barriers to health care. In other words, health care inequity may disproportionately affect patients who are most in need of medical cae based on their social locations. Thus, understanding intersectionality would lead to precise insights about what drives health inequalities and who is affected by them. 
 
 ### Clustering
 
