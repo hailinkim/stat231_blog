@@ -250,7 +250,7 @@ medioids <- read_csv("data/medioids.csv", show_col_types = FALSE)
 medioids
 ```
 
-```{r, echo = TRUE, eval=FALSE}
+```{r, eval=FALSE, include = FALSE}
 pam_summary  <- demographic_coverage2 %>%
   ungroup() %>%
   mutate(cluster = pam_nhis$clustering) %>%
@@ -259,11 +259,11 @@ pam_summary  <- demographic_coverage2 %>%
 pam_summary$cluster_summary[5]
 ```
 
-```{r}
+```{r, eval = FALSE, include = FALSE}
 pam_summary <- readRDS("data/pam_summary.rds")
 ```
 
-```{r, echo = FALSE}
+```{r, eval = FALSE, include = FALSE}
 pam_summary$cluster_summary[5]
 ```
 
@@ -275,7 +275,7 @@ medioids_race %>%
   arrange(coverage, desc(income_sqrt))
 ```
 
-The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to be either American Indian and Alaska Native, Black, Asian, or Hispanic, except for cluster 7; possess less than a college degree except for cluster 9; their median income tends to be less than approximately $35K with the exception of White and Asian participants. Moreover, those with multiple social minority statuses are more likely to be not covered by health insurance than those with either the racial or educational aspect alone.
+We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their median income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
 
 ```{r, echo = TRUE, eval = FALSE}
 tsne_object <- Rtsne(gower_df, is_distance = TRUE)
@@ -288,42 +288,14 @@ tsne_df <- tsne_object$Y %>%
 To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
 
 ```{r}
-set.seed(1291)
-demographic_race <- demographic %>% 
-  group_by(race, coverage) %>% 
-  sample_n(75) %>% 
-  ungroup() %>% 
-  mutate(across(where(is.character), as.factor))
-gower_df <- daisy(demographic_race, metric = "gower")
-
-silhouette <- c()
-silhouette = c(silhouette, NA)
-for(i in 2:10){
-  pam_clusters = pam(as.matrix(gower_df),
-                      diss = TRUE,
-                      k = i)
-  silhouette = c(silhouette, pam_clusters$silinfo$avg.width)
-}
-pam_nhis = pam(gower_df, diss = TRUE, k = 3)
-
-tsne_object <- Rtsne(gower_df, is_distance = TRUE)
-
-tsne_df <- tsne_object$Y %>%
-  data.frame() %>%
-  setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis$clustering))
-cluster10 <- demographic_race %>%
-  ungroup() %>% 
-  mutate(cluster = factor(pam_nhis$clustering))
-tsne <- cluster10 %>% 
-  cbind(tsne_df) 
-tsne <- tsne[, -11] %>% 
-  filter(coverage == "Not covered")
+tsne <- read_csv("data/tsne.csv", show_col_types = FALSE) %>% 
+  filter(coverage == "Not covered") %>% 
+  mutate(across(where(is.character), as.factor),
+         cluster = as.factor(cluster))
 
 ui <- fluidPage(
   
   plotlyOutput("clustering")
-  # uiOutput("hover_info")
 )
 
 server <- function(input, output) {
@@ -351,7 +323,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-
+We visualized our multi-dimensional data into a two-dimensional plot by using t-SNE technique. We focus only on the uninsured individuals in this plot. Users can identify demographic and socioeconomic information of each respondent by hovering over each point. The clusters seem to overlap a bit, but they are fairly distinctive overall. Looking at the plot as well as the medioids table, we find that our clustering results are dominated by those who identify as straight. We then move on to run clustering on stratified random samples drawn from each sexual orientation group.
 
 # Conclusion
 
