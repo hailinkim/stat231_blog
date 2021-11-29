@@ -27,6 +27,12 @@ library(plotly)
 library(maps)
 library(sf)
 library(viridis)
+library(shinythemes)  
+library(bslib)
+library(thematic)
+library(shinyWidgets)  
+library(DT)
+library(ggrepel)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
@@ -150,6 +156,59 @@ knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600p
 
 ## Timeseries
 
+```{r}
+totalDATA <- read_csv("~/stat231/blog_aaa/Time-Series/totalDATA.csv", show_col_types = FALSE)
+
+# For widgets: 
+race_choices <- unique(totalDATA$Race)
+state_choices <- unique(totalDATA$State)
+
+
+###### ui ######
+ui <- navbarPage(
+  
+  ### TIME SERIES
+  tabPanel(
+    title = "Time Series",
+    sidebarLayout(
+      sidebarPanel(
+        
+        # race input
+        selectInput(
+          inputId = "race",
+          label = "Choose a race to plot:",
+          choices = race_choices),
+        
+        # state input
+        checkboxGroupInput(inputId = "state",
+                           label = "Include States:",
+                           choices = state_choices,
+                           selected = "Alabama",
+                           inline = TRUE)
+        
+      ),
+      mainPanel(plotOutput(outputId = "time"))
+    )
+  )
+)
+
+##### server #####
+server  <- function(input, output){
+  
+  output$time <- renderPlot({
+    data <- totalDATA %>% 
+      filter(Race %in% input$race, State %in% input$state)
+    # group =1
+    ggplot(data = data, aes_string(x="Year", y= "Percent_Uninsured"))+ 
+      geom_point(aes(color = State)) +
+      geom_line(aes(group = State, color = State))
+  }
+  )
+}
+shinyApp(ui = ui, server = server)  
+```
+
+
 ### info
 The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
 can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
@@ -177,7 +236,7 @@ knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
 
 
 ```{r shiny, echo=FALSE}
-ratings <- read_csv("blog-wordcloud/ratings.csv")
+ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
 # for selectInput
 type_choices <- unique(ratings$rating_type)
 
@@ -420,9 +479,6 @@ tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>%
 
 ui <- fluidPage(
   
-  # App title ----
-  titlePanel("Clustering"),
-  
   plotlyOutput("clustering")
   # uiOutput("hover_info")
 )
@@ -452,7 +508,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-### Discussion
+#### Discussion
 
 Intersectionality approach deepens our understanding of health inequities through the complexity of the real world. It moves us beyond interpreting barriers to health care as unique circumstances of individuals towards considering the fundamental drivers of systemic inequality and examining power dynamics behind it. Through our clustering analysis, we discovered that health inequality has disproportionately adverse effects on marginalized groups with multiple minority identities--for example, White gay without a college degree--as opposed to those with each identity in isolation--White straight men with Bachelor's degree. We learned that the convergence of race, sexual orientation, education level, and economic status advantages some and disadvantages others, placing some people at greater risk for poor health outcomes. It is thus important to be cognizant of the role of intersectionality in patients' experience of discrimination in the health care system; this understanding would lead to precise insights about what causes health disparities and who is affected by them. Considering social circumstances to which one belongs and power structures underpinning them will help address root causes of barriers to health care, allowing for more targeted and effective policies that can redress structural imbalance.
 
