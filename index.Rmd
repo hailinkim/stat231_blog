@@ -54,34 +54,33 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 ## Questions of Interest
 
-1. blah
-2. What are the factors that drive health care inequity? Does intersectionality play a role in exacerbating inequality even in health care settings?
-3. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
+1. What are the geographical differences of health care coverage in the United States and how has this changed over the years? 
+2. Have the rates of health care coverage changed at a consistent pattern across races? Do some races have a higher rates of coverage?
+3. What are the factors that drive health care inequity? Does intersectionality play a role in exacerbating inequality even in health care settings?
+4. Are Medicare patients getting the care needed? If not, what improvements should be made to Medicare to enhance the quality of health care?
+
+## Affordable Care Act
+The Affordable Care Act, which was passed under Obama administration in 2010 and began to take effect in 2014, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes.
 
 
 # Data
 
 **Dataset 1**
 
-* [Link to the dataset]()
+* [Link to the dataset](https://www2.census.gov/programs-surveys/sahie/datasets/time-series/estimates-acs/)
 
-* Description:
+* Description: These data sets are from the United States Census Bureau. There is one dataset for each of the years from 2012-2019. Each data set contains information on the amount of people insured and uninsured in each state, with an addition of break downs by different demographic groups. They contain information on age, race, gender, income group, state, and county. The data set was in .csv format.
+
+* These datasets were used for both the map and the time series. Each of the demographic variables had an option that encapsulated all people in the state (i.e "all races" or "both genders"). For this project, all people in each state were evaluated. A race breakdown was used for one visualization. Additionally, the numbers chosen to be reported from this data set are the percent of people who are uninsured in each state. The percent was chosen because it allows for a better state-by-state comparison rather than just total numbers of people, since not all states have the same population.
 
 
 **Dataset 2**
-
-* [Link to the dataset](https://www2.census.gov/programs-surveys/sahie/datasets/time-series/estimates-acs/)
-
-* Description: (to be added)
-
-
-**Dataset 3**
 * [Link to the dataset](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
 
 * Description: The National Center for Health Statistics, which is part of the CDC, conducts the National Health Interview Survey annually to monitor the health of the United States population. We use the survey data that sampled adults aged 18 years old or older. It cotains a wide variety of variables, including respondents' demographic information, socioeconomic status, and their barriers to accessing and using appropriate health care, which we choose to focus on. Each row in the data set represents a sample adult. Given the special nature of survey data that the responses are categorized into number codes, we wrangled them to be categorical variables with more descriptive values. Our final data set thus contains a mix of quantitative and categorical variables, and we deploy appropriate clustering algorithm for such data.
 
 
-**Dataset 4**
+**Dataset 3**
 
 * [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
 
@@ -166,6 +165,11 @@ shinyApp(ui = ui, server = server)
 knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600px")
 ```
 
+### info
+This app depicts how the percent of uninsured people has changed in the continental United States over the years 2012-2019. The redder states indicate a lower percentage of people that are uninsured and a bluer color indicates a higher percentage of people that are uninsured. After watching this animation, it is clear that between the years of 2014 and 2015, there is a pretty significant decrease in the percentage of people who are uninsured. This directly aligns with the introduction of the Affordable Care Act and Obamacare in 2014. This tells that the Affordable Care Act did do it's job of allowing more people to obtain healthcare, but as stated before this does not mean that everyone has the same access to healthcare.
+
+Overall, there is a drastic difference in the percent of people that are uninsured between 2012 and 2019. The northeast, eastern midwest, and the west coast tend to have lower rates of uninsured people, whereas the south and the western middle of the country have higher rates. Could this potentially be due to political aspects? Most liberal states are the north east and west coast(where more people have insurance), where more conservative states are typically the south and middle of the country states(where less people have insurance). This is a question out of the domain for this project, but definetly something that could be researched more in the future. 
+
 ## Timeseries
 
 ```{r}
@@ -222,9 +226,11 @@ shinyApp(ui = ui, server = server)
 
 
 ### info
-The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
-can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
---> NEED TO LOOK AT SOME MORE to make observations
+The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). This visualization allows you to see, again, the decrease that happens when the Affordable Care act begins to take force; almost all states have a decrease from about 2013-2016 no matter what percentage they originally started at. Some states have a pretty consistant low rate, like Massachusetts and DC. Compared to the other states they look seemingly unchanged, but when zoomed in (only that state selected), you can see that they too have a drop from 2013-2016. 
+
+When different races are selected, the overall layout of the graphs don't really change too much: most of the slopes stay the same and the placement of each state as well. The one major difference is the scale of the graph; when switch from race to race, the scale on the y-axis changes. With white, the highest number shown on the scale is about 15%. When switched to black, it goes up to 20%. Then with hispanic it goes up to 30%. This shows that although the change of rates of uninsured people has stayed pretty consistent over all 3 races, the proportion is not the same. Hispanic people are uninsured at a higher rate than both black and white individuals. White people have the lowest proportion of individuals who are uninsured and black people fall in the middle. 
+
+This tells us that the Affordable Care Act effected these 3 racial groups the same way; none of them had a significantly different proportion of people who were able to obtain health insurance in comparison to the other groups. This is important information because it shows that the Affordable Care Act was equal, but not equitable. Hispanic and Black groups needed access to health insurance at a higher rate than White people did -- hispanics needed it at the highest proportion. 
 
 
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
@@ -235,7 +241,11 @@ can see the decrease again at the same time when obamacare began to take force. 
 Medicare helps provide healthcare coverage to U.S. citizens who are 65 years of age or older, as well as people with certain disabilities. Medicare consists of four parts, and we focus on Part C: Medical Advantage. Medical Advantage is an all-in-one alternative to Original Medicare, which includes drug coverage and extra benefits not covered by Original Medicare. These plans are provided by contracting private insurance companies instead of the federal government.
 
 #### Has Medicare been effective in delivering quality health care?
-The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes. Thus, we used Medicare quality ratings data to contemplate about how to strengthen public insurance. We believe that examining reviews for Medicare would be crucial for ensuring that its beneficiaries are able to access the medical care they need. 
+The Affordable Care Act, which was passed under Obama administration, attempted to expand healthcare coverage to low-income Americans of up to 138% of the poverty line. Yet, obtaining health insurance does not necessarily ensure better access to health care. It is reported that Medicare patients still face barriers to care, such as delayed treatment of chronic conditions, resulting in poorer health outcomes.  (put this in the intro ^^^^)
+
+
+
+Thus, we used Medicare quality ratings data to contemplate about how to strengthen public insurance. We believe that examining reviews for Medicare would be crucial for ensuring that its beneficiaries are able to access the medical care they need. 
 
 ### Wordcloud
 
