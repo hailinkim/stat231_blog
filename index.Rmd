@@ -24,6 +24,15 @@ library(ggplot2)
 library(ggforce)
 library(shiny)
 library(plotly)
+library(maps)
+library(sf)
+library(viridis)
+library(shinythemes)  
+library(bslib)
+library(thematic)
+library(shinyWidgets)  
+library(DT)
+library(ggrepel)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
@@ -54,11 +63,9 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 **Dataset 1**
 
-* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+* [Link to the dataset]()
 
-* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. The data set was in .csv format, and we compared data over time-from 2016 to 2022.
-
-* The dataset contains various metrics of health care quality for each Medicare plan, so it allows users to compare one plan to another based on those metrics. Each measure reflects beneficiaries' perspectives of the care they received, and we focus on measures related to preventive services, treatments, and consumer satisfaction.
+* Description:
 
 
 **Dataset 2**
@@ -68,25 +75,158 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 * Description: (to be added)
 
 
+**Dataset 3**
+* [Link to the dataset](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
+
+* Description: The National Center for Health Statistics, which is part of the CDC, conducts the National Health Interview Survey annually to monitor the health of the United States population. We use the survey data that sampled adults aged 18 years old or older. It cotains a wide variety of variables, including respondents' demographic information, socioeconomic status, and their barriers to accessing and using appropriate health care, which we choose to focus on. Each row in the data set represents a sample adult. Given the special nature of survey data that the responses are categorized into number codes, we wrangled them to be categorical variables with more descriptive values. Our final data set thus contains a mix of quantitative and categorical variables, and we deploy appropriate clustering algorithm for such data.
+
+
+**Dataset 4**
+
+* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+
+* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. The data set was in .csv format, and we compared data over time-from 2016 to 2022.
+
+* The dataset contains various metrics of health care quality for each Medicare plan, so it allows users to compare one plan to another based on those metrics. Each measure reflects beneficiaries' perspectives of the care they received, and we focus on measures related to preventive services, treatments, and consumer satisfaction.
+
 
 # Visualizations
 
 ## Map
 
-```{r shiny-map}
+```{r}
+total_data <- read_csv("~/stat231/blog_aaa/Map_Of_Healthcare/total_data.csv", 
+                       show_col_types = FALSE)
+
+# map wrangling
+data(state)
+state_info <- data.frame(Region = state.region,
+                         # Match state variable name in map data
+                         ID = tolower(state.name),
+                         # Match state variable name in summary data
+                         State = state.abb)
+
+state_df <- map_data("state")
+usa_map <- maps::map("state",
+                     plot = FALSE, fill = TRUE) %>%
+  st_as_sf()
+
+data_map <- usa_map %>%
+  left_join(state_info, by = "ID") %>%
+  left_join(total_data, by = c("ID" = "state"))
+
+
+###### ui ######
+ui <- navbarPage(
+  title = "blog",
+  # tab 2
+  tabPanel(
+    title = "Map",
+    sidebarLayout(
+      sidebarPanel(
+        sliderInput(
+        # slider for year
+        inputId = "animation",
+          label = "Select Years:",
+          value = 2012,
+          min = 2012,
+          max = 2019,
+          step = NULL,
+          round = TRUE,
+          ticks = TRUE,
+          animate = 
+            animationOptions(interval = 1000, loop = TRUE))
+        ),
+      mainPanel(
+        plotOutput(outputId = "map"))
+      )
+    )
+)
+
+
+##### server #####
+server  <- function(input, output){
+
+  output$map <- renderPlot({
+    dat <- data_map %>%
+      filter(Year %in% input$animation)
+    
+    ggplot(data = dat, aes(fill = Percent_Uninsured)) +
+    geom_sf() +
+    scale_fill_viridis(option = "turbo", direction = -1) +
+    theme_void()
+    
+  })
+}
+shinyApp(ui = ui, server = server)  
+```
+
+
+```{r shiny-map, eval = FALSE}
 knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600px")
 ```
 
 ## Timeseries
 
-<<<<<<< HEAD
+```{r}
+totalDATA <- read_csv("~/stat231/blog_aaa/Time-Series/totalDATA.csv", show_col_types = FALSE)
+
+# For widgets: 
+race_choices <- unique(totalDATA$Race)
+state_choices <- unique(totalDATA$State)
+
+
+###### ui ######
+ui <- navbarPage(
+  
+  ### TIME SERIES
+  tabPanel(
+    title = "Time Series",
+    sidebarLayout(
+      sidebarPanel(
+        
+        # race input
+        selectInput(
+          inputId = "race",
+          label = "Choose a race to plot:",
+          choices = race_choices),
+        
+        # state input
+        checkboxGroupInput(inputId = "state",
+                           label = "Include States:",
+                           choices = state_choices,
+                           selected = "Alabama",
+                           inline = TRUE)
+        
+      ),
+      mainPanel(plotOutput(outputId = "time"))
+    )
+  )
+)
+
+##### server #####
+server  <- function(input, output){
+  
+  output$time <- renderPlot({
+    data <- totalDATA %>% 
+      filter(Race %in% input$race, State %in% input$state)
+    # group =1
+    ggplot(data = data, aes_string(x="Year", y= "Percent_Uninsured"))+ 
+      geom_point(aes(color = State)) +
+      geom_line(aes(group = State, color = State))
+  }
+  )
+}
+shinyApp(ui = ui, server = server)  
+```
+
+
 ### info
 The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
 can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
 --> NEED TO LOOK AT SOME MORE to make observations
 
-=======
->>>>>>> fa8d6a1e39f15dd6112975e264cbda6fbec3cbe7
+
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
 
 ### Background
@@ -101,14 +241,14 @@ The Affordable Care Act, which was passed under Obama administration, attempted 
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
-```{r}
+```{r, eval = FALSE}
 knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
   height = "600px")
 ```
 
 
-```{r shiny, echo=FALSE, eval = FALSE}
-ratings <- read_csv("blog-wordcloud/ratings.csv")
+```{r shiny, echo=FALSE}
+ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
 # for selectInput
 type_choices <- unique(ratings$rating_type)
 
@@ -283,7 +423,7 @@ medioids_race %>%
   arrange(coverage, desc(income_sqrt))
 ```
 
-We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their median income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
+We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
 
 ```{r, echo = TRUE, eval = FALSE}
 tsne_object <- Rtsne(gower_df, is_distance = TRUE)
@@ -296,7 +436,7 @@ tsne_df <- tsne_object$Y %>%
 To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
 
 ```{r}
-tsne <- read_csv("data/tsne.csv", show_col_types = FALSE) %>% 
+tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
          cluster = as.factor(cluster))
@@ -310,7 +450,7 @@ server <- function(input, output) {
   
   output$clustering <- renderPlotly({
     my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
-    g <- ggplot(data = tsne, aes(x = X, y = Y, 
+    g <- ggplot(data = tsne_race, aes(x = X, y = Y, 
                                  text = paste(
                                    "Coverage Status: ", coverage,
                                    "\nRace: ", race,
@@ -340,7 +480,49 @@ medioids_sex %>%
   arrange(coverage, desc(income_sqrt))
 ```
 
-We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; none of them have college degrees;  
+
+We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; none of them have college degrees; they have lower income than those insured, except for cluster 6. We observe the interaction of different social categories being in effect when it comes to barriers to health care.
+
+```{r}
+tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
+  filter(coverage == "Not covered") %>% 
+  mutate(across(where(is.character), as.factor),
+         cluster = as.factor(cluster))
+
+ui <- fluidPage(
+  
+  plotlyOutput("clustering")
+  # uiOutput("hover_info")
+)
+
+server <- function(input, output) {
+  
+  output$clustering <- renderPlotly({
+    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
+    g <- ggplot(data = tsne_sex, aes(x = X, y = Y, 
+                                 text = paste(
+                                   "Coverage Status: ", coverage,
+                                   "\nRace: ", race,
+                                   "\nSexual Orientation: ", sex_orientation,
+                                   "\nEducation level: ", edu,
+                                   "\nCitizenship status: ", citizen
+                                   )
+                                 )) +
+      geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+      theme_bw() +
+      scale_color_manual(values=c(my_pal)) +
+      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+    ggplotly(g, tooltip = "text")
+  })
+  
+}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+#### Discussion
+
+Intersectionality approach deepens our understanding of health inequities through the complexity of the real world. It moves us beyond interpreting barriers to health care as unique circumstances of individuals towards considering the fundamental drivers of systemic inequality and examining power dynamics behind it. Through our clustering analysis, we discovered that health inequality has disproportionately adverse effects on marginalized groups with multiple minority identities--for example, White gay without a college degree--as opposed to those with each identity in isolation--White straight men with Bachelor's degree. We learned that the convergence of race, sexual orientation, education level, and economic status advantages some and disadvantages others, placing some people at greater risk for poor health outcomes. It is thus important to be cognizant of the role of intersectionality in patients' experience of discrimination in the health care system; this understanding would lead to precise insights about what causes health disparities and who is affected by them. Considering social circumstances to which one belongs and power structures underpinning them will help address root causes of barriers to health care, allowing for more targeted and effective policies that can redress structural imbalance.
 
 # Conclusion
 

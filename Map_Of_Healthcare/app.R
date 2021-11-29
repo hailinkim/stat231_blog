@@ -5,9 +5,9 @@ library(tidyverse)
 library(maps)
 library(ggplot2)
 library(sf)
-library(leaflet)
 library(viridis)
 
+<<<<<<< HEAD
 data_map <- read_csv("data_map.csv")
 # # Import data 
 # sahie_2019 <- read_csv("sahie_2019.csv")
@@ -449,6 +449,26 @@ data_map <- read_csv("data_map.csv")
 # For widgets: 
 race_choices <- unique(totalDATA$Race)
 state_choices <- unique(totalDATA$State)
+=======
+total_data <- read_csv("total_data.csv")
+
+# map wrangling
+data(state)
+state_info <- data.frame(Region = state.region,
+                         # Match state variable name in map data
+                         ID = tolower(state.name),
+                         # Match state variable name in summary data
+                         State = state.abb)
+
+state_df <- map_data("state")
+usa_map <- maps::map("state",
+                     plot = FALSE, fill = TRUE) %>%
+  st_as_sf()
+
+data_map <- usa_map %>%
+  left_join(state_info, by = "ID") %>%
+  left_join(total_data, by = c("ID" = "state"))
+>>>>>>> 97d7f27804d78ee96ad82a40b97c58567621e7e4
 
 
 ###### ui ######
@@ -483,10 +503,10 @@ ui <- navbarPage(
 server  <- function(input, output){
 
   output$map <- renderPlot({
-    dat <- data_map%>%
+    dat <- data_map %>%
       filter(Year %in% input$animation)
     
-    ggplot(data= dat, aes(fill = Percent_Uninsured)) +
+    ggplot(data = dat, aes(fill = Percent_Uninsured)) +
     geom_sf() +
     scale_fill_viridis(option = "turbo", direction = -1) +
     theme_void()
@@ -494,9 +514,3 @@ server  <- function(input, output){
   })
 }
 shinyApp(ui = ui, server = server)  
-
-
-
-
-
-
