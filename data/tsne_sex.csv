@@ -1,0 +1,181 @@
+sex,sex_orientation,race,edu,coverage,citizen,income_sqrt,cluster,X,Y
+Female,Bisexual,Hispanic,Bachelor's degree,Covered,Non-US Citizen,223.60679774997897,1,2.367948439470506,8.253702392694802
+Female,Bisexual,White,High school graduate,Covered,US Citizen,223.60679774997897,2,4.264116766697484,5.768119064122567
+Female,Bisexual,White,Master's degree,Covered,US Citizen,208.806130178211,2,5.094777610409983,5.348998189860949
+Female,Bisexual,White,Doctoral degree,Covered,US Citizen,306.59419433511783,2,5.523496178468597,5.695039349685823
+Female,Bisexual,Hispanic,High school graduate,Covered,US Citizen,244.94897427831782,2,2.8544084622568326,6.88868810442043
+Male,Bisexual,White,Associate degree,Covered,Non-US Citizen,264.5751311064591,3,5.9372280392411385,-1.6287925796837424
+Female,Bisexual,White,Associate degree,Covered,US Citizen,264.5751311064591,2,5.617991402730938,5.096289496341437
+Female,Bisexual,Black/African American,High school graduate,Covered,US Citizen,158.11388300841898,2,3.4413545672533234,6.674123809828777
+Female,Bisexual,White,High school graduate,Covered,US Citizen,173.20508075688772,2,4.2035961859216995,5.833037699805873
+Female,Bisexual,Black/African American,"Some college, no degree",Covered,US Citizen,83.66600265340756,2,4.17208258447113,7.549463201462882
+Female,Bisexual,White,Bachelor's degree,Covered,US Citizen,104.88088481701516,2,4.200927522588407,4.696586008826033
+Male,Bisexual,Hispanic,High school graduate,Covered,US Citizen,141.4213562373095,2,1.017951318080917,6.750848081754275
+Female,Bisexual,Black/African American,High school graduate,Covered,US Citizen,158.11388300841898,2,3.390769552674137,6.601255910979952
+Female,Bisexual,White,"Some college, no degree",Covered,US Citizen,141.4213562373095,2,4.987577500045375,6.719840371339758
+Male,Bisexual,Hispanic,Bachelor's degree,Covered,US Citizen,314.00636936215164,4,0.35839499348666765,6.6613003214633375
+Female,Bisexual,Hispanic,"Some college, no degree",Covered,US Citizen,469.041575982343,2,3.958600798927366,8.266843112839396
+Male,Bisexual,White,Associate degree,Covered,US Citizen,316.22776601683796,3,5.479943333175407,-1.354329911882653
+Female,Bisexual,White,Associate degree,Covered,US Citizen,424.26406871192853,2,5.833251119275437,4.998602549513272
+Female,Bisexual,White,High school graduate,Covered,US Citizen,316.22776601683796,2,4.388622493365367,5.716337970159752
+Female,Bisexual,White,Master's degree,Covered,US Citizen,316.22776601683796,2,5.224203393812475,5.286973011858261
+Female,Bisexual,White,High school graduate,Covered,US Citizen,325.5764119219941,2,4.372930353322408,5.730484848588771
+Female,Bisexual,Asian,"Some college, no degree",Covered,Non-US Citizen,176.0681686165901,2,2.3672364613535355,8.767316239531446
+Male,Bisexual,Asian,Bachelor's degree,Covered,US Citizen,184.39088914585776,4,-0.13672053859090785,6.774646924902233
+Female,Bisexual,White,"Some college, no degree",Covered,US Citizen,173.20508075688772,2,4.997501559430186,6.626082169617745
+Female,Bisexual,American Indian and Alaska Native,High school graduate,Covered,US Citizen,158.11388300841898,2,3.3785559811616253,6.443537042379308
+Male,Bisexual,Hispanic,High school graduate,Covered,US Citizen,273.8612787525831,2,0.9270072538416063,6.682345313517753
+Female,Bisexual,Hispanic,"Some college, no degree",Covered,US Citizen,144.9137674618944,2,3.8614087054851343,7.991849520702152
+Female,Bisexual,White,GED or equivalent,Covered,US Citizen,187.08286933869707,2,5.228137830504246,5.9017088197225585
+Female,Bisexual,White,Bachelor's degree,Covered,US Citizen,187.08286933869707,2,4.274155378856445,4.733345568611604
+Male,Bisexual,Asian,Doctoral degree,Covered,Non-US Citizen,128.68177804180357,2,1.1654258988063944,8.578304092842574
+Female,Bisexual,White,Less than a high school diploma,Not covered,US Citizen,171.8865905182833,5,-7.13256817137687,-0.7150576113664414
+Male,Bisexual,White,"Some college, no degree",Not covered,US Citizen,202.48456731316588,6,0.07129969649852272,-5.141121871613935
+Female,Bisexual,White,"Some college, no degree",Not covered,US Citizen,135.38463723776047,5,-6.36512702759036,-1.3340922566939812
+Female,Bisexual,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,89.37561188601732,7,-6.703427493811331,-5.150150412792218
+Male,Bisexual,White,"Some college, no degree",Not covered,US Citizen,309.83866769659335,6,-0.028619952997723935,-5.234381831381848
+Female,Bisexual,Black/African American,Associate degree,Not covered,US Citizen,194.93588689617928,5,-4.953753819630591,0.17116394520728004
+Female,Bisexual,White,"Some college, no degree",Not covered,US Citizen,264.5751311064591,5,-6.393736169946858,-1.5161647426441545
+Female,Bisexual,Black/African American,"Some college, no degree",Not covered,US Citizen,172.8583234906552,8,-5.283014696607943,-1.1419952705885505
+Female,Bisexual,White,High school graduate,Not covered,US Citizen,101.9803902718557,5,-6.003149410207942,-0.1592916546604869
+Female,Bisexual,Hispanic,"Some college, no degree",Not covered,US Citizen,173.20508075688772,5,-5.840281754549709,-2.5886826724736407
+Female,Bisexual,Black/African American,Less than a high school diploma,Not covered,US Citizen,0,8,-5.5574598336029855,0.619674010735146
+Female,Bisexual,White,GED or equivalent,Not covered,US Citizen,113.55175031676086,5,-7.100516402549284,-0.1306694361367143
+Male,Bisexual,White,"Some college, no degree",Not covered,US Citizen,94.86832980505137,6,0.1671402770240969,-5.3583440411230034
+Male,Bisexual,Black/African American,High school graduate,Not covered,US Citizen,387.2983346207417,5,-1.4611956625222118,-3.591692433581933
+Female,Bisexual,American Indian and Alaska Native,"Some college, no degree",Not covered,US Citizen,148.32396974191326,5,-5.600217046224666,-1.9229390962709851
+Male,Bisexual,White,High school graduate,Not covered,US Citizen,200,5,-0.3319256088741975,-3.587728821720844
+Female,Bisexual,Black/African American,High school graduate,Not covered,US Citizen,161.24515496597098,5,-4.927349900973364,0.062265585355948484
+Female,Bisexual,White,High school graduate,Not covered,US Citizen,200,5,-5.817466068583361,-0.2597562588870823
+Female,Bisexual,White,Associate degree,Not covered,US Citizen,141.4213562373095,5,-6.623451580887366,-0.08396920179377035
+Female,Bisexual,Hispanic,"Some college, no degree",Not covered,US Citizen,244.94897427831782,5,-5.832619033525005,-2.649438378430634
+Female,Bisexual,White,Less than a high school diploma,Not covered,US Citizen,109.54451150103323,5,-7.184714413723491,-0.6174749227046935
+Male,Bisexual,White,High school graduate,Not covered,US Citizen,187.08286933869707,5,-0.35026804021963576,-3.5666027380644794
+Female,Bisexual,White,"Some college, no degree",Not covered,US Citizen,176.0681686165901,5,-6.3281477720857024,-1.3521901570189012
+Male,Bisexual,White,Associate degree,Not covered,US Citizen,207.3644135332772,5,-0.06119687702760657,-4.271642970278708
+Male,Bisexual,American Indian and Alaska Native,High school graduate,Not covered,US Citizen,109.54451150103323,5,-1.1400807411601521,-3.7270229992734656
+Female,Bisexual,White,Less than a high school diploma,Not covered,US Citizen,154.91933384829667,5,-7.158304653687862,-0.6875796028833457
+Female,Bisexual,Hispanic,"Some college, no degree",Not covered,US Citizen,159.53056133543816,5,-5.847974106838037,-2.584067148299051
+Female,Bisexual,White,"Some college, no degree",Not covered,US Citizen,223.60679774997897,5,-6.360926358915253,-1.4488818128344134
+Female,Bisexual,White,Associate degree,Not covered,US Citizen,187.08286933869707,5,-6.569900670599955,-0.09680187152575083
+Male,Bisexual,White,High school graduate,Not covered,US Citizen,288.09720581775866,5,-0.2708805678469478,-3.6066813903856305
+Male,Gay/Lesbian,White,Master's degree,Covered,US Citizen,360.5551275463989,4,-0.856737943679785,3.686889982545487
+Female,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,392.76837958267464,4,2.0615516641438876,3.8231373402905637
+Male,Gay/Lesbian,White,Associate degree,Covered,US Citizen,200,4,-0.21749597598470763,2.404515654322682
+Female,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,130.38404810405297,1,2.5162117827052675,3.8571809424553605
+Male,Gay/Lesbian,White,Associate degree,Covered,US Citizen,158.11388300841898,4,-0.24996758296432106,2.2990964053022105
+Male,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,418.33001326703777,4,-0.11781344327872695,4.198343803015674
+Female,Gay/Lesbian,White,High school graduate,Covered,US Citizen,216.79483388678798,2,2.8402482733921843,3.0045395824963066
+Female,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,178.88543819998318,1,2.4526811576115137,3.795343664168094
+Male,Gay/Lesbian,White,"Some college, no degree",Covered,US Citizen,122.47448713915891,4,-1.3541177288684614,2.806094788661634
+Male,Gay/Lesbian,Hispanic,High school graduate,Covered,US Citizen,232.91414727319594,4,0.35635597381636036,5.764602223148371
+Male,Gay/Lesbian,Black/African American,Doctoral degree,Covered,US Citizen,216.79483388678798,4,-1.7194917146634645,4.570973404609629
+Male,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,212.13203435596427,4,-0.09276581644028599,4.036038473264059
+Male,Gay/Lesbian,Asian,Bachelor's degree,Covered,US Citizen,212.13203435596427,4,-0.5038382472650248,5.391748331451917
+Male,Gay/Lesbian,White,Master's degree,Covered,US Citizen,324.037034920393,4,-0.7952630773381603,3.6202031727163924
+Male,Gay/Lesbian,Hispanic,Bachelor's degree,Covered,Non-US Citizen,219.08902300206645,4,-2.538861187875034,-8.340176266948495
+Female,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,221.35943621178654,1,2.352152154923699,3.768292386145661
+Female,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,187.08286933869707,1,2.4460607903722718,3.7847232249792473
+Female,Gay/Lesbian,Hispanic,Bachelor's degree,Covered,US Citizen,441.5880433163923,4,1.6435255340101875,4.699578820463337
+Male,Gay/Lesbian,White,GED or equivalent,Covered,US Citizen,244.94897427831782,4,-0.6263344828549317,3.145751066552002
+Male,Gay/Lesbian,White,"Some college, no degree",Covered,US Citizen,212.13203435596427,4,-1.2537737319471534,2.9700609993271185
+Male,Gay/Lesbian,White,"Some college, no degree",Covered,US Citizen,469.041575982343,4,-1.5404712468599022,3.287127266713883
+Female,Gay/Lesbian,White,Associate degree,Covered,US Citizen,412.31056256176606,3,1.8831786655259826,2.6402380022992733
+Male,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,313.5889028648814,4,-0.1165080337615693,4.111117196895832
+Male,Gay/Lesbian,White,Associate degree,Covered,US Citizen,230.21728866442677,4,-0.1677017340510516,2.468723507536437
+Male,Gay/Lesbian,White,GED or equivalent,Covered,US Citizen,173.20508075688772,4,-0.685075174945487,2.9494924981815385
+Female,Gay/Lesbian,White,Master's degree,Covered,US Citizen,264.5751311064591,4,2.344596187878619,3.050642567412283
+Female,Gay/Lesbian,Black/African American,Associate degree,Covered,US Citizen,187.08286933869707,8,1.5666006094622371,1.5068218719935802
+Male,Gay/Lesbian,White,Bachelor's degree,Covered,US Citizen,244.94897427831782,4,-0.09740114035597808,4.043110303027801
+Male,Gay/Lesbian,Hispanic,Bachelor's degree,Covered,US Citizen,331.66247903554,4,0.11562578289305343,5.261081674244906
+Male,Gay/Lesbian,White,High school graduate,Covered,US Citizen,300,4,-0.13617452295845964,3.2927554333052345
+Male,Gay/Lesbian,Hispanic,High school graduate,Not covered,Non-US Citizen,187.08286933869707,7,-3.3315657527465277,-7.2290699986196065
+Male,Gay/Lesbian,White,"Some college, no degree",Not covered,US Citizen,346.41016151377545,6,-1.1038118354931994,-5.472687357458385
+Female,Gay/Lesbian,Hispanic,"Some college, no degree",Not covered,US Citizen,278.4582553992609,8,-4.445076504448145,-2.9496668093792855
+Female,Gay/Lesbian,Black/African American,"Some college, no degree",Not covered,US Citizen,273.8612787525831,8,-3.9427617266037287,-1.217612285523224
+Female,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,144.9137674618944,5,-2.251955733493236,-1.7225410301612385
+Female,Gay/Lesbian,White,Bachelor's degree,Not covered,US Citizen,158.11388300841898,8,-2.421350243979361,-0.4873954331243583
+Male,Gay/Lesbian,Black/African American,GED or equivalent,Not covered,US Citizen,44.721359549995796,8,-2.4595750717066496,0.8089287171335503
+Female,Gay/Lesbian,American Indian and Alaska Native,"Some college, no degree",Not covered,US Citizen,126.49110640673517,8,-4.225818124296072,-1.9943278893424379
+Male,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,161.24515496597098,5,-0.852832598462032,-2.7234450887364403
+Male,Gay/Lesbian,White,"Some college, no degree",Not covered,US Citizen,0,6,-0.9348231532673857,-5.715486229473543
+Female,Gay/Lesbian,White,Associate degree,Not covered,Non-US Citizen,126.49110640673517,7,-1.492622188739451,-0.48712001196502047
+Male,Gay/Lesbian,Hispanic,"Some college, no degree",Not covered,US Citizen,248.99799195977465,6,-2.3658748217698995,-5.559490522323
+Female,Gay/Lesbian,American Indian and Alaska Native,Bachelor's degree,Not covered,US Citizen,216.79483388678798,8,-3.1096922587683116,-0.5393831897345449
+Female,Gay/Lesbian,Black/African American,Bachelor's degree,Not covered,US Citizen,178.88543819998318,8,-3.3231459285644047,-0.4109163604698148
+Female,Gay/Lesbian,Black/African American,Associate degree,Not covered,US Citizen,202.48456731316588,8,-3.686588753015044,-0.2568539617584585
+Female,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,283.4201827675651,5,-2.2134855634421013,-1.7099363144256605
+Female,Gay/Lesbian,White,Master's degree,Not covered,Non-US Citizen,273.8612787525831,5,-1.4285184821436896,-0.47956806748732234
+Male,Gay/Lesbian,White,"Some college, no degree",Not covered,US Citizen,278.71311415145146,6,-1.1243717329114706,-5.398280607613721
+Male,Gay/Lesbian,Black/African American,High school graduate,Not covered,Non-US Citizen,141.4213562373095,8,-2.984906242010195,-7.140602771897478
+Female,Gay/Lesbian,Black/African American,High school graduate,Not covered,US Citizen,244.94897427831782,8,-3.354876010215607,-1.294314687711444
+Male,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,200,5,-0.8146053292035099,-2.7732619516550003
+Male,Gay/Lesbian,American Indian and Alaska Native,"Some college, no degree",Not covered,US Citizen,194.93588689617928,6,-2.068508913621067,-5.283113801391709
+Male,Gay/Lesbian,White,Associate degree,Not covered,US Citizen,154.90319557710873,6,-0.8235151770370573,-2.107108198229056
+Female,Gay/Lesbian,Hispanic,High school graduate,Not covered,US Citizen,158.11388300841898,8,-3.536086546383084,-2.7752047039004633
+Female,Gay/Lesbian,Hispanic,High school graduate,Not covered,US Citizen,181.6590212458495,8,-3.5497867700415373,-2.785745472398992
+Male,Gay/Lesbian,Hispanic,"Some college, no degree",Not covered,US Citizen,222.32633672149595,6,-2.379264118583947,-5.554334898039862
+Male,Gay/Lesbian,Hispanic,Master's degree,Not covered,Non-US Citizen,141.4213562373095,7,-3.5052129646160926,-7.333823201648146
+Male,Gay/Lesbian,White,High school graduate,Not covered,US Citizen,173.20508075688772,5,-0.8364994489851314,-2.7352363342711103
+Female,Gay/Lesbian,Black/African American,Bachelor's degree,Not covered,US Citizen,200,8,-3.3385066753756742,-0.4181961140565951
+Male,Gay/Lesbian,White,"Some college, no degree",Not covered,US Citizen,291.547594742265,6,-1.115310994565744,-5.408811927099518
+Female,Straight,Black/African American,Associate degree,Covered,US Citizen,34.64101615137755,1,3.002570740117495,0.7960800558450065
+Female,Straight,White,High school graduate,Covered,US Citizen,195.86985475054604,1,4.1848573890758765,1.2721476545315824
+Male,Straight,White,"Some college, no degree",Covered,US Citizen,134.16407864998737,6,3.6285327301688914,-2.3348941788780464
+Male,Straight,White,Associate degree,Covered,US Citizen,331.66247903554,3,4.565002965993448,-1.6596347904642554
+Female,Straight,White,Master's degree,Covered,US Citizen,282.842712474619,1,5.302112653208894,1.9639510171829435
+Male,Straight,White,High school graduate,Covered,US Citizen,141.4213562373095,3,3.331131152787894,-1.4475000835454654
+Female,Straight,White,"Some college, no degree",Covered,US Citizen,200,1,5.581324591302592,1.3022466704631694
+Male,Straight,Hispanic,GED or equivalent,Covered,US Citizen,173.20508075688772,3,4.6763803018595,-3.4799113482665462
+Female,Straight,White,GED or equivalent,Covered,US Citizen,313.04951684997053,1,5.445881114966149,2.0013390852854975
+Male,Straight,White,Master's degree,Covered,Non-US Citizen,300,3,5.527975381232104,-2.4795951969520007
+Male,Straight,White,High school graduate,Covered,US Citizen,109.54451150103323,3,3.3182057000888654,-1.4046976868253986
+Female,Straight,White,Associate degree,Covered,US Citizen,173.20508075688772,1,4.923637764230659,0.7044544017870042
+Female,Straight,White,High school graduate,Covered,US Citizen,268.32815729997475,1,4.215630652126328,1.4845258791631657
+Female,Straight,White,Associate degree,Covered,US Citizen,126.49110640673517,1,4.903335060177445,0.6613180231525857
+Female,Straight,White,High school graduate,Covered,US Citizen,184.39088914585776,2,4.210326145180057,1.251231826339702
+Male,Straight,White,"Some college, no degree",Covered,US Citizen,221.30747840956482,6,3.716536467681511,-2.37439789442978
+Male,Straight,White,Associate degree,Covered,US Citizen,141.4213562373095,3,4.267157445759952,-1.4928790117673068
+Female,Straight,White,High school graduate,Covered,US Citizen,63.245553203367585,2,4.106656868164188,1.0170354431226065
+Female,Straight,Black/African American,High school graduate,Covered,US Citizen,94.86832980505137,2,3.2684871409150604,1.0086418102865677
+Female,Straight,Hispanic,"Some college, no degree",Covered,US Citizen,181.6590212458495,1,6.603582218368458,1.4730384959366984
+Male,Straight,White,High school graduate,Covered,US Citizen,187.08286933869707,3,3.323779708777227,-1.4663841790701626
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,187.08286933869707,1,4.553019605281527,2.512771845190355
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,406.0012315252258,1,4.792771657797974,2.765973557802511
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,316.22776601683796,1,4.796672203788787,2.61045720470147
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,314.6426544510455,1,4.799405656293471,2.6074574912886628
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,212.13203435596427,1,4.604553139103911,2.525710863539354
+Female,Straight,Hispanic,Bachelor's degree,Covered,US Citizen,273.8612787525831,1,5.7642908252813605,2.882575382622438
+Male,Straight,White,Associate degree,Covered,US Citizen,300,3,4.502644208011911,-1.6829199844333529
+Male,Straight,White,Associate degree,Covered,US Citizen,303.31501776206204,3,4.540015251454206,-1.6788655815813882
+Female,Straight,White,"Some college, no degree",Covered,US Citizen,118.101651131557,1,5.604611023217786,1.1451045942902347
+Female,Straight,Hispanic,High school graduate,Not covered,US Citizen,189.73665961010275,5,-4.845471201630964,-4.286653001595798
+Male,Straight,Hispanic,"Some college, no degree",Not covered,Non-US Citizen,89.44271909999159,7,-4.6084159015987085,-7.054697943635757
+Female,Straight,Hispanic,Bachelor's degree,Not covered,US Citizen,273.8612787525831,1,-4.999598834856269,-4.827417900121871
+Male,Straight,White,"Some college, no degree",Not covered,US Citizen,178.88543819998318,6,1.5006562033601518,-4.90902065335828
+Female,Straight,White,High school graduate,Not covered,US Citizen,158.11388300841898,5,0.4160061695376087,-1.3481552184988836
+Male,Straight,White,High school graduate,Not covered,US Citizen,202.48456731316588,6,1.2057705050284049,-3.374224449253049
+Female,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,141.4213562373095,7,-5.88280344571371,-5.858742747118355
+Male,Straight,White,High school graduate,Not covered,US Citizen,234.5207879911715,6,1.2450920718778178,-3.3526473363866267
+Female,Straight,Hispanic,High school graduate,Not covered,Non-US Citizen,254.95097567963924,7,-5.581921141315325,-5.847629364415467
+Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,282.842712474619,7,-5.034086653499843,-6.883388237992474
+Male,Straight,White,Doctoral degree,Not covered,US Citizen,234.5207879911715,6,1.9596222544405448,-4.181683289279672
+Male,Straight,White,"Some college, no degree",Not covered,US Citizen,200,6,1.5273537468475127,-4.929689750151452
+Female,Straight,White,High school graduate,Not covered,US Citizen,244.94897427831782,5,0.5076478544684009,-1.3826124980145336
+Female,Straight,Hispanic,Bachelor's degree,Not covered,Non-US Citizen,236.53118187672425,7,-5.823441593301953,-5.929999118822408
+Male,Straight,White,High school graduate,Not covered,US Citizen,387.2983346207417,6,1.3138873894247585,-3.1989794318478695
+Female,Straight,Asian,Bachelor's degree,Not covered,Non-US Citizen,187.08286933869707,7,-6.217285497901675,-6.0667339604192145
+Female,Straight,Hispanic,"Some college, no degree",Not covered,US Citizen,200,6,-5.354711066523378,-3.9010882321115674
+Male,Straight,Hispanic,Bachelor's degree,Not covered,US Citizen,141.4213562373095,6,-4.046567639996107,-5.492179259016103
+Male,Straight,White,"Some college, no degree",Not covered,US Citizen,141.4213562373095,6,1.4464012929244967,-5.015624619329378
+Male,Straight,White,Master's degree,Not covered,US Citizen,260.76809620810593,6,2.1235241870627335,-4.131026549044187
+Male,Straight,White,GED or equivalent,Not covered,US Citizen,200,6,2.117226888426531,-4.434922022234552
+Female,Straight,Hispanic,Less than a high school diploma,Not covered,US Citizen,178.88543819998318,7,-5.62665400961629,-4.5331899377526526
+Male,Straight,White,High school graduate,Not covered,US Citizen,234.5207879911715,6,1.2921448589556055,-3.370311766741728
+Male,Straight,White,"Some college, no degree",Not covered,US Citizen,134.16407864998737,6,1.41495703232603,-4.992826478475316
+Female,Straight,White,Less than a high school diploma,Not covered,US Citizen,223.60679774997897,1,-7.755578949059147,-2.0824978359054267
+Male,Straight,White,Associate degree,Not covered,US Citizen,299.0819285747636,3,2.35906231045404,-3.7462958413043874
+Male,Straight,Hispanic,"Some college, no degree",Not covered,Non-US Citizen,173.20508075688772,6,-4.620970673598016,-7.026143446833062
+Male,Straight,White,Bachelor's degree,Not covered,US Citizen,223.60679774997897,6,1.7497256777492718,-4.148329083232365
+Female,Straight,White,Bachelor's degree,Not covered,US Citizen,316.22776601683796,1,0.9485265572126401,-0.4059849717448875
+Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,300,7,-5.042279563532134,-6.896356871173701
