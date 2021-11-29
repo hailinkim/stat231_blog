@@ -79,14 +79,12 @@ knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600p
 
 ## Timeseries
 
-<<<<<<< HEAD
 ### info
 The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). 
 can see the decrease again at the same time when obamacare began to take force. some states have steady rates (mass)
 --> NEED TO LOOK AT SOME MORE to make observations
 
-=======
->>>>>>> fa8d6a1e39f15dd6112975e264cbda6fbec3cbe7
+
 ## Wordcloud {.tabset .tabset-fade .tabset-pills}
 
 ### Background
@@ -101,13 +99,13 @@ The Affordable Care Act, which was passed under Obama administration, attempted 
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
-```{r}
+```{r, eval = FALSE}
 knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
   height = "600px")
 ```
 
 
-```{r shiny, echo=FALSE, eval = FALSE}
+```{r shiny, echo=FALSE}
 ratings <- read_csv("blog-wordcloud/ratings.csv")
 # for selectInput
 type_choices <- unique(ratings$rating_type)
@@ -283,7 +281,7 @@ medioids_race %>%
   arrange(coverage, desc(income_sqrt))
 ```
 
-We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their median income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
+We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
 
 ```{r, echo = TRUE, eval = FALSE}
 tsne_object <- Rtsne(gower_df, is_distance = TRUE)
@@ -296,7 +294,7 @@ tsne_df <- tsne_object$Y %>%
 To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
 
 ```{r}
-tsne <- read_csv("data/tsne.csv", show_col_types = FALSE) %>% 
+tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
          cluster = as.factor(cluster))
@@ -310,7 +308,7 @@ server <- function(input, output) {
   
   output$clustering <- renderPlotly({
     my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
-    g <- ggplot(data = tsne, aes(x = X, y = Y, 
+    g <- ggplot(data = tsne_race, aes(x = X, y = Y, 
                                  text = paste(
                                    "Coverage Status: ", coverage,
                                    "\nRace: ", race,
@@ -340,7 +338,52 @@ medioids_sex %>%
   arrange(coverage, desc(income_sqrt))
 ```
 
-We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; none of them have college degrees;  
+
+We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; none of them have college degrees; they have lower income than those insured, except for cluster 6. We observe the interaction of different social categories being in effect when it comes to barriers to health care.
+
+```{r}
+tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
+  filter(coverage == "Not covered") %>% 
+  mutate(across(where(is.character), as.factor),
+         cluster = as.factor(cluster))
+
+ui <- fluidPage(
+  
+  # App title ----
+  titlePanel("Clustering"),
+  
+  plotlyOutput("clustering")
+  # uiOutput("hover_info")
+)
+
+server <- function(input, output) {
+  
+  output$clustering <- renderPlotly({
+    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
+    g <- ggplot(data = tsne_sex, aes(x = X, y = Y, 
+                                 text = paste(
+                                   "Coverage Status: ", coverage,
+                                   "\nRace: ", race,
+                                   "\nSexual Orientation: ", sex_orientation,
+                                   "\nEducation level: ", edu,
+                                   "\nCitizenship status: ", citizen
+                                   )
+                                 )) +
+      geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
+      theme_bw() +
+      scale_color_manual(values=c(my_pal)) +
+      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+    ggplotly(g, tooltip = "text")
+  })
+  
+}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+### Discussion
+
+Intersectionality approach deepens our understanding of health inequities through the complexity of the real world. It moves us beyond interpreting barriers to health care as unique circumstances of individuals towards considering the fundamental drivers of systemic inequality and examining power dynamics behind it. Through our clustering analysis, we discovered that health inequality has disproportionately adverse effects on marginalized groups with multiple minority identities--for example, White gay without a college degree--as opposed to those with each identity in isolation--White straight men with Bachelor's degree. We learned that the convergence of race, sexual orientation, education level, and economic status advantages some and disadvantages others, placing some people at greater risk for poor health outcomes. It is thus important to be cognizant of the role of intersectionality in patients' experience of discrimination in the health care system; this understanding would lead to precise insights about what causes health disparities and who is affected by them. Considering social circumstances to which one belongs and power structures underpinning them will help address root causes of barriers to health care, allowing for more targeted and effective policies that can redress structural imbalance.
 
 # Conclusion
 
