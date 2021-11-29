@@ -10,6 +10,8 @@ library(plotly)
 tmp3 <- read_csv("data/demographic_sex_orientation.csv") %>% 
   mutate(across(where(is.character), as.factor))
 gower_df3 <- daisy(tmp3, metric = "gower")
+silhouette3 <- c()
+silhouette3 = c(silhouette, NA)
 for(i in 2:10){
   pam_clusters3 = pam(as.matrix(gower_df3),
                       diss = TRUE,
