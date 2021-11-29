@@ -185,16 +185,19 @@ cluster10 <- tmp4 %>%
 tsne <- cluster10 %>% 
   cbind(tsne_df4) 
 tsne <- tsne[, -11]
-write_csv(tsne, "data/tsne.csv")
+write_csv(tsne, "data/tsne_race.csv")
 
 
 
 #stratified random samples by sexual orientation
-tmp3 <- demographic3 %>% 
-  filter(coverage == "Not covered", sex_orientation != "Something else") %>%
-  group_by(sex_orientation) %>% 
-  sample_n(30)
-write_csv(tmp3, "demographic_sex_orientation.csv")
+set.seed(1298)
+tmp3 <- demographic2 %>% 
+  filter(sex_orientation != "Something else") %>%
+  group_by(sex_orientation, coverage) %>% 
+  sample_n(30) %>% 
+  ungroup() %>% 
+  mutate(across(where(is.character), as.factor))
+write_csv(tmp3, "data/demographic_sex_orientation.csv")
 
 gower_df3 <- daisy(tmp3, metric = "gower")
 silhouette3 <- c()
@@ -209,9 +212,12 @@ plot(1:10, silhouette3,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette3)
-pam_nhis3 = pam(gower_df3, diss = TRUE, k = 10)
+pam_nhis3 = pam(gower_df3, diss = TRUE, k = 8)
 
-tmp3[pam_nhis3$medoids, ]
+medioids_sex <- tmp3[pam_nhis3$medoids, ] %>% 
+  arrange(coverage, desc(income_sqrt))
+write_csv(medioids_sex, "data/medioids_sex.csv")
+
 pam_summary3 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis3$clustering) %>%
@@ -219,24 +225,16 @@ pam_summary3 <- tmp3 %>%
   do(cluster_summary = summary(.))
 pam_summary3$cluster_summary[[1]]
 
-tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE, perplexity = 29)
+tsne_object3 <- Rtsne(gower_df3, is_distance = TRUE)
 
 tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis3$clustering))
-cluster3 <- tmp3 %>%
+cluster8 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = as.factor(pam_nhis3$clustering))
-tsne <- cluster3 %>% 
-  inner_join(tsne_df3, by = "cluster")
-my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
-ggplot(aes(x = X, y = Y), data = tsne_df3) +
-  geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
-  # geom_mark_ellipse(aes(color = cluster,
-  #                       label=cluster),
-  #                   expand = unit(0.5,"mm"),
-  #                   label.buffer = unit(-5, 'mm'))+
-  theme_bw() +
-  scale_color_manual(values=c(my_pal)) +
-  scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+tsne_sex <- cluster8 %>% 
+  cbind(tsne_df3)
+tsne_sex <- tsne_sex[, -11]
+write_csv(tsne_sex, "data/tsne_sex.csv")
