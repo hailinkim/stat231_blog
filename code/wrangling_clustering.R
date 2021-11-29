@@ -69,8 +69,8 @@ demographic2 <- demographic %>%
   filter(across(sex:citizen, ~. != "Other")) %>% 
   mutate(income_sqrt = sqrt(income)) %>% 
   select(-c(SEX_A:FAMINCTC_A, income))
-demographic3 <- demographic2 %>% 
-  mutate(across(where(is.character), as.factor))
+
+write_csv(demographic2, "data/demographic.csv")
 
 #checking the distribution of income
 ggplot(demographic3, aes(x = income_sqrt)) +
@@ -80,7 +80,7 @@ ggplot(demographic3, aes(x = income_sqrt)) +
 ################
 #stratified random samples by coverage status
 set.seed(112)
-tmp <- demographic3 %>% 
+tmp <- demographic2 %>% 
   group_by(coverage) %>% 
   sample_n(2500)
 gower_df <- daisy(tmp, metric = "gower")
@@ -109,11 +109,14 @@ pam_summary$cluster_summary[5]
 
 #stratified random samples by race
 set.seed(68)
-tmp2 <- demographic3 %>% 
+tmp2 <- demographic2 %>% 
   filter(coverage == "Not covered") %>% 
   group_by(race) %>% 
   sample_n(75)
+
 write_csv(tmp2, "demographic_race.csv")
+tmp2 <- read_csv("data/demographic_race.csv") %>% 
+  mutate(across(where(is.character), as.factor))
 gower_df2 <- daisy(tmp2, metric = "gower")
 
 silhouette2 <- c()
@@ -130,26 +133,60 @@ plot(1:10, silhouette2,
 lines(1:10, silhouette2)
 pam_nhis2 = pam(gower_df2, diss = TRUE, k = 8)
 
+medioids_race <- tmp2[pam_nhis2$medoids, ]
+write_csv(medioids_race, "data/medioids_race.csv")
 
-tmp2[pam_nhis2$medoids, ]
-pam_summary2 <- tmp2 %>%
+
+
+set.seed(1294)
+tmp4 <- demographic2 %>% 
+  group_by(race, coverage) %>% 
+  sample_n(75) %>% 
   ungroup() %>% 
-  mutate(cluster = pam_nhis2$clustering) %>%
+  mutate(across(where(is.character), as.factor))
+write_csv(tmp4, "data/demographic_race.csv")
+
+tmp4 <- read_csv("data/demographic_race.csv") %>% 
+  mutate(across(where(is.character), as.factor))
+gower_df4 <- daisy(tmp4, metric = "gower")
+
+silhouette4 <- c()
+silhouette4 = c(silhouette4, NA)
+for(i in 2:10){
+  pam_clusters4 = pam(as.matrix(gower_df4),
+                      diss = TRUE,
+                      k = i)
+  silhouette4 = c(silhouette4, pam_clusters4$silinfo$avg.width)
+}
+plot(1:10, silhouette4,
+     xlab = "Clusters",
+     ylab = "Silhouette Width")
+lines(1:10, silhouette4)
+pam_nhis4 = pam(gower_df4, diss = TRUE, k = 10)
+
+pam_summary4 <- tmp4 %>%
+  ungroup() %>% 
+  mutate(cluster = pam_nhis4$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
-pam_summary2$cluster_summary[[7]]
+pam_summary4$cluster_summary[3]
 
-tsne_object2 <- Rtsne(gower_df2, is_distance = TRUE)
-tsne_df2 <- tsne_object2$Y %>%
+medioids_race <- tmp4[pam_nhis4$medoids, ]
+write_csv(medioids_race, "data/medioids_race.csv")
+
+tsne_object4 <- Rtsne(gower_df4, is_distance = TRUE)
+tsne_df4 <- tsne_object4$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis2$clustering))
-my_pal <- RColorBrewer::brewer.pal(n=7, name = "Dark2")
-ggplot(aes(x = X, y = Y), data = tsne_df2) +
-  geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
-  theme_bw() +
-  scale_color_manual(values=c(my_pal)) +
-  scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+  mutate(cluster = factor(pam_nhis4$clustering))
+cluster10 <- tmp4 %>%
+  ungroup() %>% 
+  mutate(cluster = factor(pam_nhis4$clustering))
+tsne <- cluster10 %>% 
+  cbind(tsne_df4) 
+tsne <- tsne[, -11]
+write_csv(tsne, "data/tsne.csv")
+
 
 
 #stratified random samples by sexual orientation

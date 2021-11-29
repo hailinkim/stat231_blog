@@ -1,0 +1,6 @@
+sex,sex_orientation,race,edu,coverage,citizen,income_sqrt
+Male,Straight,White,Bachelor's degree,Covered,US Citizen,273.8612787525831
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,254.95097567963924
+Female,Straight,White,High school graduate,Not covered,US Citizen,178.88543819998318
+Male,Straight,White,High school graduate,Not covered,US Citizen,189.73665961010275
+Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,165.73774464496614
