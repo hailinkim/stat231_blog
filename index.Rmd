@@ -325,6 +325,15 @@ shinyApp(ui = ui, server = server)
 
 We visualized our multi-dimensional data into a two-dimensional plot by using t-SNE technique. We focus only on the uninsured individuals in this plot. Users can identify demographic and socioeconomic information of each respondent by hovering over each point. The clusters seem to overlap a bit, but they are fairly distinctive overall. Looking at the plot as well as the medioids table, we find that our clustering results are dominated by those who identify as straight. We then move on to run clustering on stratified random samples drawn from each sexual orientation group.
 
+
+```{r, echo = FALSE}
+medioids_sex <- read_csv("data/medioids_sex.csv", show_col_types = FALSE)
+medioids_sex %>% 
+  arrange(coverage, desc(income_sqrt))
+```
+
+We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; none of them have college degrees;  
+
 # Conclusion
 
 
