@@ -2,7 +2,7 @@
 title: "US Health Care Equity"
 author: "Abbey Skinner, Angelica Kim"
 date: "11/29/2021"
-runtime: shiny
+# runtime: shiny
 output:
   rmdformats::readthedown:
     thumbnails: false
@@ -95,7 +95,8 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 
 ## Map
 
-```{r}
+
+```{r, eval = FALSE}
 total_data <- read_csv("~/stat231/blog_aaa/Map_Of_Healthcare/total_data.csv", 
                        show_col_types = FALSE)
 
@@ -163,8 +164,8 @@ shinyApp(ui = ui, server = server)
 ```
 
 
-```{r shiny-map, eval = FALSE}
-knitr::include_app("https://your-account.shinyapps.io/your-app/", height = "600px")
+```{r shiny-map}
+knitr::include_app("https://angelicakim.shinyapps.io/Map_Of_Healthcare/", height = "600px")
 ```
 
 ### info
@@ -174,7 +175,7 @@ Overall, there is a drastic difference in the percent of people that are uninsur
 
 ## Timeseries
 
-```{r}
+```{r, eval = FALSE}
 totalDATA <- read_csv("~/stat231/blog_aaa/Time-Series/totalDATA.csv", show_col_types = FALSE)
 
 # For widgets: 
@@ -224,6 +225,10 @@ server  <- function(input, output){
   )
 }
 shinyApp(ui = ui, server = server)  
+```
+
+```{r shiny-timeseries}
+knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/", height = "600px")
 ```
 
 
@@ -348,7 +353,7 @@ tsne_df <- tsne_object$Y %>%
 
 To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
 
-```{r}
+```{r, eval = FALSE}
 tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
@@ -396,7 +401,7 @@ medioids_sex %>%
 
 We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; do not have college degrees; earn less than those insured. We observe the interaction of different social categories being in effect when it comes to barriers to health care.
 
-```{r}
+```{r, eval = FALSE}
 tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
@@ -452,13 +457,15 @@ Given that Medicare patients still face barriers to care, we use Medicare qualit
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
-```{r, eval = FALSE}
+<iframe width="100%" height="150px" src="https://angelicakim.shinyapps.io/blog-wordcloud/"></iframe>
+
+```{r}
 knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
   height = "600px")
 ```
 
 
-```{r shiny, echo=FALSE}
+```{r shiny, echo=FALSE, eval = FALSE}
 ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
 # for selectInput
 type_choices <- unique(ratings$rating_type)
@@ -535,6 +542,7 @@ Another improvement to be made would be the quality of service delivery--specifi
 
 # Conclusion
 
+- 
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For example, you can include **Bold** and _Italic_ and `Code` text.  For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
