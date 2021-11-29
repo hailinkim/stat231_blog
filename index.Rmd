@@ -63,11 +63,9 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 **Dataset 1**
 
-* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+* [Link to the dataset]()
 
-* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. The data set was in .csv format, and we compared data over time-from 2016 to 2022.
-
-* The dataset contains various metrics of health care quality for each Medicare plan, so it allows users to compare one plan to another based on those metrics. Each measure reflects beneficiaries' perspectives of the care they received, and we focus on measures related to preventive services, treatments, and consumer satisfaction.
+* Description:
 
 
 **Dataset 2**
@@ -76,6 +74,20 @@ We begin this BLOG with an overview of health care disparities in the United Sta
 
 * Description: (to be added)
 
+
+**Dataset 3**
+* [Link to the dataset](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
+
+* Description: The National Center for Health Statistics, which is part of the CDC, conducts the National Health Interview Survey annually to monitor the health of the United States population. We use the survey data that sampled adults aged 18 years old or older. It cotains a wide variety of variables, including respondents' demographic information, socioeconomic status, and their barriers to accessing and using appropriate health care, which we choose to focus on. Each row in the data set represents a sample adult. Given the special nature of survey data that the responses are categorized into number codes, we wrangled them to be categorical variables with more descriptive values. Our final data set thus contains a mix of quantitative and categorical variables, and we deploy appropriate clustering algorithm for such data.
+
+
+**Dataset 4**
+
+* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+
+* Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. The data set was in .csv format, and we compared data over time-from 2016 to 2022.
+
+* The dataset contains various metrics of health care quality for each Medicare plan, so it allows users to compare one plan to another based on those metrics. Each measure reflects beneficiaries' perspectives of the care they received, and we focus on measures related to preventive services, treatments, and consumer satisfaction.
 
 
 # Visualizations
