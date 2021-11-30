@@ -93,8 +93,9 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 
 # Visualizations
 
-## Map
+## Interactive Map {.tabset .tabset-fade .tabset-pills}
 
+### Map
 ```{r shiny-map}
 total_data <- read_csv("Map_Of_Healthcare/total_data.csv", 
                        show_col_types = FALSE)
@@ -167,13 +168,13 @@ shinyApp(ui = ui, server = server)
 knitr::include_app("https://angelicakim.shinyapps.io/Map_Of_Healthcare/", height = "600px")
 ```
 
-### info
+### Discussion
 This app depicts how the percent of uninsured people has changed in the continental United States over the years 2012-2019. The redder states indicate a lower percentage of people that are uninsured and a bluer color indicates a higher percentage of people that are uninsured. After watching this animation, it is clear that between the years of 2014 and 2015, there is a pretty significant decrease in the percentage of people who are uninsured. This directly aligns with the introduction of the Affordable Care Act and Obamacare in 2014. This tells that the Affordable Care Act did do it's job of allowing more people to obtain healthcare, but as stated before this does not mean that everyone has the same access to healthcare.
 
 Overall, there is a drastic difference in the percent of people that are uninsured between 2012 and 2019. The northeast, eastern midwest, and the west coast tend to have lower rates of uninsured people, whereas the south and the western middle of the country have higher rates. Could this potentially be due to political aspects? Most liberal states are the north east and west coast(where more people have insurance), where more conservative states are typically the south and middle of the country states(where less people have insurance). This is a question out of the domain for this project, but definetly something that could be researched more in the future. 
 
-## Timeseries
-
+## Timeseries {.tabset .tabset-fade .tabset-pills}
+### Timeseries
 ```{r shiny-timeseries}
 totalDATA <- read_csv("Time-Series/totalDATA.csv", show_col_types = FALSE)
 
@@ -232,7 +233,7 @@ knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/", height = "60
 ```
 
 
-### info
+### Discussion
 The time series allows us to see how the trends per state have fluctuated over the years by racial group. This is a similar data breakdown as the map, however allows you to see a state-by-state comparison and the differences between the 3 races included in the data (white, black, and hispanic). This visualization allows you to see, again, the decrease that happens when the Affordable Care act begins to take force; almost all states have a decrease from about 2013-2016 no matter what percentage they originally started at. Some states have a pretty consistant low rate, like Massachusetts and DC. Compared to the other states they look seemingly unchanged, but when zoomed in (only that state selected), you can see that they too have a drop from 2013-2016. 
 
 When different races are selected, the overall layout of the graphs don't really change too much: most of the slopes stay the same and the placement of each state as well. The one major difference is the scale of the graph; when switch from race to race, the scale on the y-axis changes. With white, the highest number shown on the scale is about 15%. When switched to black, it goes up to 20%. Then with hispanic it goes up to 30%. This shows that although the change of rates of uninsured people has stayed pretty consistent over all 3 races, the proportion is not the same. Hispanic people are uninsured at a higher rate than both black and white individuals. White people have the lowest proportion of individuals who are uninsured and black people fall in the middle. 
@@ -540,7 +541,9 @@ Another improvement to be made would be the quality of service delivery--specifi
 
 # Conclusion
 
-* (Abbey's conclusion to be added)
+* The map revealed that the Affordable Care Act did indeed decrease the amount of individuals that were uninsured. It especially was seen from 2012-2015. Overall, the northeast and the west coast tended to have a lower proportion of uninsured individuals compared to the south and middle of the country. This could potentially be a politically tied occurrence. 
+
+* Through the time series it was discovered that most states in the United States tended to follow similar patterns of fluctuations of the percentage of individuals that were uninsured. The main takeaway from this was that the Affordable Care Act was not equitable over the 3 races that were studied since all 3 races seemed to be affected by the Affordable Care Act equally.
 
 * Through clustering analysis, we discovered that interaction of social categories, rather than each in isolation, and the power structures underpinning them result in persistent gaps in access to affordable, high-quality health care coverage. In other words, socially disadvantaged groups with overlapping identities are more likely to experience barriers to care.
 
