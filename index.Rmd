@@ -3,7 +3,6 @@ title: "US Health Care Equity"
 author: "Abbey Skinner, Angelica Kim"
 date: "11/29/2021"
 self_contained: false
-# runtime: shiny
 output:
   rmdformats::readthedown:
     thumbnails: false
@@ -165,7 +164,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 ```{r shiny-map, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
-knitr::include_app("https://angelicakim.shinyapps.io/Map_Of_Healthcare/",
+knitr::include_app("https://abbeyskinner.shinyapps.io/Map_Of_Healthcare/",
                    height = "500px")
 ```
 
@@ -231,7 +230,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 ```{r shiny-timeseries, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
-knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/",
+knitr::include_app("https://abbeyskinner.shinyapps.io/Time-Series/",
                    height = "500px")
 ```
 
@@ -280,7 +279,7 @@ Due to the fact that the data set contains a disproportionate number of survey r
 gower_df <- daisy(demographic_coverage, metric = "gower")
 ```
 
-```{r, fig.cap = "Summary of the gower_df data frame"}
+```{r, fig.cap = "Summary of the gower_df data frame", out.width = "80%", fig.align = 'center'}
 knitr::include_graphics("img/gower_summary.png")
 ```
 
@@ -301,7 +300,7 @@ plot(1:10, silhouette,
 lines(1:10, silhouette)
 ```
 
-```{r, fig.cap = "Silhouette Width vs Number of Clusters"}
+```{r, fig.cap = "Silhouette Width vs Number of Clusters",  out.width = "80%", fig.align = 'center'}
 knitr::include_graphics("img/silhouette_plot.png")
 ```
 
@@ -355,7 +354,13 @@ tsne_df <- tsne_object$Y %>%
   mutate(cluster = factor(pam_nhis$clustering))
 ```
 
-To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
+To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, a dimension reduction technique that enables us to visualize a multi-dimensional data set in a two-dimensional plot.
+
+```{r shiny-clustering-race, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://angelicakim.shinyapps.io/blog-clustering-race/",
+                   height = "500px")
+```
+
 
 ```{r shiny-clustering1, eval = FALSE}
 tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
@@ -404,6 +409,11 @@ medioids_sex %>%
 
 
 We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; do not have college degrees; earn less than those insured. We observe the interaction of different social categories being in effect when it comes to barriers to health care.
+
+```{r shiny-clustering-sex, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://angelicakim.shinyapps.io/blog-clustering-sex/",
+                   height = "500px")
+```
 
 ```{r shiny-clustering2, eval = FALSE}
 tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
@@ -460,13 +470,13 @@ Given that Medicare patients still face barriers to care, we use Medicare qualit
 
 We examine the word cloud to get a sense about people's experiences with Medicare. The quality ratings data set measures percentage of plan members who took advantage of each service offered by the plan, such as diabetes care, or had certain experiences with the plan, such as whether they had access to care or appointments in a timely fashion. Since we aim to find room for improvement regarding the quality of care, we performed some data wrangling to reverse the percentages and focus on people who did *NOT*  utilize the services or felt *unsatisfied* with their health insurance. Through the word cloud, we hope to gain knowledge about people's opinions about Medicare and explore how the public health insurance can be strengthened.
 
-```{r, eval = FALSE}
+```{r shiny-wordcloud, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
 knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
-  height = "600px")
+                   height = "500px")
 ```
 
 
-```{r shiny-wordcloud, echo=FALSE, eval = FALSE}
+```{r, echo=FALSE, eval = FALSE}
 ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
 # for selectInput
 type_choices <- unique(ratings$rating_type)
@@ -551,3 +561,12 @@ Another improvement to be made would be the quality of service delivery--specifi
 * Through clustering analysis, we discovered that interaction of social categories, rather than each in isolation, and the power structures underpinning them result in persistent gaps in access to affordable, high-quality health care coverage. In other words, socially disadvantaged groups with overlapping identities are more likely to experience barriers to care.
 
 * The word cloud revealed that Medicare has not been effective in delivering quality health care; even if those insured by Medicare are not fully taking advantage of it presumably due to high bills. Medicare patients also lack timely access to care, which is often a critical aspect of patient experience and may have fatal consequences in their health outcomes. Thus, reducing costs of care and closely monitoring timeliness of access to care would be an important step toward ensuring Medicare beneficiaries to access the medical care they need.
+
+
+# Bibliography
+
+* Shendre, Sushrut. “Clustering Datasets Having Both Numerical and Categorical Variables.” Medium, Towards Data Science, 11 May 2020, https://towardsdatascience.com/clustering-datasets-having-both-numerical-and-categorical-variables-ed91cdca0677. 
+
+* Packages
+  - Rousseeuw et al. “``Finding Groups in Data'': Cluster Analysis Extended.” The Comprehensive R Archive Network, Comprehensive R Archive Network (CRAN), 17 Apr. 2021, https://cran.r-project.org/web/packages/cluster/. 
+  - Krijthe, Jesse. “Rtsne: T-Distributed Stochastic Neighbor Embedding Using a Barnes-Hut Implementation.” GitHub, 10 Nov. 2018, https://github.com/jkrijthe/Rtsne. 
