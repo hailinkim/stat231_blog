@@ -1,0 +1,13 @@
+name: blog-wordcloud
+title: blog-wordcloud
+username:
+account: angelicakim
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5191554
+bundleId: 5286185
+url: https://angelicakim.shinyapps.io/blog-wordcloud/
+when: 1637699406.55967
+lastSyncTime: 1637699406.5597
+asMultiple: FALSE
+asStatic: FALSE
