@@ -2,7 +2,8 @@
 title: "US Health Care Equity"
 author: "Abbey Skinner, Angelica Kim"
 date: "11/29/2021"
-runtime: shiny
+self_contained: false
+# runtime: shiny
 output:
   rmdformats::readthedown:
     thumbnails: false
@@ -96,7 +97,7 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 ## Interactive Map {.tabset .tabset-fade .tabset-pills}
 
 ### Map
-```{r shiny-map}
+```{r, eval = FALSE}
 total_data <- read_csv("Map_Of_Healthcare/total_data.csv", 
                        show_col_types = FALSE)
 
@@ -163,10 +164,11 @@ server  <- function(input, output){
 shinyApp(ui = ui, server = server)  
 ```
 
-
-```{r, eval = FALSE}
-knitr::include_app("https://angelicakim.shinyapps.io/Map_Of_Healthcare/", height = "600px")
+```{r shiny-map, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://angelicakim.shinyapps.io/Map_Of_Healthcare/",
+                   height = "500px")
 ```
+
 
 ### Discussion
 This app depicts how the percent of uninsured people has changed in the continental United States over the years 2012-2019. The redder states indicate a lower percentage of people that are uninsured and a bluer color indicates a higher percentage of people that are uninsured. After watching this animation, it is clear that between the years of 2014 and 2015, there is a pretty significant decrease in the percentage of people who are uninsured. This directly aligns with the introduction of the Affordable Care Act and Obamacare in 2014. This tells that the Affordable Care Act did do it's job of allowing more people to obtain healthcare, but as stated before this does not mean that everyone has the same access to healthcare.
@@ -175,7 +177,7 @@ Overall, there is a drastic difference in the percent of people that are uninsur
 
 ## Timeseries {.tabset .tabset-fade .tabset-pills}
 ### Timeseries
-```{r shiny-timeseries}
+```{r, eval = FALSE}
 totalDATA <- read_csv("Time-Series/totalDATA.csv", show_col_types = FALSE)
 
 
@@ -228,8 +230,9 @@ server  <- function(input, output){
 shinyApp(ui = ui, server = server)  
 ```
 
-```{r, eval=FALSE}
-knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/", height = "600px")
+```{r shiny-timeseries, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/",
+                   height = "500px")
 ```
 
 
@@ -354,7 +357,7 @@ tsne_df <- tsne_object$Y %>%
 
 To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, which enables us to visualize a multi-dimensional data set.
 
-```{r shiny-clustering1}
+```{r shiny-clustering1, eval = FALSE}
 tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
@@ -402,7 +405,7 @@ medioids_sex %>%
 
 We draw 30 stratified random samples from combinations of coverage status and sexual orientation due to the limited number of respondents for each combination. The medioids table shows that most individuals who are not covered by health insurance identify as sexual minorities; do not have college degrees; earn less than those insured. We observe the interaction of different social categories being in effect when it comes to barriers to health care.
 
-```{r shiny-clustering2}
+```{r shiny-clustering2, eval = FALSE}
 tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
   filter(coverage == "Not covered") %>% 
   mutate(across(where(is.character), as.factor),
@@ -463,7 +466,7 @@ knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
 ```
 
 
-```{r shiny-wordcloud, echo=FALSE}
+```{r shiny-wordcloud, echo=FALSE, eval = FALSE}
 ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
 # for selectInput
 type_choices <- unique(ratings$rating_type)
