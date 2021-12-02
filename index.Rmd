@@ -96,72 +96,6 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 ## Interactive Map {.tabset .tabset-fade .tabset-pills}
 
 ### Map
-```{r, eval = FALSE}
-total_data <- read_csv("Map_Of_Healthcare/total_data.csv", 
-                       show_col_types = FALSE)
-
-# map wrangling
-data(state)
-state_info <- data.frame(Region = state.region,
-                         # Match state variable name in map data
-                         ID = tolower(state.name),
-                         # Match state variable name in summary data
-                         State = state.abb)
-
-state_df <- map_data("state")
-usa_map <- maps::map("state",
-                     plot = FALSE, fill = TRUE) %>%
-  st_as_sf()
-
-data_map <- usa_map %>%
-  left_join(state_info, by = "ID") %>%
-  left_join(total_data, by = c("ID" = "state"))
-
-
-###### ui ######
-ui <- navbarPage(
-  title = "blog",
-  # tab 2
-  tabPanel(
-    title = "Map",
-    sidebarLayout(
-      sidebarPanel(
-        sliderInput(
-        # slider for year
-        inputId = "animation",
-          label = "Select Years:",
-          value = 2012,
-          min = 2012,
-          max = 2019,
-          step = NULL,
-          round = TRUE,
-          ticks = TRUE,
-          animate = 
-            animationOptions(interval = 1000, loop = TRUE))
-        ),
-      mainPanel(
-        plotOutput(outputId = "map"))
-      )
-    )
-)
-
-
-##### server #####
-server  <- function(input, output){
-
-  output$map <- renderPlot({
-    dat <- data_map %>%
-      filter(Year %in% input$animation)
-    
-    ggplot(data = dat, aes(fill = Percent_Uninsured)) +
-    geom_sf() +
-    scale_fill_viridis(option = "turbo", direction = -1) +
-    theme_void()
-    
-  })
-}
-shinyApp(ui = ui, server = server)  
-```
 
 ```{r shiny-map, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
 knitr::include_app("https://abbeyskinner.shinyapps.io/Map_Of_Healthcare/",
@@ -176,58 +110,6 @@ Overall, there is a drastic difference in the percent of people that are uninsur
 
 ## Timeseries {.tabset .tabset-fade .tabset-pills}
 ### Timeseries
-```{r, eval = FALSE}
-totalDATA <- read_csv("Time-Series/totalDATA.csv", show_col_types = FALSE)
-
-
-# For widgets: 
-race_choices <- unique(totalDATA$Race)
-state_choices <- unique(totalDATA$State)
-
-
-###### ui ######
-ui <- navbarPage(
-  
-  ### TIME SERIES
-  tabPanel(
-    title = "Time Series",
-    sidebarLayout(
-      sidebarPanel(
-        
-        # race input
-        selectInput(
-          inputId = "race",
-          label = "Choose a race to plot:",
-          choices = race_choices),
-        
-        # state input
-        checkboxGroupInput(inputId = "state",
-                           label = "Include States:",
-                           choices = state_choices,
-                           selected = "Alabama",
-                           inline = TRUE)
-        
-      ),
-      mainPanel(plotOutput(outputId = "time"))
-    )
-  )
-)
-
-##### server #####
-server  <- function(input, output){
-  
-  output$time <- renderPlot({
-    data <- totalDATA %>% 
-      filter(Race %in% input$race, State %in% input$state)
-    # group =1
-    ggplot(data = data, aes_string(x="Year", y= "Percent_Uninsured"))+ 
-      geom_point(aes(color = State)) +
-      geom_line(aes(group = State, color = State))
-  }
-  )
-}
-shinyApp(ui = ui, server = server)  
-```
 
 ```{r shiny-timeseries, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
 knitr::include_app("https://abbeyskinner.shinyapps.io/Time-Series/",
@@ -362,42 +244,6 @@ knitr::include_app("https://angelicakim.shinyapps.io/blog-clustering-race/",
 ```
 
 
-```{r shiny-clustering1, eval = FALSE}
-tsne_race <- read_csv("data/tsne_race.csv", show_col_types = FALSE) %>% 
-  filter(coverage == "Not covered") %>% 
-  mutate(across(where(is.character), as.factor),
-         cluster = as.factor(cluster))
-
-ui <- fluidPage(
-  
-  plotlyOutput("clustering")
-)
-
-server <- function(input, output) {
-  
-  output$clustering <- renderPlotly({
-    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
-    g <- ggplot(data = tsne_race, aes(x = X, y = Y, 
-                                 text = paste(
-                                   "Coverage Status: ", coverage,
-                                   "\nRace: ", race,
-                                   "\nSexual Orientation: ", sex_orientation,
-                                   "\nEducation level: ", edu,
-                                   "\nCitizenship status: ", citizen
-                                   )
-                                 )) +
-      geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
-      theme_bw() +
-      scale_color_manual(values=c(my_pal)) +
-      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
-    ggplotly(g, tooltip = "text")
-  })
-  
-}
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
 We visualized our multi-dimensional data into a two-dimensional plot by using t-SNE technique. We focus only on the uninsured individuals in this plot. Users can identify demographic and socioeconomic information of each respondent by hovering over each point. The clusters seem to overlap a bit, but they are fairly distinctive overall. Looking at the plot as well as the medioids table, we find that our clustering results are dominated by those who identify as straight. We then move on to run clustering on stratified random samples drawn from each sexual orientation group.
 
 
@@ -415,44 +261,11 @@ knitr::include_app("https://angelicakim.shinyapps.io/blog-clustering-sex/",
                    height = "500px")
 ```
 
-```{r shiny-clustering2, eval = FALSE}
-tsne_sex <- read_csv("data/tsne_sex.csv", show_col_types = FALSE) %>% 
-  filter(coverage == "Not covered") %>% 
-  mutate(across(where(is.character), as.factor),
-         cluster = as.factor(cluster))
-
-ui <- fluidPage(
-  
-  plotlyOutput("clustering")
-  # uiOutput("hover_info")
-)
-
-server <- function(input, output) {
-  
-  output$clustering <- renderPlotly({
-    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
-    g <- ggplot(data = tsne_sex, aes(x = X, y = Y, 
-                                 text = paste(
-                                   "Coverage Status: ", coverage,
-                                   "\nRace: ", race,
-                                   "\nSexual Orientation: ", sex_orientation,
-                                   "\nEducation level: ", edu,
-                                   "\nCitizenship status: ", citizen
-                                   )
-                                 )) +
-      geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
-      theme_bw() +
-      scale_color_manual(values=c(my_pal)) +
-      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
-    ggplotly(g, tooltip = "text")
-  })
-  
-}
-# Run the application 
-shinyApp(ui = ui, server = server)
-```
-
 #### Discussion
+
+Intersectionality approach deepens our understanding of health inequities through the complexity of the real world. It moves us beyond interpreting barriers to health care as unique circumstances of individuals towards considering the fundamental drivers of systemic inequality and examining power dynamics behind it. Through our clustering analysis, we discovered that health inequality has disproportionately adverse effects on marginalized groups with multiple minority identities--for example, White gay without a college degree--as opposed to those with each identity in isolation--White straight men with Bachelor's degree. We learned that the convergence of race, sexual orientation, education level, and economic status advantages some and disadvantages others, placing some people at greater risk for poor health outcomes. It is thus important to be cognizant of the role of intersectionality in patients' experience of discrimination in the health care system; this understanding would lead to precise insights about what causes health disparities and who is affected by them. Considering social circumstances to which one belongs and power structures underpinning them will help address root causes of barriers to health care, allowing for more targeted and effective policies that can redress structural imbalance.
+
+### Discussion
 
 Intersectionality approach deepens our understanding of health inequities through the complexity of the real world. It moves us beyond interpreting barriers to health care as unique circumstances of individuals towards considering the fundamental drivers of systemic inequality and examining power dynamics behind it. Through our clustering analysis, we discovered that health inequality has disproportionately adverse effects on marginalized groups with multiple minority identities--for example, White gay without a college degree--as opposed to those with each identity in isolation--White straight men with Bachelor's degree. We learned that the convergence of race, sexual orientation, education level, and economic status advantages some and disadvantages others, placing some people at greater risk for poor health outcomes. It is thus important to be cognizant of the role of intersectionality in patients' experience of discrimination in the health care system; this understanding would lead to precise insights about what causes health disparities and who is affected by them. Considering social circumstances to which one belongs and power structures underpinning them will help address root causes of barriers to health care, allowing for more targeted and effective policies that can redress structural imbalance.
 
@@ -474,69 +287,6 @@ We examine the word cloud to get a sense about people's experiences with Medicar
 knitr::include_app("https://angelicakim.shinyapps.io/blog-wordcloud/",
                    height = "500px")
 ```
-
-
-```{r, echo=FALSE, eval = FALSE}
-ratings <- read_csv("blog-wordcloud/ratings.csv", show_col_types = FALSE)
-# for selectInput
-type_choices <- unique(ratings$rating_type)
-
-shinyApp(
-    ui <- fluidPage(
-    
-    # App title ----
-    titlePanel("Wordcloud"),
-    
-    # Sidebar layout with input and output definitions ----
-    sidebarLayout(
-      
-      # Sidebar to demonstrate various slider options ----
-      sidebarPanel(
-        
-        # Input: Animation with custom interval (in ms) ----
-        # to control speed, plus looping
-        sliderInput("animation", "Year:",
-                    min = 2016, max = 2022,
-                    value = 2016, step = 1,
-                    animate = animationOptions(interval = 500, loop = TRUE)),
-        
-        selectizeInput(inputId = "type",
-                    label = "Choose a measure type",
-                    choices = type_choices,
-                    selected = c("Prevention", "Treatment", "Customer Satisfaction"),
-                    multiple = TRUE),
-        
-      ),
-      
-      # Main panel for displaying outputs ----
-      mainPanel(
-        plotOutput("wordcloud", width = "100%", height = 650)
-      )
-    )
-  ),
-  
-  server <- function(input, output) {
-    
-    output$wordcloud <- renderPlot({
-      
-      dat <- ratings %>%
-        filter(year %in% input$animation, rating_type %in% input$type) 
-      
-      my_pal <- RColorBrewer::brewer.pal(n = 3, name = "Dark2")
-      
-      set.seed(1120)
-      dat %>%
-        with(wordcloud(words = sentences, freq = mean, scale = c(2,0.8), 
-                       colors=my_pal[as.factor(rating_type)], ordered.colors = TRUE))
-      
-      # legend("topright", legend = levels(factor(ratings$rating_type)),
-      #        text.col=brewer.pal(3, "Dark2")[unique(factor(ratings$rating_type))])
-    })
-  },
-  options = list(height = 600)
-)
-```
-
 
 The above word cloud shows what patients say about their health care experience; text size corresponds to percentage of plan members who reported to have certain experiences, and words are colored by different types of metrics. By default, it displays all three types (i.e. prevention, treatment, customer satisfaction). Words classified as Treatment seem to stand out in their sizes across the board, which implies that a lot of plan members did not avail the services related to treatment of chronic/acute conditions, such as diabetes care. Also, people's experiences with preventive services such as screenings or immunizations are the second largest words displayed in the visualization. However, this should not be translated into the plan's poor performance in preventive care because according to Centers for Medicare & Medicaid Services, the Affordable Care Act allowed the Medicare beneficiaries to have access to free preventive services; that being said, the plan members simply may not have taken advantage of those services because they were not in need of them, not because of certain barriers or plan's poor performance. 
 
