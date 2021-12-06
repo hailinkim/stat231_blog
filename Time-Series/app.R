@@ -10,7 +10,7 @@ library(DT)
 library(ggrepel)
 
  
-totalDATA 
+totalDATA <- read_csv("totalDATA.csv")
 
 # For widgets: 
 race_choices <- unique(totalDATA$Race)
