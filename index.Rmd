@@ -4,7 +4,7 @@ author: "Abbey Skinner, Angelica Kim"
 date: "11/29/2021"
 self_contained: false
 output:
-  rmdformats::readthedown:
+  rmdformats::downcute:
     thumbnails: false
     highlight: "kate"
 ---
@@ -33,12 +33,15 @@ library(thematic)
 library(shinyWidgets)  
 library(DT)
 library(ggrepel)
+library(kableExtra)
 
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
                       mesage = FALSE,
                       warning = FALSE,
-                      fig.align = "center")
+                      fig.align = "center",
+                      class.source = "bg-success")
+
 
 # Set R environment options
 options(knitr.kable.NA = '')
@@ -66,25 +69,19 @@ The Affordable Care Act, which was passed under Obama administration in 2010 and
 
 # Data
 
-**Dataset 1**
-
-* [Link to the dataset](https://www2.census.gov/programs-surveys/sahie/datasets/time-series/estimates-acs/)
+**Dataset 1**: [United States Census Bureau](https://www2.census.gov/programs-surveys/sahie/datasets/time-series/estimates-acs/)
 
 * Description: These data sets are from the United States Census Bureau. There is one dataset for each of the years from 2012-2019. Each data set contains information on the amount of people insured and uninsured in each state, with an addition of break downs by different demographic groups. They contain information on age, race, gender, income group, state, and county. The data set was in .csv format.
 
 * These datasets were used for both the map and the time series. Each of the demographic variables had an option that encapsulated all people in the state (i.e "all races" or "both genders"). For this project, all people in each state were evaluated. A race breakdown was used for one visualization. Additionally, the numbers chosen to be reported from this data set are the percent of people who are uninsured in each state. The percent was chosen because it allows for a better state-by-state comparison rather than just total numbers of people, since not all states have the same population.
 
 
-**Dataset 2**
-
-* [Link to the dataset](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
+**Dataset 2**: [Centers for Disease Control and Prevention](https://www.cdc.gov/nchs/nhis/2019nhis.htm)
 
 * Description: The National Center for Health Statistics, which is part of the CDC, conducts the National Health Interview Survey annually to monitor the health of the United States population. We use the survey data that sampled adults aged 18 years old or older. It cotains a wide variety of variables, including respondents' demographic information, socioeconomic status, and their barriers to accessing and using appropriate health care, which we choose to focus on. Each row in the data set represents a sample adult. Given the special nature of survey data that the responses are categorized into number codes, we wrangled them to be categorical variables with more descriptive values. Our final data set thus contains a mix of quantitative and categorical variables, and we deploy appropriate clustering algorithm for such data.
 
 
-**Dataset 3**
-
-* [Link to the dataset](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
+**Dataset 3**: [Centers for Medicare & Medicaid Services](https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData)
 
 * Description:The Centers for Medicare & Medicaid Services (CMS) uses a five-star quality rating system to provide information about health plan quality. It measures Medicare beneficiaries’ experience with their health plans and the health care system. CMS assigns Star Ratings based on grouping measure scores, and we used the data set that contains the individual measures of quality under five categories such as member experience or how well the plan provides screenings and immunization. The data set was in .csv format, and we compared data over time-from 2016 to 2022.
 
@@ -112,7 +109,7 @@ Overall, there is a drastic difference in the percent of people that are uninsur
 ### Timeseries
 
 ```{r shiny-timeseries, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
-knitr::include_app("https://abbeyskinner.shinyapps.io/Time-Series/",
+knitr::include_app("https://angelicakim.shinyapps.io/Time-Series/",
                    height = "500px")
 ```
 
@@ -144,7 +141,12 @@ demographic <- read_csv("data/demographic.csv")
 
 ```{r, echo=FALSE}
 demographic %>% 
-  count(coverage)
+  count(coverage) %>% 
+  kbl(booktabs = TRUE, 
+      col.names = c("Coverage Status", "Number of Respondents"),
+      caption = "<center><strong>Coverage Status of Survey Respondents</strong></center>",
+    escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 ```{r echo = TRUE}
@@ -156,16 +158,7 @@ demographic_coverage <- demographic %>%
 
 Due to the fact that the data set contains a disproportionate number of survey respondents for each health insurance coverage status (i.e. whether insured or uninsured), our initial clustering analysis results were dominated by those insured. Instead, we drew 2500 stratified random samples from each coverage status group.
 
-
-```{r, echo = TRUE, eval=FALSE}
-gower_df <- daisy(demographic_coverage, metric = "gower")
-```
-
-```{r, fig.cap = "Summary of the gower_df data frame", out.width = "80%", fig.align = 'center'}
-knitr::include_graphics("img/gower_summary.png")
-```
-
-Given that the basic premise of clustering is the similarity/dissimilarity between the data points, we compute the Gower distance by using the `daisy` function from the `cluster` package. We choose the Gower distance because it allows us to calculate the distance matrix for mixed data that contains both categorical and quantitative variables, as opposed to the popular Euclidean or Manhattan distance metrics. The Gower distance is scaled in a numerical range of 0 (identical) and 1 (maximally dissimilar). 
+Given that the basic premise of clustering is the similarity/dissimilarity between the data points, we compute the Gower distance by using the `daisy` function from the `cluster` package. We choose the Gower distance because it allows us to calculate the distance matrix for data that contains both categorical and quantitative variables, as opposed to the popular Euclidean or Manhattan distance metrics. The Gower distance is scaled in a numerical range of 0 (identical) and 1 (maximally dissimilar). 
 
 ```{r, echo = TRUE, eval=FALSE}
 silhouette <- c()
@@ -193,29 +186,22 @@ When running the PAM algorithm, we look at the **silhouette width** to select th
 
 ```{r, echo = TRUE, eval=FALSE}
 pam_nhis = pam(gower_df, diss = TRUE, k = 5)
-demographic_coverage2[pam_nhis$medoids, ]
+demographic_coverage[pam_nhis$medoids, ]
 ```
 
 ```{r}
 medioids <- read_csv("data/medioids.csv", show_col_types = FALSE)
-medioids
-```
-
-```{r, eval=FALSE, include = FALSE}
-pam_summary  <- demographic_coverage2 %>%
-  ungroup() %>%
-  mutate(cluster = pam_nhis$clustering) %>%
-  group_by(cluster) %>%
-  do(cluster_summary = summary(.))
-pam_summary$cluster_summary[5]
-```
-
-```{r, eval = FALSE, include = FALSE}
-pam_summary <- readRDS("data/pam_summary.rds")
-```
-
-```{r, eval = FALSE, include = FALSE}
-pam_summary$cluster_summary[5]
+medioids %>%
+  mutate(cluster = c(1:5),
+         income_sqrt = as.integer(income_sqrt),
+         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
+  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
+  kbl(booktabs = TRUE, 
+      col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
+                    "Coverage Status", "Citizenship Status", "Income"),
+      caption = "<center><strong>Medioids Table from Clustering by Coverage Status</strong></center>",
+    escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 We construct a PAM model with 5 clusters and examine medioids to interpret the clusters. In the medioids table above, each row represents a cluster; two clusters of respondents are insured, and the other three are not. We can also infer from the table that respondents belonging to Cluster 5 are uninsured and tend to be male; straight; Hispanic; non-US citizens; have less than a high school degree; earn the lowest income among all clusters. In other words, the uninsured tend to possess multiple social identities often identified as minority. However, it seems difficult to gain meaningful insights from the other 4 clusters because all of them tend to show very similar characteristics. This is due to the fact that there are a disproportionate number of survey participants who are White or straight. In order to address this issue, we apply clustering algorithm to the stratified random samples from each group of either race or sexual orientation.
@@ -223,10 +209,21 @@ We construct a PAM model with 5 clusters and examine medioids to interpret the c
 ```{r, echo = FALSE}
 medioids_race <- read_csv("data/medioids_race.csv", show_col_types = FALSE)
 medioids_race %>% 
-  arrange(coverage, desc(income_sqrt))
+  arrange(coverage, desc(income_sqrt)) %>% 
+  mutate(cluster = c(1:10),
+         income_sqrt = as.integer(income_sqrt),
+         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
+  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
+  kbl(booktabs = TRUE, 
+      col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
+                    "Coverage Status", "Citizenship Status", "Income"),
+      caption = "<center><strong>Medioids Table from Clustering by Race and Coverage Status</strong></center>",
+    escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>% 
+  row_spec(c(1,6), background = "#cc9987")
 ```
 
-We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their income tends to be less than approximately \$28K($167^2$) with the exception of White and Asian participants. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). Additionally, the individuals not covered by health insurance tend to have lower education level and lower income than their insured counterparts with the same racial identity.
+We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their income tends to be less than that of their racial counterparts who have health insurance. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). 
 
 ```{r, echo = TRUE, eval = FALSE}
 tsne_object <- Rtsne(gower_df, is_distance = TRUE)
@@ -236,7 +233,7 @@ tsne_df <- tsne_object$Y %>%
   mutate(cluster = factor(pam_nhis$clustering))
 ```
 
-To visualize our clustering analysis results, we use the t-SNE(t-Distributed Stochastic Neighbor Embedding) technique, a dimension reduction technique that enables us to visualize a multi-dimensional data set in a two-dimensional plot.
+To visualize our clustering analysis results, we use the t-Distributed Stochastic Neighbor Embedding (t-SNE) technique, a dimension reduction technique that enables us to visualize a multi-dimensional data set in a two-dimensional plot.
 
 ```{r shiny-clustering-race, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
 knitr::include_app("https://angelicakim.shinyapps.io/blog-clustering-race/",
@@ -250,7 +247,17 @@ We visualized our multi-dimensional data into a two-dimensional plot by using t-
 ```{r, echo = FALSE}
 medioids_sex <- read_csv("data/medioids_sex.csv", show_col_types = FALSE)
 medioids_sex %>% 
-  arrange(coverage, desc(income_sqrt))
+  arrange(coverage, desc(income_sqrt)) %>% 
+  mutate(cluster = c(1:8),
+         income_sqrt = as.integer(income_sqrt),
+         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
+  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
+  kbl(booktabs = TRUE, 
+      col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
+                    "Coverage Status", "Citizenship Status", "Income"),
+      caption = "<center><strong>Medioids Table from Clustering by Sexual Orientation and Coverage Status</strong></center>",
+    escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
 
 
@@ -313,7 +320,9 @@ Another improvement to be made would be the quality of service delivery--specifi
 * The word cloud revealed that Medicare has not been effective in delivering quality health care; even if those insured by Medicare are not fully taking advantage of it presumably due to high bills. Medicare patients also lack timely access to care, which is often a critical aspect of patient experience and may have fatal consequences in their health outcomes. Thus, reducing costs of care and closely monitoring timeliness of access to care would be an important step toward ensuring Medicare beneficiaries to access the medical care they need.
 
 
-# Bibliography
+# Citations
+
+* “Affordable Care Act (ACA) - Healthcare.gov Glossary.” HealthCare.gov, https://www.healthcare.gov/glossary/affordable-care-act/. 
 
 * Shendre, Sushrut. “Clustering Datasets Having Both Numerical and Categorical Variables.” Medium, Towards Data Science, 11 May 2020, https://towardsdatascience.com/clustering-datasets-having-both-numerical-and-categorical-variables-ed91cdca0677. 
 
