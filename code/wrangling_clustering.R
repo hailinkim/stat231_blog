@@ -67,7 +67,8 @@ demographic <- nhis19 %>%
 #30032 observations
 demographic2 <- demographic %>% 
   filter(across(sex:citizen, ~. != "Other")) %>% 
-  mutate(income_sqrt = sqrt(income)) %>% 
+  mutate(income_sqrt = sqrt(income),
+         across(where(is.character),as.factor)) %>% 
   select(-c(SEX_A:FAMINCTC_A, income))
 
 write_csv(demographic2, "data/demographic.csv")
@@ -135,6 +136,7 @@ pam_nhis2 = pam(gower_df2, diss = TRUE, k = 8)
 
 medioids_race <- tmp2[pam_nhis2$medoids, ]
 write_csv(medioids_race, "data/medioids_race.csv")
+
 
 
 
