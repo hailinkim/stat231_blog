@@ -529,7 +529,3 @@ geom_sf() +
 scale_fill_viridis(option = "turbo", direction = -1) +
 theme_void()
 ```
-
-```{r}
-
-```
