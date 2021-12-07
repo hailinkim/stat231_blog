@@ -126,8 +126,10 @@ demographic_race <- demographic2 %>%
 
 write_csv(demographic_race, "data/demographic_race.csv")
 
+#compute Gower distance matrix
 gower_df2 <- daisy(demographic_race, metric = "gower")
 
+#compute silhouette coefficients for differnet numbers of clusters
 silhouette2 <- c()
 silhouette2 = c(silhouette2, NA)
 for(i in 2:10){
@@ -141,32 +143,39 @@ plot(1:10, silhouette2,
      ylab = "Silhouette Width")
 lines(1:10, silhouette2)
 
+#run PAM clustering with 10 clusters
 pam_nhis2 = pam(gower_df2, diss = TRUE, k = 10)
 
+#clustering summary
 pam_summary2 <- demographic_race %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis2$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
+
 #summary for cluster 10
 pam_summary2$cluster_summary[10]
 
+#medioids table
 medioids_race <- demographic_race[pam_nhis2$medoids, ] %>% 
   arrange(coverage, desc(income_sqrt))
 
 write_csv(medioids_race, "data/medioids_race.csv")
 
+#create tsne object for visualization/projections by using t-sne technique 
 tsne_object <- Rtsne(gower_df2, is_distance = TRUE)
 tsne_df <- tsne_object$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis2$clustering))
 
-#added cluster number to which each row belongs
+#added cluster number to which each row belongs, to the stratified random sampled data set
 cluster10 <- demographic_race %>%
   ungroup() %>% 
   mutate(cluster = factor(pam_nhis2$clustering))
-  
+
+#combined tsne object and initial data set for visualization
+  #to display demographic info in the viz when hovered over
 tsne_race <- cluster10 %>% 
   #used cbind instead of join functions from dplyr to join two data sets as is
   cbind(tsne_df) %>% 
@@ -176,18 +185,19 @@ tsne_race <- cluster10 %>%
 write_csv(tsne_race, "blog-clustering-race/tsne_race.csv")
 
 
-
 #stratified random samples by sexual orientation
 set.seed(1298)
-tmp3 <- demographic2 %>% 
+demographic_sex <- demographic2 %>% 
   filter(sex_orientation != "Something else") %>%
   group_by(sex_orientation, coverage) %>% 
   sample_n(30) %>% 
   ungroup() %>% 
   mutate(across(where(is.character), as.factor))
+
 write_csv(tmp3, "data/demographic_sex_orientation.csv")
 
-gower_df3 <- daisy(tmp3, metric = "gower")
+gower_df3 <- daisy(demographic_sex, metric = "gower")
+
 silhouette3 <- c()
 silhouette3 = c(silhouette3, NA)
 for(i in 2:10){
@@ -200,13 +210,15 @@ plot(1:10, silhouette3,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette3)
+
 pam_nhis3 = pam(gower_df3, diss = TRUE, k = 8)
 
-medioids_sex <- tmp3[pam_nhis3$medoids, ] %>% 
+medioids_sex <- demographic_sex[pam_nhis3$medoids, ] %>% 
   arrange(coverage, desc(income_sqrt))
+
 write_csv(medioids_sex, "data/medioids_sex.csv")
 
-pam_summary3 <- tmp3 %>%
+pam_summary3 <- demographic_sex %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis3$clustering) %>%
   group_by(cluster) %>%
@@ -219,10 +231,13 @@ tsne_df3 <- tsne_object3$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
   mutate(cluster = factor(pam_nhis3$clustering))
+
 cluster8 <- tmp3 %>%
   ungroup() %>% 
   mutate(cluster = as.factor(pam_nhis3$clustering))
+
 tsne_sex <- cluster8 %>% 
-  cbind(tsne_df3)
-tsne_sex <- tsne_sex[, -11]
-write_csv(tsne_sex, "data/tsne_sex.csv")
+  cbind(tsne_df3) %>% 
+  select(-11)
+
+write_csv(tsne_sex, "blog-clustering-sex/tsne_sex.csv")
