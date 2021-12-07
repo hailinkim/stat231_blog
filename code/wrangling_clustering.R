@@ -62,29 +62,35 @@ demographic <- nhis19 %>%
     income = FAMINCTC_A 
   )
 
-#sex, race, education, citizenship, income group
+#checking the distribution of income
+ggplot(demographic, aes(x = income)) +
+  geom_histogram()
 
-#30032 observations
+ggplot(demographic, aes(x = sqrt(income))) +
+  geom_histogram()
+
 demographic2 <- demographic %>% 
   filter(across(sex:citizen, ~. != "Other")) %>% 
   mutate(income_sqrt = sqrt(income),
-         across(where(is.character),as.factor)) %>% 
+         across(where(is.character), as.factor)) %>% 
   select(-c(SEX_A:FAMINCTC_A, income))
 
 write_csv(demographic2, "data/demographic.csv")
 
-#checking the distribution of income
-ggplot(demographic3, aes(x = income_sqrt)) +
-  geom_histogram()
+demographic_coverage_count <- demographic2 %>% 
+  count(coverage)
 
+write_csv(demographic_coverage_count, "data/demographic_coverage_count.csv")
 
 ################
 #stratified random samples by coverage status
 set.seed(112)
-tmp <- demographic2 %>% 
+demographic_coverage <- demographic2 %>% 
   group_by(coverage) %>% 
   sample_n(2500)
-gower_df <- daisy(tmp, metric = "gower")
+
+gower_df <- daisy(demographic_coverage, metric = "gower")
+
 silhouette <- c()
 silhouette = c(silhouette, NA)
 for(i in 2:10){
@@ -93,14 +99,16 @@ for(i in 2:10){
                      k = i)
   silhouette = c(silhouette, pam_clusters$silinfo$avg.width)
 }
+
 plot(1:10, silhouette,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette)
+
 pam_nhis = pam(gower_df, diss = TRUE, k = 5)
 
-tmp[pam_nhis$medoids, ] #mediois represented by row numbers
-pam_summary  <- tmp %>%
+demographic_coverage[pam_nhis$medoids, ] #medioids represented by row numbers
+pam_summary  <- demographic_coverage %>%
   ungroup() %>% 
   mutate(cluster = pam_nhis$clustering) %>%
   group_by(cluster) %>%
@@ -109,87 +117,63 @@ pam_summary$cluster_summary[5]
 
 
 #stratified random samples by race
-set.seed(68)
-tmp2 <- demographic2 %>% 
-  filter(coverage == "Not covered") %>% 
-  group_by(race) %>% 
-  sample_n(75)
-
-write_csv(tmp2, "demographic_race.csv")
-tmp2 <- read_csv("data/demographic_race.csv") %>% 
+set.seed(1294)
+demographic_race <- demographic2 %>% 
+  group_by(race, coverage) %>% 
+  sample_n(75) %>% 
+  ungroup() %>% 
   mutate(across(where(is.character), as.factor))
-gower_df2 <- daisy(tmp2, metric = "gower")
+
+write_csv(demographic_race, "data/demographic_race.csv")
+
+gower_df2 <- daisy(demographic_race, metric = "gower")
 
 silhouette2 <- c()
 silhouette2 = c(silhouette2, NA)
 for(i in 2:10){
   pam_clusters2 = pam(as.matrix(gower_df2),
-                     diss = TRUE,
-                     k = i)
+                      diss = TRUE,
+                      k = i)
   silhouette2 = c(silhouette2, pam_clusters2$silinfo$avg.width)
 }
 plot(1:10, silhouette2,
      xlab = "Clusters",
      ylab = "Silhouette Width")
 lines(1:10, silhouette2)
-pam_nhis2 = pam(gower_df2, diss = TRUE, k = 8)
 
-medioids_race <- tmp2[pam_nhis2$medoids, ]
-write_csv(medioids_race, "data/medioids_race.csv")
+pam_nhis2 = pam(gower_df2, diss = TRUE, k = 10)
 
-
-
-
-set.seed(1294)
-tmp4 <- demographic2 %>% 
-  select(-sex) %>% 
-  group_by(race, coverage) %>% 
-  sample_n(75) %>% 
+pam_summary2 <- demographic_race %>%
   ungroup() %>% 
-  mutate(across(where(is.character), as.factor))
-write_csv(tmp4, "data/demographic_race.csv")
-
-tmp4 <- read_csv("data/demographic_race.csv") %>% 
-  mutate(across(where(is.character), as.factor))
-gower_df4 <- daisy(tmp4, metric = "gower")
-
-silhouette4 <- c()
-silhouette4 = c(silhouette4, NA)
-for(i in 2:10){
-  pam_clusters4 = pam(as.matrix(gower_df4),
-                      diss = TRUE,
-                      k = i)
-  silhouette4 = c(silhouette4, pam_clusters4$silinfo$avg.width)
-}
-plot(1:10, silhouette4,
-     xlab = "Clusters",
-     ylab = "Silhouette Width")
-lines(1:10, silhouette4)
-pam_nhis4 = pam(gower_df4, diss = TRUE, k = 10)
-
-pam_summary4 <- tmp4 %>%
-  ungroup() %>% 
-  mutate(cluster = pam_nhis4$clustering) %>%
+  mutate(cluster = pam_nhis2$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
-pam_summary4$cluster_summary[3]
+#summary for cluster 10
+pam_summary2$cluster_summary[10]
 
-medioids_race <- tmp4[pam_nhis4$medoids, ] %>% 
+medioids_race <- demographic_race[pam_nhis2$medoids, ] %>% 
   arrange(coverage, desc(income_sqrt))
+
 write_csv(medioids_race, "data/medioids_race.csv")
 
-tsne_object4 <- Rtsne(gower_df4, is_distance = TRUE)
-tsne_df4 <- tsne_object4$Y %>%
+tsne_object <- Rtsne(gower_df2, is_distance = TRUE)
+tsne_df <- tsne_object$Y %>%
   data.frame() %>%
   setNames(c("X", "Y")) %>%
-  mutate(cluster = factor(pam_nhis4$clustering))
-cluster10 <- tmp4 %>%
+  mutate(cluster = factor(pam_nhis2$clustering))
+
+#added cluster number to which each row belongs
+cluster10 <- demographic_race %>%
   ungroup() %>% 
-  mutate(cluster = factor(pam_nhis4$clustering))
-tsne <- cluster10 %>% 
-  cbind(tsne_df4) 
-tsne <- tsne[, -11]
-write_csv(tsne, "data/tsne_race.csv")
+  mutate(cluster = factor(pam_nhis2$clustering))
+  
+tsne_race <- cluster10 %>% 
+  #used cbind instead of join functions from dplyr to join two data sets as is
+  cbind(tsne_df) %>% 
+  #remove redundant columns
+  select(-11)
+
+write_csv(tsne_race, "blog-clustering-race/tsne_race.csv")
 
 
 
