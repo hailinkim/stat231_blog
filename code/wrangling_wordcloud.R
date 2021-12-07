@@ -5,14 +5,13 @@ library(tidytext)
 library(wordcloud)
 library(textdata)
 library(ggplot2)
-library(ggwordcloud) 
-library(gganimate)  
+library(janitor)
 #rating data
 # rating <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/stars.csv")
 # write_csv(rating, "rating.csv")
 # rating_data <- read_csv("/Users/angelica/Desktop/2019 Part C and D Medicare Star Ratings Data (v04 12 2019) [ZIP, 9MB]/2019 Star Ratings Fall Release (11_2018)/rating_data.csv")
 # write_csv(rating_data, "rating_data.csv")
-rating16 <- read_csv("data/rating/2016.csv")
+rating16 <- read_csv("data/rating/2016.csv", skip = 2)
 rating16_display <- read_csv("data/rating/2016_display.csv")
 rating17 <- read_csv("data/rating/2017.csv")
 rating18 <- read_csv("data/rating/2018.csv")
@@ -23,11 +22,14 @@ rating22 <- read_csv("data/rating/2022.csv")
 
 #ratings data set
 #2016
-#make the next row(rating variables) to be column names
+#make the first row to be column names
 names(rating16) <- rating16[1,]
+#remove the original first row because it is redundant
 rating16 <- rating16[-1,]
+#for the sixth column and onward, make the current first row to be the column names
 colnames(rating16)[-c(1:5)] <- rating16[1, -c(1:5)]
-#remove the time frame row
+#remove the first row because it is redundant
+  #remove the second row as well because it contains unnecessary information
 rating16 <- rating16[-c(1,2),]
 
 rating16_2 <- as.data.frame(rating16[, c(1:8, 17:23, 25:27, 30:32, 35:37)])
