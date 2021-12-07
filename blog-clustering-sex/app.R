@@ -11,13 +11,12 @@ tsne_sex <- read_csv("tsne_sex.csv", show_col_types = FALSE) %>%
 ui <- fluidPage(
   
   plotlyOutput("clustering")
-  # uiOutput("hover_info")
 )
 
 server <- function(input, output) {
   
   output$clustering <- renderPlotly({
-    my_pal <- RColorBrewer::brewer.pal(n=10, name = "Set3")
+    my_pal <- RColorBrewer::brewer.pal(n = 8, name = "Set3")
     g <- ggplot(data = tsne_sex, aes(x = X, y = Y, 
                                      text = paste(
                                        "Coverage Status: ", coverage,
@@ -29,8 +28,9 @@ server <- function(input, output) {
     )) +
       geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
       theme_bw() +
-      scale_color_manual(values=c(my_pal)) +
-      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+      scale_color_manual(values = c(my_pal)) +
+      scale_fill_manual(values = c(paste(my_pal, "66", sep = "")))
+    
     ggplotly(g, tooltip = "text")
   })
   
