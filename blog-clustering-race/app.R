@@ -31,8 +31,8 @@ server <- function(input, output) {
     )) +
       geom_point(aes(color = cluster, fill = cluster), size = 4, shape = 21) + 
       theme_bw() +
-      scale_color_manual(values=c(my_pal)) +
-      scale_fill_manual(values=c(paste(my_pal, "66", sep = "")))
+      scale_color_manual(values = c(my_pal)) +
+      scale_fill_manual(values = c(paste(my_pal, "66", sep = "")))
     
     ggplotly(g, tooltip = "text")
   })
