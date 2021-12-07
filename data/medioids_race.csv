@@ -1,11 +1,11 @@
 sex,sex_orientation,race,edu,coverage,citizen,income_sqrt
-Female,Straight,American Indian and Alaska Native,"Some college, no degree",Covered,US Citizen,138.5640646055102
+Female,Straight,White,Bachelor's degree,Covered,US Citizen,316.22776601683796
 Male,Straight,Asian,Bachelor's degree,Covered,US Citizen,282.842712474619
-Female,Straight,Hispanic,High school graduate,Covered,US Citizen,187.08286933869707
-Male,Straight,American Indian and Alaska Native,High school graduate,Not covered,US Citizen,173.20508075688772
-Male,Straight,Black/African American,"Some college, no degree",Covered,US Citizen,212.13203435596427
-Female,Straight,White,Associate degree,Covered,US Citizen,264.5751311064591
-Female,Straight,Black/African American,Bachelor's degree,Not covered,US Citizen,187.08286933869707
+Male,Straight,Black/African American,"Some college, no degree",Covered,US Citizen,218.7669993394799
+Female,Straight,Hispanic,High school graduate,Covered,US Citizen,200
+Female,Straight,American Indian and Alaska Native,"Some college, no degree",Covered,US Citizen,141.4213562373095
 Female,Straight,Asian,Bachelor's degree,Not covered,Non-US Citizen,264.5751311064591
-Female,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,158.11388300841898
-Male,Straight,White,High school graduate,Not covered,US Citizen,223.60679774997897
+Male,Straight,White,High school graduate,Not covered,US Citizen,194.93588689617928
+Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,167.33200530681512
+Female,Straight,Black/African American,Associate degree,Not covered,US Citizen,164.31676725154983
+Male,Straight,American Indian and Alaska Native,Less than a high school diploma,Not covered,US Citizen,158.11388300841898
