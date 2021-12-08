@@ -234,7 +234,7 @@
 <div id="clustering" class="section level3">
 <h3>Clustering</h3>
 <p>We employ clustering analysis approach to examine the effect of intersectionality on health care inequities. We use the national health interview survey data set, which contains health insurance coverage status and various socioeconomic information of its respondents; we focus on race, sexual orientation, citizenship status, education level, and income. We hope to identify clusters of survey participants with various socioeconomic identities. By doing so, we aim to explore how coverage status differs according to different combinations of social locations.</p>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <center>
 <strong>Coverage Status of Survey Respondents</strong>
@@ -269,10 +269,10 @@ Not covered
 </tr>
 </tbody>
 </table>
-<pre class="r bg-success"><code>set.seed(1128)
-demographic_coverage &lt;- demographic %&gt;% 
+<pre class="r bg-success"><code>set.seed(112)
+demographic_coverage &lt;- demographic2 %&gt;% 
   group_by(coverage) %&gt;% 
-  sample_n(2000)</code></pre>
+  sample_n(2500)</code></pre>
 <p>Due to the fact that the data set contains a disproportionate number of survey respondents for each health insurance coverage status (i.e. whether insured or uninsured), our initial clustering analysis results were dominated by those insured. Instead, we drew 2500 stratified random samples from each coverage status group.</p>
 <p>Given that the basic premise of clustering is the similarity/dissimilarity between the data points, we compute the Gower distance by using the <code>daisy</code> function from the <code>cluster</code> package. We choose the Gower distance because it allows us to calculate the distance matrix for data that contains both categorical and quantitative variables, as opposed to the popular Euclidean or Manhattan distance metrics. The Gower distance is scaled in a numerical range of 0 (identical) and 1 (maximally dissimilar). Note that we transformed the income variable into square roots because Gower distance requires variables to be symmetric.(Visit <a href="https://www.rdocumentation.org/packages/cluster/versions/2.1.2/topics/daisy">daisy: Dissimilarity Matrix Calculation</a> for more details.) While <code>daisy</code> function logarithmically transforms asymmetric variables by default, our exploratory data analysis revealed that square root transformation achieves symmetry better than the log transformation for the income variable.</p>
 <pre class="r bg-success"><code>silhouette &lt;- c()
@@ -297,7 +297,7 @@ Silhouette Width vs Number of Clusters
 <p>When running the PAM algorithm, we look at the <strong>silhouette width</strong> to select the optimal number of clusters. The silhouette width measures the similarity of each point to its cluster, and compares that to the similarity of the point with the closest neighboring cluster; a higher value is desirable. We calculate this metric for a range of cluster numbers and find where it is maximized. When we plot the silhouette width against the number of clusters, we can see the value is maximized at 5 clusters.</p>
 <pre class="r bg-success"><code>pam_nhis = pam(gower_df, diss = TRUE, k = 5)
 demographic_coverage[pam_nhis$medoids, ]</code></pre>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <center>
 <strong>Medioids Table from Clustering by Coverage Status</strong>
@@ -355,7 +355,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$74529
+$79,524
 </td>
 </tr>
 <tr>
@@ -381,38 +381,12 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$64516
+$64,516
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
 3
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:left;">
-Straight
-</td>
-<td style="text-align:left;">
-White
-</td>
-<td style="text-align:left;">
-High school graduate
-</td>
-<td style="text-align:left;">
-Not covered
-</td>
-<td style="text-align:left;">
-US Citizen
-</td>
-<td style="text-align:left;">
-$31684
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4
 </td>
 <td style="text-align:left;">
 Male
@@ -433,7 +407,33 @@ Not covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$35721
+$40,000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Straight
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+High school graduate
+</td>
+<td style="text-align:left;">
+Not covered
+</td>
+<td style="text-align:left;">
+US Citizen
+</td>
+<td style="text-align:left;">
+$32,761
 </td>
 </tr>
 <tr>
@@ -459,13 +459,13 @@ Not covered
 Non-US Citizen
 </td>
 <td style="text-align:left;">
-$27225
+$27,556
 </td>
 </tr>
 </tbody>
 </table>
 <p>We construct a PAM model with 5 clusters and examine medioids to interpret the clusters. In the medioids table above, each row represents a cluster; two clusters of respondents are insured, and the other three are not. We can also infer from the table that respondents belonging to Cluster 5 are uninsured and tend to be male; straight; Hispanic; non-US citizens; have less than a high school degree; earn the lowest income among all clusters. In other words, the uninsured tend to possess multiple social identities often identified as minority. However, it seems difficult to gain meaningful insights from the other 4 clusters because all of them tend to show very similar characteristics. This is due to the fact that there are a disproportionate number of survey participants who are White or straight. In order to address this issue, we apply clustering algorithm to the stratified random samples from each group of either race or sexual orientation.</p>
-<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <center>
 <strong>Medioids Table from Clustering by Race and Coverage Status</strong>
@@ -501,8 +501,34 @@ Income
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right;background-color: #cc9987 !important;">
+<td style="text-align:right;">
 1
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Straight
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:left;">
+Bachelor’s degree
+</td>
+<td style="text-align:left;">
+Covered
+</td>
+<td style="text-align:left;">
+US Citizen
+</td>
+<td style="text-align:left;">
+$99,856
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: #cc9987 !important;">
+2
 </td>
 <td style="text-align:left;background-color: #cc9987 !important;">
 Male
@@ -523,33 +549,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;background-color: #cc9987 !important;">
-$79524
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:left;">
-Straight
-</td>
-<td style="text-align:left;">
-White
-</td>
-<td style="text-align:left;">
-Associate degree
-</td>
-<td style="text-align:left;">
-Covered
-</td>
-<td style="text-align:left;">
-US Citizen
-</td>
-<td style="text-align:left;">
-$69696
+$79,524
 </td>
 </tr>
 <tr>
@@ -575,7 +575,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$44944
+$47,524
 </td>
 </tr>
 <tr>
@@ -601,7 +601,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$34969
+$40,000
 </td>
 </tr>
 <tr>
@@ -627,7 +627,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$19044
+$19,881
 </td>
 </tr>
 <tr>
@@ -653,7 +653,7 @@ Not covered
 Non-US Citizen
 </td>
 <td style="text-align:left;background-color: #cc9987 !important;">
-$69696
+$69,696
 </td>
 </tr>
 <tr>
@@ -679,7 +679,7 @@ Not covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$49729
+$37,636
 </td>
 </tr>
 <tr>
@@ -687,59 +687,7 @@ $49729
 8
 </td>
 <td style="text-align:left;">
-Female
-</td>
-<td style="text-align:left;">
-Straight
-</td>
-<td style="text-align:left;">
-Black/African American
-</td>
-<td style="text-align:left;">
-Bachelor’s degree
-</td>
-<td style="text-align:left;">
-Not covered
-</td>
-<td style="text-align:left;">
-US Citizen
-</td>
-<td style="text-align:left;">
-$34969
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
 Male
-</td>
-<td style="text-align:left;">
-Straight
-</td>
-<td style="text-align:left;">
-American Indian and Alaska Native
-</td>
-<td style="text-align:left;">
-High school graduate
-</td>
-<td style="text-align:left;">
-Not covered
-</td>
-<td style="text-align:left;">
-US Citizen
-</td>
-<td style="text-align:left;">
-$29929
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:left;">
-Female
 </td>
 <td style="text-align:left;">
 Straight
@@ -757,7 +705,59 @@ Not covered
 Non-US Citizen
 </td>
 <td style="text-align:left;">
-$24964
+$27,889
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+Straight
+</td>
+<td style="text-align:left;">
+Black/African American
+</td>
+<td style="text-align:left;">
+Associate degree
+</td>
+<td style="text-align:left;">
+Not covered
+</td>
+<td style="text-align:left;">
+US Citizen
+</td>
+<td style="text-align:left;">
+$26,896
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+Straight
+</td>
+<td style="text-align:left;">
+American Indian and Alaska Native
+</td>
+<td style="text-align:left;">
+Less than a high school diploma
+</td>
+<td style="text-align:left;">
+Not covered
+</td>
+<td style="text-align:left;">
+US Citizen
+</td>
+<td style="text-align:left;">
+$24,964
 </td>
 </tr>
 </tbody>
@@ -772,7 +772,7 @@ tsne_df &lt;- tsne_object$Y %&gt;%
 <iframe src="https://angelicakim.shinyapps.io/blog-clustering-race/?showcase=0" width="100%" height="500px" data-external="1" frameborder="no">
 </iframe>
 <p>We visualized our multi-dimensional data into a two-dimensional plot by using t-SNE technique. We focus only on the uninsured individuals in this plot. Users can identify demographic and socioeconomic information of each respondent by hovering over each point. The clusters seem to overlap a bit, but they are fairly distinctive overall. (Visit <a href="https://towardsdatascience.com/t-sne-clearly-explained-d84c537f53a">T-SNE Clearly Explained</a> for more information about how to interpret the visualization generated by t-SNE.) Looking at the plot as well as the medioids table, we find that our clustering results are dominated by those who identify as straight. We then move on to run clustering on stratified random samples drawn from each sexual orientation group.</p>
-<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <center>
 <strong>Medioids Table from Clustering by Sexual Orientation and Coverage Status</strong>
@@ -830,7 +830,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$90000
+$90,000
 </td>
 </tr>
 <tr>
@@ -856,7 +856,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$59536
+$59,536
 </td>
 </tr>
 <tr>
@@ -882,7 +882,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$44944
+$44,944
 </td>
 </tr>
 <tr>
@@ -908,7 +908,7 @@ Covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$29929
+$29,929
 </td>
 </tr>
 <tr>
@@ -934,7 +934,7 @@ Not covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$40000
+$40,000
 </td>
 </tr>
 <tr>
@@ -960,7 +960,7 @@ Not covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$40000
+$40,000
 </td>
 </tr>
 <tr>
@@ -986,7 +986,7 @@ Not covered
 US Citizen
 </td>
 <td style="text-align:left;">
-$31684
+$31,684
 </td>
 </tr>
 <tr>
@@ -1012,7 +1012,7 @@ Not covered
 Non-US Citizen
 </td>
 <td style="text-align:left;">
-$19881
+$19,881
 </td>
 </tr>
 </tbody>

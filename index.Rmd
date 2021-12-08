@@ -135,25 +135,24 @@ We believe the intersectionality is an important concept for understanding and r
 
 We employ clustering analysis approach to examine the effect of intersectionality on health care inequities. We use the national health interview survey data set, which contains health insurance coverage status and various socioeconomic information of its respondents; we focus on race, sexual orientation, citizenship status, education level, and income. We hope to identify clusters of survey participants with various socioeconomic identities. By doing so, we aim to explore how coverage status differs according to different combinations of social locations.
 
-```{r echo=FALSE, include = FALSE}
-demographic <- read_csv("data/demographic.csv")
-```
 
-```{r, echo=FALSE}
-demographic %>% 
-  count(coverage) %>% 
+```{r, echo = FALSE}
+demographic_coverage_count <- read_csv("data/demographic_coverage_count.csv", 
+                                       show_col_types = FALSE)
+
+demographic_coverage_count %>% 
   kbl(booktabs = TRUE, 
       col.names = c("Coverage Status", "Number of Respondents"),
       caption = "<center><strong>Coverage Status of Survey Respondents</strong></center>",
     escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
+  kable_styling()
 ```
 
-```{r echo = TRUE}
-set.seed(1128)
-demographic_coverage <- demographic %>% 
+```{r echo = TRUE, eval = FALSE}
+set.seed(112)
+demographic_coverage <- demographic2 %>% 
   group_by(coverage) %>% 
-  sample_n(2000)
+  sample_n(2500)
 ```
 
 Due to the fact that the data set contains a disproportionate number of survey respondents for each health insurance coverage status (i.e. whether insured or uninsured), our initial clustering analysis results were dominated by those insured. Instead, we drew 2500 stratified random samples from each coverage status group.
@@ -190,18 +189,14 @@ demographic_coverage[pam_nhis$medoids, ]
 ```
 
 ```{r}
-medioids <- read_csv("data/medioids.csv", show_col_types = FALSE)
-medioids %>%
-  mutate(cluster = c(1:5),
-         income_sqrt = as.integer(income_sqrt),
-         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
-  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
+medioids_coverage <- read_csv("data/medioids_coverage.csv", show_col_types = FALSE)
+medioids_coverage %>%
   kbl(booktabs = TRUE, 
       col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
                     "Coverage Status", "Citizenship Status", "Income"),
       caption = "<center><strong>Medioids Table from Clustering by Coverage Status</strong></center>",
     escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
+  kable_styling()
 ```
 
 We construct a PAM model with 5 clusters and examine medioids to interpret the clusters. In the medioids table above, each row represents a cluster; two clusters of respondents are insured, and the other three are not. We can also infer from the table that respondents belonging to Cluster 5 are uninsured and tend to be male; straight; Hispanic; non-US citizens; have less than a high school degree; earn the lowest income among all clusters. In other words, the uninsured tend to possess multiple social identities often identified as minority. However, it seems difficult to gain meaningful insights from the other 4 clusters because all of them tend to show very similar characteristics. This is due to the fact that there are a disproportionate number of survey participants who are White or straight. In order to address this issue, we apply clustering algorithm to the stratified random samples from each group of either race or sexual orientation.
@@ -209,18 +204,13 @@ We construct a PAM model with 5 clusters and examine medioids to interpret the c
 ```{r, echo = FALSE}
 medioids_race <- read_csv("data/medioids_race.csv", show_col_types = FALSE)
 medioids_race %>% 
-  arrange(coverage, desc(income_sqrt)) %>% 
-  mutate(cluster = c(1:10),
-         income_sqrt = as.integer(income_sqrt),
-         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
-  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
   kbl(booktabs = TRUE, 
       col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
                     "Coverage Status", "Citizenship Status", "Income"),
       caption = "<center><strong>Medioids Table from Clustering by Race and Coverage Status</strong></center>",
     escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>% 
-  row_spec(c(1,6), background = "#cc9987")
+  kable_styling() %>% 
+  row_spec(c(2,6), background = "#cc9987")
 ```
 
 We created 75 stratified random samples from each race for each coverage status. The medioids table for 10 clusters grouped by race shows that uninsured respondents tend to possess less than a college degree; their income tends to be less than that of their racial counterparts who have health insurance. Moreover, those with multiple social minority statuses (e.g. Female Asian who is a non-US citizen) are more likely to be uninsured than those who hold single minority identity (e.g. Male Asian who is a US-citizen). 
@@ -247,17 +237,12 @@ We visualized our multi-dimensional data into a two-dimensional plot by using t-
 ```{r, echo = FALSE}
 medioids_sex <- read_csv("data/medioids_sex.csv", show_col_types = FALSE)
 medioids_sex %>% 
-  arrange(coverage, desc(income_sqrt)) %>% 
-  mutate(cluster = c(1:8),
-         income_sqrt = as.integer(income_sqrt),
-         income = paste0("$",sapply(income_sqrt, function(x) x^2))) %>% 
-  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income) %>% 
   kbl(booktabs = TRUE, 
       col.names = c("Cluster", "Sex", "Sexual Orientation", "Race", "Education", 
                     "Coverage Status", "Citizenship Status", "Income"),
       caption = "<center><strong>Medioids Table from Clustering by Sexual Orientation and Coverage Status</strong></center>",
     escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  kable_styling()
 ```
 
 
