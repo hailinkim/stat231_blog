@@ -1,11 +1,11 @@
-sex,sex_orientation,race,edu,coverage,citizen,income_sqrt
-Female,Straight,White,Bachelor's degree,Covered,US Citizen,316.22776601683796
-Male,Straight,Asian,Bachelor's degree,Covered,US Citizen,282.842712474619
-Male,Straight,Black/African American,"Some college, no degree",Covered,US Citizen,218.7669993394799
-Female,Straight,Hispanic,High school graduate,Covered,US Citizen,200
-Female,Straight,American Indian and Alaska Native,"Some college, no degree",Covered,US Citizen,141.4213562373095
-Female,Straight,Asian,Bachelor's degree,Not covered,Non-US Citizen,264.5751311064591
-Male,Straight,White,High school graduate,Not covered,US Citizen,194.93588689617928
-Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,167.33200530681512
-Female,Straight,Black/African American,Associate degree,Not covered,US Citizen,164.31676725154983
-Male,Straight,American Indian and Alaska Native,Less than a high school diploma,Not covered,US Citizen,158.11388300841898
+cluster,sex,sex_orientation,race,edu,coverage,citizen,income2
+1,Female,Straight,White,Bachelor's degree,Covered,US Citizen,"$99,856"
+2,Male,Straight,Asian,Bachelor's degree,Covered,US Citizen,"$79,524"
+3,Male,Straight,Black/African American,"Some college, no degree",Covered,US Citizen,"$47,524"
+4,Female,Straight,Hispanic,High school graduate,Covered,US Citizen,"$40,000"
+5,Female,Straight,American Indian and Alaska Native,"Some college, no degree",Covered,US Citizen,"$19,881"
+6,Female,Straight,Asian,Bachelor's degree,Not covered,Non-US Citizen,"$69,696"
+7,Male,Straight,White,High school graduate,Not covered,US Citizen,"$37,636"
+8,Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,"$27,889"
+9,Female,Straight,Black/African American,Associate degree,Not covered,US Citizen,"$26,896"
+10,Male,Straight,American Indian and Alaska Native,Less than a high school diploma,Not covered,US Citizen,"$24,964"

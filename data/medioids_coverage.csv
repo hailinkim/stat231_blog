@@ -1,0 +1,6 @@
+cluster,sex,sex_orientation,race,edu,coverage,citizen,income2
+1,Male,Straight,White,Bachelor's degree,Covered,US Citizen,"$79,524"
+2,Female,Straight,White,Bachelor's degree,Covered,US Citizen,"$64,516"
+3,Male,Straight,White,High school graduate,Not covered,US Citizen,"$40,000"
+4,Female,Straight,White,High school graduate,Not covered,US Citizen,"$32,761"
+5,Male,Straight,Hispanic,Less than a high school diploma,Not covered,Non-US Citizen,"$27,556"
