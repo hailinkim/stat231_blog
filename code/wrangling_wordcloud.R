@@ -34,13 +34,19 @@ rating16_2 <- rating16 %>%
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
 
 rating16_3 <- rating16_2 %>% 
+  #rename the variables
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
+  #remove percentage sign and make variables numeric
   mutate(across(c(6:24), ~str_remove(., "%")),
          across(c(6:24), asNum)) %>% 
   drop_na()  %>% 
-  mutate(Diabetes = select(., starts_with("Diabetes")) %>% 
-           rowSums(na.rm = TRUE), "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  #compute row-wise sum of proportions for 3 columns related to diabetes
+  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE), 
+         "No Diabetes Care" = 1 - Diabetes/300) %>% 
+  #remove unnecessary/redundant columns related to diabetes
   select(-c(10:12, 25)) %>% 
+  #subtract values from 100 to focus on those who did NOT utilize certain services
+    #convert them from percentages to proportions(decimals)
   mutate(across(c(6:16, 19:21), ~{100-.}),
          across(c(6:16, 18:21), ~{./100}))
 
@@ -70,6 +76,7 @@ rating16_5 <- rating16_4 %>%
 rating16_words <- rating16_5 %>% 
   group_by(measure) %>% 
   summarise(mean = mean(ratings)) %>% 
+  #added line breaks to the words for wordcloud visualization
   mutate(sentences = str_replace_all(measure, " ", "\n"),
          year = "2016") %>% 
   select(-measure)
@@ -86,7 +93,7 @@ rating16_words <- rating16_words %>%
 )
 
 
-#2017(wrangling codes are exactly same as those for the 2016 data set)
+#2017 (wrangling codes are exactly same as those for the 2016 data set)
 names(rating17) <- rating17[1,]
 
 rating17 <- rating17[-1,]
@@ -153,16 +160,20 @@ rating17_words <- rating17_words %>%
   )
 
 
-#2018
-#make the next row(rating variables) to be column names
+#2018 (wrangling codes are exactly same as those for the 2016 data set)
 names(rating18) <- rating18[1,]
+
 rating18 <- rating18[-1,]
+
 colnames(rating18)[-c(1:5)] <- rating18[1, -c(1:5)]
-#remove the time frame row
+
 rating18 <- rating18[-c(1,2),]
-rating18_2 <- rating18[, c(1:8, 17:24, 27:29, 32:34, 37:39)]
+
+rating18_2 <- rating18 %>% 
+  select(c(1:8, 17:24, 27:29, 32:34, 37:39))
 
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+
 rating18_3 <- rating18_2 %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c(6:25), ~str_remove(., "%")),
@@ -188,7 +199,8 @@ rating18_4 <- rating18_3 %>%
                 "Poor Customer Service" = "Customer Service",
                 "Poor Care Coordination" = "Care Coordination",
                 "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
+                "TTY Services/Foreign Language Interpretation Unavailable" = 
+                  "Call Center � Foreign Language Interpreter and TTY Availability",
                 "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
                 "Complaints" = "Complaints about the Health Plan")
 
@@ -210,24 +222,27 @@ rating18_words <- rating18_words %>%
                      "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
     sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", 
                      "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", 
-                     "No\nTreatment\nfor\nHypertension", "No\nTreatment\nfor\nUrinary\nIncontinence") ~ "Treatment",
+                     "No\nTreatment\nfor\nUrinary\nIncontinence",
+                     "No\nTreatment\nfor\nHypertension") ~ "Treatment",
     TRUE ~ "Customer Satisfaction"
     )
   )
 
 
-
-#2019
-#make the next row(rating variables) to be column names
+#2019 (wrangling codes are exactly same as those for the 2016 data set)
 names(rating19) <- rating19[1,]
+
 rating19 <- rating19[-1,]
+
 colnames(rating19)[-c(1:5)] <- rating19[1, -c(1:5)]
-#remove the time frame row
+
 rating19 <- rating19[-c(1,2),]
 
-rating19_2 <- rating19[, c(1:8, 17:24, 27:30, 33:35, 37:39)]
+rating19_2 <- rating19 %>% 
+  select(c(1:8, 17:24, 27:30, 33:35, 37:39))
 
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+
 rating19_3 <- rating19_2 %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c(6:26), ~str_remove(., "%")),
@@ -254,7 +269,8 @@ rating19_4 <- rating19_3 %>%
                 "Poor Customer Service" = "Customer Service",
                 "Poor Care Coordination" = "Care Coordination",
                 "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
+                "TTY Services/Foreign Language Interpretation Unavailable" = 
+                  "Call Center � Foreign Language Interpreter and TTY Availability",
                 "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
                 "Complaints" = "Complaints about the Health Plan")
 
@@ -283,17 +299,20 @@ rating19_words <- rating19_words %>%
 )
 
 
-#2020
-#make the next row(rating variables) to be column names
+#2020 (wrangling codes are exactly same as those for the 2016 data set)
 names(rating20) <- rating20[1,]
+
 rating20 <- rating20[-1,]
+
 colnames(rating20)[-c(1:5)] <- rating20[1, -c(1:5)]
-#remove the time frame row
+
 rating20 <- rating20[-c(1,2),]
 
-rating20_2 <- rating20[, c(1:8, 17:23, 26:29, 32:34, 36:38)]
+rating20_2 <- rating20 %>% 
+  select(c(1:8, 17:23, 26:29, 32:34, 36:38))
 
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+
 rating20_3 <- rating20_2 %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c(6:25), ~str_remove(., "%")),
@@ -347,17 +366,20 @@ rating20_words <- rating20_words %>%
   )
 
 
-#2021
-#make the next row(rating variables) to be column names
+#2021 (wrangling codes are exactly same as those for the 2016 data set)
 names(rating21) <- rating21[1,]
+
 rating21 <- rating21[-1,]
+
 colnames(rating21)[-c(1:5)] <- rating21[1, -c(1:5)]
-#remove the time frame row
+
 rating21 <- rating21[-c(1,2),]
 
-rating21_2 <- rating21[, c(1:8, 17:23, 25:28, 31:33, 35:37)]
+rating21_2 <- rating21 %>% 
+  select(c(1:8, 17:23, 25:28, 31:33, 35:37))
 
 asNum <- function(x, na.rm = FALSE)(as.numeric(x))
+
 rating21_3 <- rating21_2 %>% 
   rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
   mutate(across(c(6:25), ~str_remove(., "%")),
@@ -410,91 +432,9 @@ rating21_words <- rating21_words %>%
     )
   )
 
-
-#2022
-#make the next row(rating variables) to be column names
-names(rating22) <- rating22[1,]
-rating22 <- rating22[-1,]
-colnames(rating22)[-c(1:5)] <- rating22[1, -c(1:5)]
-#remove the time frame row
-rating22 <- rating22[-c(1,2),]
-
-rating22_2 <- rating22[, c(1:8, 14:19, 21:24, 27:29, 31:33)]
-
-asNum <- function(x, na.rm = FALSE)(as.numeric(x))
-rating22_3 <- rating22_2 %>% 
-  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
-  mutate(across(c(6:24), ~str_remove(., "%")),
-         across(c(6:24), asNum)) %>% 
-  drop_na()  %>% 
-  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
-         "No Diabetes Care" = 1 - Diabetes/300) %>% 
-  select(-c(9:11, 25)) %>% 
-  mutate(across(c(6:16, 19:21), ~{100-.}),
-         across(c(6:16, 18:21), ~{./100}))
-
-rating22_4 <- rating22_3 %>% 
-  dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
-                "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
-                "No Access to Flu Vaccine" = "Annual Flu Vaccine",
-                "No Rheumatoid Arthritis Management" = "Rheumatoid Arthritis Management",
-                "No Fall Risk Interventions" = "Reducing the Risk of Falling",
-                "No Treatment for Urinary Incontinence" = "Improving Bladder Control",
-                "No Treatment for Cardiovascular Disease" = "Statin Therapy for Patients with Cardiovascular Disease",
-                "Not Getting Needed Care" = "Getting Needed Care",
-                "Less Timely Care/Appointments" = "Getting Appointments and Care Quickly",
-                "Poor Customer Service" = "Customer Service",
-                "Poor Care Coordination" = "Care Coordination",
-                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center – Foreign Language Interpreter and TTY Availability",
-                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
-                "Complaints" = "Complaints about the Health Plan")
-
-rating22_5 <- rating22_4 %>% 
-  pivot_longer(cols = 6:22,
-               names_to = "measure",
-               values_to = "ratings") 
-
-rating22_words <- rating22_5 %>% 
-  group_by(measure) %>% 
-  summarise(mean = mean(ratings)) %>% 
-  mutate(sentences = str_replace_all(measure, " ", "\n"),
-         year = "2022") %>% 
-  select(-measure)
-
-rating22_words <- rating22_words %>% 
-  mutate(rating_type = case_when(
-    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", 
-                     "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
-    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", "No\nRheumatoid\nArthritis\nManagement", 
-                     "No\nTreatment\nfor\nUrinary\nIncontinence", "No\nTreatment\nfor\nCardiovascular\nDisease") ~ "Treatment",
-    TRUE ~ "Customer Satisfaction"
-    )
-  )
-
-
-
 #combine all years
 ratings <- bind_rows(rating16_words, rating17_words, rating18_words, rating19_words, 
                      rating20_words, rating21_words, rating22_words)
+
 # save the combined data set
 write_csv(ratings, "blog-wordcloud/ratings.csv")
-
-#wordcloud
-set.seed(53)
-rating_words %>%
-  with(wordcloud(words = sentences, freq = mean, scale = c(1.5,0.3), max.words = 11))
-
-gg <- rating_words %>%
-  ggplot(aes(label = sentences, size=mean)) +
-  geom_text_wordcloud(area_corr = TRUE) +
-  scale_size_area(max_size = 10) +
-  theme_minimal() 
-
-gg2 <- gg + transition_time(as.integer(year)) +
-  labs(title = 'Year: {frame_time}')
-
-animate(gg2, nframes = length(unique(rating_words$year)), fps = 3, renderer=gifski_renderer(),
-        width = 1000, height = 1000, res = 150)
-anim_save(filename="testing.gif")
-
