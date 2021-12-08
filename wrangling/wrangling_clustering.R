@@ -113,7 +113,24 @@ pam_summary  <- demographic_coverage %>%
   mutate(cluster = pam_nhis$clustering) %>%
   group_by(cluster) %>%
   do(cluster_summary = summary(.))
+
 pam_summary$cluster_summary[5]
+
+#medioids table
+medioids_coverage <- demographic_coverage[pam_nhis$medoids, ] %>% 
+  arrange(coverage, desc(income_sqrt)) %>% 
+  ungroup() %>% 
+  #formatting for table in html
+  mutate(cluster = c(1:5),
+         income_sqrt = as.integer(income_sqrt),
+         #square back the square rooted income for display
+         income = sapply(income_sqrt, function(x) x^2),
+         #add $ sign and comma to the income values
+         income2 = paste0("$", prettyNum(income, big.mark=",", scientific=FALSE))) %>% 
+  #reorder the variables to be displayed
+  select(cluster, sex, sex_orientation, race, edu, coverage, citizen, income2)
+
+write_csv(medioids_coverage, "data/medioids_coverage.csv")
 
 
 #stratified random samples by race
