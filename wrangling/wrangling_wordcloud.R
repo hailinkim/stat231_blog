@@ -13,7 +13,6 @@ rating17 <- read_csv("data/rating/2017.csv")
 rating18 <- read_csv("data/rating/2018.csv")
 rating19 <- read_csv("data/rating/2019.csv")
 rating20 <- read_csv("data/rating/2020.csv")
-rating21 <- read_csv("data/rating/2021.csv")
 
 #ratings data set
 #2016
@@ -365,76 +364,9 @@ rating20_words <- rating20_words %>%
     )
   )
 
-
-#2021 (wrangling codes are exactly same as those for the 2016 data set)
-names(rating21) <- rating21[1,]
-
-rating21 <- rating21[-1,]
-
-colnames(rating21)[-c(1:5)] <- rating21[1, -c(1:5)]
-
-rating21 <- rating21[-c(1,2),]
-
-rating21_2 <- rating21 %>% 
-  select(c(1:8, 17:23, 25:28, 31:33, 35:37))
-
-asNum <- function(x, na.rm = FALSE)(as.numeric(x))
-
-rating21_3 <- rating21_2 %>% 
-  rename_with(~str_remove(., "C\\d+: "), contains(":")) %>% 
-  mutate(across(c(6:25), ~str_remove(., "%")),
-         across(c(6:25), asNum)) %>% 
-  drop_na()  %>% 
-  mutate(Diabetes = select(., starts_with("Diabetes")) %>% rowSums(na.rm = TRUE),
-         "No Diabetes Care" = 1 - Diabetes/300) %>% 
-  select(-c(10:12, 26)) %>% 
-  mutate(across(c(6:17, 20:22), ~{100-.}),
-         across(c(6:17, 19:22), ~{./100}))
-
-rating21_4 <- rating21_3 %>% 
-  dplyr::rename("No Breast Cancer Screening" = "Breast Cancer Screening",
-                "No Colorectal Cancer Screening" = "Colorectal Cancer Screening",
-                "No Access to Flu Vaccine" = "Annual Flu Vaccine",
-                "No Osteoporosis Treatment" = "Osteoporosis Management in Women who had a Fracture",
-                "No Rheumatoid Arthritis Management" = "Rheumatoid Arthritis Management",
-                "No Fall Risk Interventions" = "Reducing the Risk of Falling",
-                "No Treatment for Urinary Incontinence" = "Improving Bladder Control",
-                "No Treatment for Cardiovascular Disease" = "Statin Therapy for Patients with Cardiovascular Disease",
-                "Not Getting Needed Care" = "Getting Needed Care",
-                "Less Timely Care/Appointments" = "Getting Appointments and Care Quickly",
-                "Poor Customer Service" = "Customer Service",
-                "Poor Care Coordination" = "Care Coordination",
-                "Less Timely Decisions about Appeals" = "Plan Makes Timely Decisions about Appeals",
-                "TTY Services/Foreign Language Interpretation Unavailable" = "Call Center � Foreign Language Interpreter and TTY Availability",
-                "Unfair Appeals Decisions" = "Reviewing Appeals Decisions",
-                "Complaints" = "Complaints about the Health Plan")
-
-rating21_5 <- rating21_4 %>% 
-  pivot_longer(cols = 6:23,
-               names_to = "measure",
-               values_to = "ratings") 
-
-rating21_words <- rating21_5 %>% 
-  group_by(measure) %>% 
-  summarise(mean = mean(ratings)) %>% 
-  mutate(sentences = str_replace_all(measure, " ", "\n"),
-         year = "2021") %>% 
-  select(-measure)
-
-rating21_words <- rating21_words %>% 
-  mutate(rating_type = case_when(
-    sentences %in% c("No\nBreast\nCancer\nScreening", "No\nColorectal\nCancer\nScreening", 
-                     "No\nAccess\nto\nFlu\nVaccine") ~ "Prevention",
-    sentences %in% c("No\nDiabetes\nCare", "No\nFall\nRisk\nInterventions", 
-                     "No\nOsteoporosis\nTreatment", "No\nRheumatoid\nArthritis\nManagement", 
-                     "No\nTreatment\nfor\nUrinary\nIncontinence", "No\nTreatment\nfor\nCardiovascular\nDisease") ~ "Treatment",
-    TRUE ~ "Customer Satisfaction"
-    )
-  )
-
 #combine all years
-ratings <- bind_rows(rating16_words, rating17_words, rating18_words, rating19_words, 
-                     rating20_words, rating21_words, rating22_words)
+ratings <- bind_rows(rating16_words, rating17_words, rating18_words, 
+                     rating19_words, rating20_words)
 
 # save the combined data set
 write_csv(ratings, "blog-wordcloud/ratings.csv")
