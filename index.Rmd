@@ -11,6 +11,7 @@ output:
 
 ```{r setup, include = FALSE}
 # library(kableExtra) # for example code; delete if not needed
+# add comments
 library(readr)
 library(tidyverse)
 library(dplyr)
